@@ -377,7 +377,7 @@ public class frmEmployee extends javax.swing.JFrame {
                                 .addComponent(btnEliminar)
                                 .addGap(19, 19, 19))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbEncargado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -637,6 +637,16 @@ public class frmEmployee extends javax.swing.JFrame {
 
         // Decisión de Inserción o Actualización
         if (this.btnGrabar.getText().equals("Grabar")) {
+                if (empDao.existeEmpleado(emp.getFirstName(), emp.getLastName())) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Acción denegada: Ya existe un empleado registrado con el nombre '" 
+                    + emp.getFirstName() + " " + emp.getLastName() + "'.", 
+                    "Registro Duplicado", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                return; // Interrumpe la ejecución completa del botón para que NO guarde
+            }
+            // ------------------------------
+            
             empDao.insertaEmployee(emp);
             javax.swing.JOptionPane.showMessageDialog(this, "Empleado registrado con éxito.");
         } else {

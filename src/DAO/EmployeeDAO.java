@@ -129,6 +129,21 @@ public class EmployeeDAO {
             try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
     }
+    public boolean existeEmpleado(String firstName, String lastName) {
+        dbBean con = new dbBean();
+        String sql = "SELECT COUNT(*) FROM Employees WHERE FirstName = '" + firstName + "' AND LastName = '" + lastName + "'";
+        try {
+            ResultSet rs = con.execSQL(sql);
+            if (rs != null && rs.next() && rs.getInt(1) > 0) {
+                return true; // Significa que ya existe
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+        }
+        return false; // No existe, es seguro registrar
+    }
 
     // 4. ACTUALIZA EMPLEADO (Directo, confiando en tu validación del formulario)
     public void actualizaEmployee(Employee emp) {
