@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a3e0756d-2093-4c50-8058-6dc419ad0b5f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parPrecMin" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parPrecMax" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     Products."ProductID" AS Products_ProductID,
+     Products."ProductName" AS Products_ProductName,
+     Products."SupplierID" AS Products_SupplierID,
+     Products."CategoryID" AS Products_CategoryID,
+     Products."QuantityPerUnit" AS Products_QuantityPerUnit,
+     Products."UnitPrice" AS Products_UnitPrice,
+     Products."UnitsInStock" AS Products_UnitsInStock,
+     Products."UnitsOnOrder" AS Products_UnitsOnOrder,
+     Products."ReorderLevel" AS Products_ReorderLevel,
+     Products."Discontinued" AS Products_Discontinued
+FROM
+     "dbo"."Products" Products
+WHERE
+      Products."UnitPrice">= $P{parPrecMin} and  Products."UnitPrice"<=$P{parPrecMax}]]>
+	</queryString>
+	<field name="Products_ProductID" class="java.lang.Integer"/>
+	<field name="Products_ProductName" class="java.lang.String"/>
+	<field name="Products_SupplierID" class="java.lang.Integer"/>
+	<field name="Products_CategoryID" class="java.lang.Integer"/>
+	<field name="Products_QuantityPerUnit" class="java.lang.String"/>
+	<field name="Products_UnitPrice" class="java.math.BigDecimal"/>
+	<field name="Products_UnitsInStock" class="java.lang.Short"/>
+	<field name="Products_UnitsOnOrder" class="java.lang.Short"/>
+	<field name="Products_ReorderLevel" class="java.lang.Short"/>
+	<field name="Products_Discontinued" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="163" y="11" width="229" height="49" uuid="2ffff4b0-6a84-43cb-a86a-db4a2ca4ec9b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE PRODUCTOS CON RANGO DE PRECIOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="0" width="26" height="20" uuid="07386891-e3e8-4160-b16e-e23b3ca3606a"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="51" height="20" uuid="e8b10029-236c-4d6a-8eea-ce248ce1414e"/>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="79" height="20" uuid="198dfcc3-3429-4db4-ae89-a0c06984cbb9"/>
+				<text><![CDATA[Precio Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="0" width="76" height="20" uuid="5f6fd153-5657-4f14-910b-3df696d1343e"/>
+				<text><![CDATA[Stock Actual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="100" height="20" uuid="5a233da7-0007-4177-be9e-2f6e76149b62"/>
+				<text><![CDATA[Products_Discontinued]]></text>
+			</staticText>
+			<line>
+				<reportElement x="14" y="27" width="541" height="1" uuid="ddd2efe6-560d-4eba-96c0-0896a961102e"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="26" y="0" width="26" height="20" uuid="25da40fa-ad66-4f8f-970a-2fd7231c6965"/>
+				<textFieldExpression><![CDATA[$F{Products_ProductID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="32" height="20" uuid="5b234362-ede6-402d-9ffa-105080b2069c"/>
+				<textFieldExpression><![CDATA[$F{Products_ProductName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="205" y="0" width="59" height="20" uuid="f76d170b-9dab-4330-9d75-30e0b17b98e7"/>
+				<textFieldExpression><![CDATA[$F{Products_UnitPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="43" height="20" uuid="5a121298-1955-4d24-8dd0-e4e29553eba9"/>
+				<textFieldExpression><![CDATA[$F{Products_UnitsInStock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="42" height="20" uuid="a7cc9ce3-4de2-4cb7-8f5d-4bb68f3a6590"/>
+				<textFieldExpression><![CDATA[$F{Products_Discontinued}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
