@@ -51,6 +51,9 @@ public class dbBean {
         ver.setVisible(true);                
     }
     
+    public Connection getConnection() {
+        return this.dbCon;
+    }
     
   public void close() throws SQLException{
         dbCon.close();
