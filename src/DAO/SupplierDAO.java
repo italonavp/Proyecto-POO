@@ -53,11 +53,11 @@ public class SupplierDAO {
         dbBean con = new dbBean();
         int validacion = 0;
         try {
-            // ver que no exista otra empresa con el mismo nombre
+            // Validar que no exista otra empresa con el mismo nombre
             String sqlCheck = "SELECT COUNT(*) FROM Suppliers WHERE companyName = '" + sup.getCompanyName().replace("'", "''") + "'";
             ResultSet rs = con.execSQL(sqlCheck);
             if (rs.next() && rs.getInt(1) > 0) {
-                return 1; // existe un proveedor con ese nombre
+                return 1; // Ya existe un proveedor con ese nombre
             }
 
             String sql = "insert into Suppliers (companyName, contactName, contactTitle, address, city, region, postalCode, country, phone, fax, homePage) " +
@@ -119,9 +119,9 @@ public class SupplierDAO {
 
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
-            validacion = -1; // error bd
+            validacion = -1; // Error en la base de datos
         } finally {
-            
+            // Cerramos la conexión llamando al método que ya tenías en tu dbBean
             try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
         return validacion;
@@ -138,7 +138,7 @@ public class SupplierDAO {
             String sqlCheck = "SELECT COUNT(*) FROM Products WHERE SupplierID = " + idSupplier;
             ResultSet rs = con.execSQL(sqlCheck);
             if (rs.next() && rs.getInt(1) > 0) {
-                return 1; //tiene productos dependientes, bloqueo
+                return 1; //Tiene productos dependientes, bloqueo
             }
             
             String sqlDelete = "DELETE FROM Suppliers WHERE SupplierID = " + idSupplier;
