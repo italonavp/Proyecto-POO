@@ -3,6 +3,7 @@ import DAO.*;
 import BEAN.*;
 import UTIL.dbBean;
 import java.awt.*;
+import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import net.sf.jasperreports.engine.JRException;
@@ -44,6 +45,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
         repProductsParam = new javax.swing.JMenuItem();
         repCustomersSimp = new javax.swing.JMenuItem();
         repCustomersParam = new javax.swing.JMenuItem();
+        repEmployeesSimp = new javax.swing.JMenuItem();
+        repEmployeesParam = new javax.swing.JMenuItem();
+        repCategoriesSimp = new javax.swing.JMenuItem();
+        repCategoriesParam = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +119,38 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(repCustomersParam);
+
+        repEmployeesSimp.setText("Empleados Simple");
+        repEmployeesSimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repEmployeesSimpActionPerformed(evt);
+            }
+        });
+        jMenu1.add(repEmployeesSimp);
+
+        repEmployeesParam.setText("Empleados por ID");
+        repEmployeesParam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repEmployeesParamActionPerformed(evt);
+            }
+        });
+        jMenu1.add(repEmployeesParam);
+
+        repCategoriesSimp.setText("Categorías Simple");
+        repCategoriesSimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repCategoriesSimpActionPerformed(evt);
+            }
+        });
+        jMenu1.add(repCategoriesSimp);
+
+        repCategoriesParam.setText("Categorías por ID");
+        repCategoriesParam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repCategoriesParamActionPerformed(evt);
+            }
+        });
+        jMenu1.add(repCategoriesParam);
 
         jMenuBar1.add(jMenu1);
 
@@ -191,11 +228,52 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repCustomersSimpActionPerformed
 
     private void repCustomersParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersParamActionPerformed
-        repRegion = new frmRepCustomersRegion(this.dimH(),this.dimW());
+       repRegion = new frmRepCustomersRegion(this.dimH(),this.dimW());
        this.escritorio.add(repRegion);
        repRegion.setVisible(true);
        repRegion.setSize(675,195);
     }//GEN-LAST:event_repCustomersParamActionPerformed
+
+    private void repEmployeesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesParamActionPerformed
+        // Instanciamos tu ventanita intermediaria
+        UI.frmRepEmpParam ventanaParam = new UI.frmRepEmpParam();
+        
+        // La agregamos al panel principal
+        this.escritorio.add(ventanaParam); 
+        
+        // La mostramos
+        ventanaParam.setVisible(true);
+    }//GEN-LAST:event_repEmployeesParamActionPerformed
+
+    private void repEmployeesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesSimpActionPerformed
+        try{
+            String r = "src/REPORTS/repEmployeesSimp.jasper";
+            dbBean db = new dbBean();
+            db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repEmployeesSimpActionPerformed
+
+    private void repCategoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesSimpActionPerformed
+        try{
+            String r = "src/REPORTS/repCategoriesSimp.jasper";
+            dbBean db = new dbBean();
+            db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repCategoriesSimpActionPerformed
+
+    private void repCategoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesParamActionPerformed
+        UI.frmRepCatParam ventanaCat = new UI.frmRepCatParam();
+        this.escritorio.add(ventanaCat);
+        ventanaCat.setVisible(true);
+    }//GEN-LAST:event_repCategoriesParamActionPerformed
 
     int dimW(){
         return wd;
@@ -241,8 +319,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuMant;
     private javax.swing.JMenu menuTrans;
+    private javax.swing.JMenuItem repCategoriesParam;
+    private javax.swing.JMenuItem repCategoriesSimp;
     private javax.swing.JMenuItem repCustomersParam;
     private javax.swing.JMenuItem repCustomersSimp;
+    private javax.swing.JMenuItem repEmployeesParam;
+    private javax.swing.JMenuItem repEmployeesSimp;
     private javax.swing.JMenuItem repProductsParam;
     private javax.swing.JMenuItem repProductsSimp;
     private javax.swing.JMenuItem submenuCustomer;
