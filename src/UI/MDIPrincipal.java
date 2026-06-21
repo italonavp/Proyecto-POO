@@ -149,7 +149,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void repProductsSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsSimpActionPerformed
         try{
-            String r = "src/REPORTES/repProductsSimp.jasper";
+            String r = "src/REPORTS/repProductsSimp.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
         }catch(java.sql.SQLException e){
@@ -180,7 +180,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void repCustomersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersSimpActionPerformed
         try{
-            String r = "src/REPORTES/repCustomers.jasper";
+            String r = "src/REPORTS/repCustomers.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
         }catch(java.sql.SQLException e){

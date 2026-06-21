@@ -384,7 +384,7 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnReporteActionPerformed
         try {
-            String r = "src/Reportes/repCustomers.jasper";
+            String r = "src/REPORTS/repCustomers.jasper";
             dbBean db = new dbBean();
             db.connectRep(r, null, false);
         } catch (SQLException e) {

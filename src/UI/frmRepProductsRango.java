@@ -92,7 +92,7 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
         map.put("parPrecMin",d);
         map.put("parPrecMax",a);
         try{
-            String r = "src/REPORTES/repProductsParam.jasper";
+            String r = "src/REPORTS/repProductsParam.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, map, true);
         }catch(java.sql.SQLException e){

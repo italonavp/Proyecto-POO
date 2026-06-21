@@ -105,7 +105,7 @@ public class frmRepCustomersRegion extends javax.swing.JInternalFrame {
         map.put("parRegion",reg);
         map.put("parCity",ciudad);
         try{
-            String r = "src/REPORTES/repCustomersParam.jasper";
+            String r = "src/REPORTS/repCustomersParam.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, map, true);
         }catch(java.sql.SQLException e){

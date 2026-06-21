@@ -21,7 +21,7 @@
 FROM
      "dbo"."Customers" Customers
 WHERE
-     Customers."Region" LIKE $P{parRegion}]]>
+     Customers."Region" LIKE $P{parRegion} and Customers."City" LIKE $P{parCity}]]>
 	</queryString>
 	<field name="Customers_CustomerID" class="java.lang.String"/>
 	<field name="Customers_CompanyName" class="java.lang.String"/>
