@@ -11,7 +11,7 @@ public class FrmProducts extends javax.swing.JInternalFrame {
     ProductDAO productDao;
     DefaultTableModel dtm;
     int idProduct;
-    //Vector<Supplier> listaSupplier;
+    Vector<Supplier> listaSupplier;
     Vector<Category> listaCategory;
     
     public FrmProducts(int mdiW, int mdiH){
@@ -52,18 +52,16 @@ public class FrmProducts extends javax.swing.JInternalFrame {
     }
     
     public void cargaSupplier(){
-        /*
+        
         SupplierDAO supplierDao = new SupplierDAO();
-        listaSupplier = supplierDao.listaSuppliers();
+        listaSupplier = supplierDao.listaSuppliers("");
         this.cmbSupplierID.removeAllItems();
         this.cmbSupplierID.addItem("");
         for (int i = 0; i<listaSupplier.size();i ++){
-            this.cmbSupplierID.addItem(listaSupplier.get(i).getContactName());
+            this.cmbSupplierID.addItem(listaSupplier.get(i).getCompanyName());
         }
-        */
-        this.cmbSupplierID.removeAllItems();
-        this.cmbSupplierID.addItem("Proveedor Falso 1");
-        this.cmbSupplierID.addItem("Proveedor Falso 2");
+        
+        
     }
     
     public void cargaCategory(){
@@ -117,7 +115,7 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         btnTest = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mantenimiento Products");
@@ -130,20 +128,25 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel12);
         jLabel12.setBounds(11, 14, 35, 15);
 
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(50, 10, 349, 20);
+        txtBuscar.setBounds(50, 10, 640, 20);
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ProductID", "Nombre", "SupplierID", "CategoryID", "Quantity per Unit", "Unit Price", "Units In Stock", "Units On Order", "Reorder Level", "Descontinuado"
+                "ID", "Producto", "ID PROOV", "ID categoria", "Quantity per Unit", "PRECIO UNIT", "STOCK", "UNITS PEDIDAS", "Reorder Level", "Descontinuado"
             }
         ));
         tblProducts.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,7 +157,7 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblProducts);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 40, 400, 250);
+        jScrollPane1.setBounds(10, 40, 680, 250);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
@@ -243,10 +246,6 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,14 +298,19 @@ public class FrmProducts extends javax.swing.JInternalFrame {
                         .addComponent(btnLimpiar)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 280, Short.MAX_VALUE)
                         .addComponent(btnTest)
                         .addGap(246, 246, 246)
                         .addComponent(btnEliminar))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(303, 303, 303)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +369,7 @@ public class FrmProducts extends javax.swing.JInternalFrame {
                             .addComponent(btnSalir)
                             .addComponent(btnTest)
                             .addComponent(btnEliminar))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -387,7 +391,7 @@ public class FrmProducts extends javax.swing.JInternalFrame {
             int indiceSupplier = this.cmbSupplierID.getSelectedIndex();
             int indiceCategory = this.cmbCategoryID.getSelectedIndex();
             prod.setProductName(this.txtProductName.getText());
-            //prod.setSupplierID(listaSupplier.get(indiceSupplier).getSupplierID());
+            prod.setSupplierID(listaSupplier.get(indiceSupplier).getSupplierID());
             prod.setCategoryID(listaCategory.get(indiceCategory).getCategoryID());
             prod.setQuantityPerUnit(this.txtQuantityPerUnit.getText());
             prod.setUnitPrice(Double.parseDouble(this.txtUnitPrice.getText()));
@@ -452,12 +456,12 @@ public class FrmProducts extends javax.swing.JInternalFrame {
             this.rbActivo.setSelected(true);
         }
        
-//        for(int i = 0; i<listaSupplier.size();i++){
-//            if(listaSupplier.get(i).getSupplierID() == idSupplier){
-//                this.cmbSupplierID.getSelectedIndex(i+1);
-//                break;
-//            }
-//        }
+        for(int i = 0; i<listaSupplier.size();i++){
+            if(listaSupplier.get(i).getSupplierID() == idSupplier){
+                this.cmbSupplierID.setSelectedIndex(i+1);
+                break;
+            }
+        }
         
         for(int i = 0; i<listaCategory.size();i++){
             if(listaCategory.get(i).getCategoryID() == idCategory){
@@ -490,6 +494,10 @@ public class FrmProducts extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnTestActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     
     public void limpia(){

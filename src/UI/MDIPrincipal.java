@@ -179,7 +179,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         formProd = new FrmProducts(h, w);
         escritorio.add(formProd);
         formProd.setVisible(true);
-        formProd.setSize(900, 600);
+        formProd.setSize(1100, 600);
         
         
     }//GEN-LAST:event_submenuProductsActionPerformed
