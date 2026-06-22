@@ -106,7 +106,8 @@ public class FrmRepUserParam extends javax.swing.JInternalFrame {
             
             
             dbBean db = new dbBean();
-            db.connectRep(ruta, (HashMap) parametros, true); 
+            db.connectRep(ruta, (HashMap) parametros, true);
+            this.dispose();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al cargar el reporte:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

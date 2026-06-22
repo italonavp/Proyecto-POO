@@ -100,6 +100,7 @@ try {
             String ruta = "src/REPORTS/repCategoriesParam.jasper"; 
             UTIL.dbBean db = new UTIL.dbBean();
             db.connectRep(ruta, parametros, true); // TRUE para que acepte los parámetros
+            this.dispose();
         } catch (Exception ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + ex.getMessage());

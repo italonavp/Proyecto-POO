@@ -108,6 +108,7 @@ public class frmRepCustomersRegion extends javax.swing.JInternalFrame {
             String r = "src/REPORTS/repCustomersParam.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, map, true);
+            this.dispose();
         }catch(java.sql.SQLException e){
         e.printStackTrace();
          }catch(JRException ex){

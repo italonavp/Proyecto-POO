@@ -106,7 +106,8 @@ public class frmRepSuppParam extends javax.swing.JInternalFrame {
             parametros.put("PaisParam", paisSeleccionado);
             String ruta = "src/REPORTS/repSuppliersParam.jasper"; 
             UTIL.dbBean db = new UTIL.dbBean();
-            db.connectRep(ruta, parametros, true); 
+            db.connectRep(ruta, parametros, true);
+            this.dispose();
             
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -1,5 +1,5 @@
 package UI;
-public class frmCategory extends javax.swing.JFrame {
+public class frmCategory extends javax.swing.JInternalFrame {
     DAO.CategoryDAO catDao;
     javax.swing.table.DefaultTableModel dtm;
     int idCat = 0;
@@ -7,7 +7,14 @@ public class frmCategory extends javax.swing.JFrame {
     
     java.util.Vector<BEAN.Category> listaCatGlobal; 
 
-    public frmCategory() { // Ajusta este nombre si tu clase se llama distinto
+    public frmCategory(int mdiW, int mdiH) { // Ajusta este nombre si tu clase se llama distinto
+        int slx, sly, wd = mdiW, hd = mdiH;
+        
+        this.setSize(1200, 675);
+        slx = (mdiW/2) - (this.getWidth()/2);
+        sly = (mdiH/2) -(this.getHeight()/2);
+        this.setLocation(slx, sly);
+        this.setResizable(false);
         initComponents();
         this.getContentPane().setBackground(java.awt.Color.WHITE); // Fondo limpio
         
@@ -382,40 +389,6 @@ public class frmCategory extends javax.swing.JFrame {
         this.btnEliminar.setEnabled(true);
     }//GEN-LAST:event_tblCategoriasMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmCategory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmCategory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmCategory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmCategory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new frmCategory().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarImagen;

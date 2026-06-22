@@ -511,6 +511,8 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         this.txtUnitsOnOrder.setText("");
         this.txtReorderLevel.setText("");
         this.rbActivo.setSelected(true);
+        this.btnEliminar.setEnabled(false);
+        this.btnGrabar.setText("Grabar");
     }
     public boolean valida(){
         String cad = "";

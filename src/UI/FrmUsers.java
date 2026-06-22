@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class FrmUsers extends javax.swing.JFrame {
+public class FrmUsers extends javax.swing.JInternalFrame {
     
     UsersDAO userDao;
     DefaultTableModel dtm;
@@ -20,8 +20,15 @@ public class FrmUsers extends javax.swing.JFrame {
     
     Vector<Employee> listaEmployee;
 
-    public FrmUsers() {
+    public FrmUsers(int mdiW, int mdiH) {
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+        
+        this.setSize(1200, 675);
+        slx = (mdiW/2) - (this.getWidth()/2);
+        sly = (mdiH/2) -(this.getHeight()/2);
+        this.setLocation(slx, sly);
+        this.setResizable(false);
 
         userDao = new UsersDAO();
         dtm = (DefaultTableModel) this.tblUsers.getModel();
@@ -200,6 +207,11 @@ public class FrmUsers extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("STATUS");
 
@@ -451,6 +463,10 @@ public class FrmUsers extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRepParamActionPerformed
 
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -511,37 +527,6 @@ public class FrmUsers extends javax.swing.JFrame {
         public int getId() { return id; }
         @Override
         public String toString() { return nombre; }
-    }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmUsers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmUsers().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

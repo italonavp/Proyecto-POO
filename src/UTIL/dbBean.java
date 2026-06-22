@@ -46,7 +46,7 @@ public class dbBean {
         }else{
             imp = JasperFillManager.fillReport(reporte, m, dbCon);
         }
-        JasperViewer ver = new JasperViewer(imp);
+        JasperViewer ver = new JasperViewer(imp, false);
         ver.setTitle("Reporte");
         ver.setVisible(true);                
     }

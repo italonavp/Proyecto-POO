@@ -95,6 +95,7 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
             String r = "src/REPORTS/repProductsParam.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, map, true);
+            this.dispose();
         }catch(java.sql.SQLException e){
         e.printStackTrace();
          }catch(JRException ex){

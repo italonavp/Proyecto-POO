@@ -107,6 +107,7 @@ public class frmRepEmpParam extends javax.swing.JInternalFrame {
             String ruta = "src/REPORTS/repEmployeesParam.jasper"; 
             UTIL.dbBean db = new UTIL.dbBean();
             db.connectRep(ruta, parametros, true);
+            this.dispose();
             
         } catch (Exception ex) {
             ex.printStackTrace();
