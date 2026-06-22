@@ -104,7 +104,7 @@ public class frmRepSuppParam extends javax.swing.JInternalFrame {
             String paisSeleccionado = cmbPaises.getSelectedItem().toString();
             HashMap parametros = new HashMap();
             parametros.put("PaisParam", paisSeleccionado);
-            String ruta = "src/REPORTS/repSupplierParam.jasper"; 
+            String ruta = "src/REPORTS/repSuppliersParam.jasper"; 
             UTIL.dbBean db = new UTIL.dbBean();
             db.connectRep(ruta, parametros, true); 
             
