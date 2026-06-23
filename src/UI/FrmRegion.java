@@ -8,12 +8,11 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-public class FrmRegion extends javax.swing.JFrame {
+public class FrmRegion extends javax.swing.JInternalFrame {
 
     RegionDAO regDAO;
     DefaultTableModel dtm;
     Util u = new Util();
-    int idReg = u.idNext("Region", "RegionID");
     public FrmRegion() {
         regDAO = new RegionDAO();
         initComponents();
@@ -222,7 +221,7 @@ public class FrmRegion extends javax.swing.JFrame {
             r.setIDregion(Integer.parseInt(this.txtIDRegion.getText()));
             regDAO.insertaRegion(r);
         }else{
-            r.setIDregion(idReg);
+            r.setIDregion(Integer.parseInt(this.txtIDRegion.getText()));
             regDAO.actualizarReg(r);
         }
         limpia();
@@ -237,10 +236,27 @@ public class FrmRegion extends javax.swing.JFrame {
         this.txtIDRegion.setText(dtm.getValueAt(idx, 0).toString());
         this.txtDescReg.setText(dtm.getValueAt(idx, 1).toString());
         this.btnAgregar.setText("Actualizar");
+        this.btnSalir.setText("Eliminar");
     }//GEN-LAST:event_tblRegionMouseClicked
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.setVisible(false);
+        if(this.btnSalir.getText().equals("Eliminar")){
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Desea eliminar la región seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                int idRegion = Integer.parseInt(this.txtIDRegion.getText());
+                int resultado = regDAO.eliminaRegion(idRegion);
+                if(resultado == 0){
+                    limpia();
+                    JOptionPane.showMessageDialog(this, "Región eliminada correctamente");
+                }else if(resultado == 1){
+                    JOptionPane.showMessageDialog(this, "No se puede eliminar la región porque tiene territorios asociados");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar la región");
+                }
+            }
+        }else{
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void txtBuscarRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarRegKeyReleased
@@ -256,42 +272,13 @@ public class FrmRegion extends javax.swing.JFrame {
         this.txtIDRegion.setText(String.valueOf(idReg));
         this.txtDescReg.setText("");
         this.btnAgregar.setText("Agregar");
+        this.btnSalir.setText("Salir");
         this.llenatbl("");
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmRegion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmRegion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmRegion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmRegion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmRegion().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

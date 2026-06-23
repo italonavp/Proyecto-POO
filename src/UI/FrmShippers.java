@@ -16,12 +16,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Joaco
  */
-public class FrmShippers extends javax.swing.JFrame {
+public class FrmShippers extends javax.swing.JInternalFrame {
 
     ShippersDAO shipDAO;
     DefaultTableModel dtm;
     Util u = new Util();
-    int idShip = u.idNext("Shippers", "ShipperID");
     public FrmShippers() {
         shipDAO = new ShippersDAO();
         initComponents();
@@ -247,7 +246,23 @@ public class FrmShippers extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalActionPerformed
-        this.setVisible(false);
+        if(this.btnSal.getText().equals("Eliminar")){
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Desea eliminar el shipper seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                int idShippers = Integer.parseInt(this.txtID.getText());
+                int resultado = shipDAO.eliminaShippers(idShippers);
+                if(resultado == 0){
+                    limpia();
+                    JOptionPane.showMessageDialog(this, "Shipper eliminado correctamente");
+                }else if(resultado == 1){
+                    JOptionPane.showMessageDialog(this, "No se puede eliminar el shipper porque tiene órdenes asociadas");
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se pudo eliminar el shipper");
+                }
+            }
+        }else{
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnSalActionPerformed
 
     private void btnAgreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgreActionPerformed
@@ -259,7 +274,7 @@ public class FrmShippers extends javax.swing.JFrame {
             s.setIdShippers(Integer.parseInt(this.txtID.getText()));
             shipDAO.insertaShippers(s);
         }else{
-            s.setIdShippers(idShip);
+            s.setIdShippers(Integer.parseInt(this.txtID.getText()));
             shipDAO.actualiza(s);
         }
         limpia();
@@ -275,6 +290,7 @@ public class FrmShippers extends javax.swing.JFrame {
         this.txtCompany.setText(dtm.getValueAt(idx, 1).toString());
         this.txtTel.setText(dtm.getValueAt(idx, 2).toString());
         this.btnAgre.setText("Actualizar");
+        this.btnSal.setText("Eliminar");
     }//GEN-LAST:event_tblShipMouseClicked
     private void limpia(){
         int idShip = u.idNext("Shippers", "ShipperID");
@@ -282,43 +298,13 @@ public class FrmShippers extends javax.swing.JFrame {
         this.txtCompany.setText("");
         this.txtTel.setText("");
         this.btnAgre.setText("Agregar");
+        this.btnSal.setText("Salir");
         this.llenatbl("");
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmShippers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmShippers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmShippers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmShippers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmShippers().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgre;

@@ -46,9 +46,7 @@ public class ShippersDAO {
         String sql;
         try{
             sql = "insert into Shippers (CompanyName, Phone) values('"+ s.getCompanyName() +"', '"+ s.getPhone() +"')";
-           
-            System.out.println("JJJJ "+sql);
-            con.execSQL(sql);
+            con.updateSQL(sql);
         }catch(java.sql.SQLException e){
             e.printStackTrace();
         }
@@ -68,10 +66,7 @@ public class ShippersDAO {
             sql = "update Shippers set CompanyName = '"+s.getCompanyName()+"', ";
             sql = sql + "Phone = '"+s.getPhone()+"' where ";
             sql = sql + "ShipperID ="+ s.getIdShippers() +"";
-            
-            System.out.println("TICO TIco: "+sql);
-            
-            con.execSQL(sql);
+            con.updateSQL(sql);
         }catch(java.sql.SQLException e){
             e.printStackTrace();
         }
@@ -81,6 +76,31 @@ public class ShippersDAO {
             e.printStackTrace();
         }
     }    
+
+    public int eliminaShippers(int idShippers){
+        dbBean con;
+        con = new dbBean();
+        int validacion = 0;
+        try{
+            String sqlCheck = "select count(*) from Orders where ShipVia = " + idShippers;
+            ResultSet rs = con.execSQL(sqlCheck);
+            if(rs.next() && rs.getInt(1) > 0){
+                return 1;
+            }
+
+            String sql = "delete from Shippers where ShipperID = " + idShippers;
+            con.updateSQL(sql);
+        }catch(java.sql.SQLException e){
+            e.printStackTrace();
+            validacion = -1;
+        }
+        try{
+            con.close();
+        }catch(java.sql.SQLException e){
+            e.printStackTrace();
+        }
+        return validacion;
+    }
    
     
 }

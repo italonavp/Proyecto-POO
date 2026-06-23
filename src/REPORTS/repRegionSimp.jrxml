@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e84f952d-b6a7-4f9e-9c32-73bae9d69ae9">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     Region."RegionID" AS Region_RegionID,
+     Region."RegionDescription" AS Region_RegionDescription
+FROM
+     "dbo"."Region" Region]]>
+	</queryString>
+	<field name="Region_RegionID" class="java.lang.Integer"/>
+	<field name="Region_RegionDescription" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="17" width="300" height="30" uuid="3fb755dc-2694-4809-af1c-688f748d3702"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Simple de Regiones]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="6" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="116" y="1" width="100" height="20" uuid="57f60863-c23a-4ebe-b064-9fc5f5c0f65b"/>
+				<text><![CDATA[ID Region]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="1" width="100" height="20" uuid="de7b379d-b68d-4ae5-a1b6-dbae02b6137e"/>
+				<text><![CDATA[Region]]></text>
+			</staticText>
+			<line>
+				<reportElement x="73" y="21" width="400" height="1" uuid="ae449e60-d4e5-493b-bd9e-7b89375596d1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="116" y="0" width="100" height="20" uuid="cdd1ef32-3585-4278-8a3d-6cdb23c7b71b"/>
+				<textFieldExpression><![CDATA[$F{Region_RegionID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="0" width="100" height="20" uuid="7fc14631-e0c6-4df1-bb7d-cef15e5a2ce4"/>
+				<textFieldExpression><![CDATA[$F{Region_RegionDescription}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -3,9 +3,6 @@ package DAO;
 import BEAN.Region;
 import UTIL.dbBean;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Vector;
 
 
@@ -52,9 +49,8 @@ public class RegionDAO {
         
         String sql;
         try{
-            sql = "insert into Region values("+ r.getIDregion() +", '"+ r.getRegdesc() +"')";
-            System.out.println("JJJJ "+sql);
-            con.execSQL(sql);
+            sql = "insert into Region (RegionID, RegionDescription) values("+ r.getIDregion() +", '"+ r.getRegdesc() +"')";
+            con.updateSQL(sql);
         }catch(java.sql.SQLException e){
             e.printStackTrace();
         }
@@ -72,11 +68,8 @@ public class RegionDAO {
         String sql;
         try{
             sql = "update Region set RegionDescription = '"+r.getRegdesc()+"' where ";
-            sql = sql + "RgionID ="+ r.getIDregion() +"";
-            
-            System.out.println("TICO TIco: "+sql);
-            
-            con.execSQL(sql);
+            sql = sql + "RegionID ="+ r.getIDregion() +"";
+            con.updateSQL(sql);
         }catch(java.sql.SQLException e){
             e.printStackTrace();
         }
@@ -86,5 +79,30 @@ public class RegionDAO {
             e.printStackTrace();
         }
     }    
+
+    public int eliminaRegion(int idRegion){
+        dbBean con;
+        con = new dbBean();
+        int validacion = 0;
+        try{
+            String sqlCheck = "select count(*) from Territories where RegionID = " + idRegion;
+            ResultSet rs = con.execSQL(sqlCheck);
+            if(rs.next() && rs.getInt(1) > 0){
+                return 1;
+            }
+
+            String sql = "delete from Region where RegionID = " + idRegion;
+            con.updateSQL(sql);
+        }catch(java.sql.SQLException e){
+            e.printStackTrace();
+            validacion = -1;
+        }
+        try{
+            con.close();
+        }catch(java.sql.SQLException e){
+            e.printStackTrace();
+        }
+        return validacion;
+    }
  
 }
