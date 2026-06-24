@@ -13,10 +13,12 @@ public class OrderDetailDAO {
     public Vector<OrderDetail> listaOrderDetails(String cad){
         Vector<OrderDetail> listDetail = new Vector<OrderDetail>();
         dbBean con = new dbBean();
-        String sql = "SELECT * FROM [Order Details]";
+        String sql = "SELECT od.OrderID, od.ProductID, p.ProductName, od.UnitPrice, od.Quantity, od.Discount "
+                   + "FROM [Order Details] od "
+                   + "INNER JOIN Products p ON od.ProductID = p.ProductID";
         
         if(!cad.isEmpty()){
-            sql += " WHERE OrderID LIKE '" + cad + "%' or ProductID LIKE '"+cad+"'%";
+            sql += " WHERE od.OrderID LIKE '" + cad + "%' or od.ProductID LIKE '"+cad+"%'";
         }
         System.out.println(sql);
         
@@ -25,11 +27,12 @@ public class OrderDetailDAO {
             
             while(resultDetail.next()){
                 OrderDetail det = new OrderDetail();
-                det.setOrderID(resultDetail.getInt(1));
-                det.setProductID(resultDetail.getInt(2));
-                det.setUnitPrice(resultDetail.getDouble(3));
-                det.setQuantity(resultDetail.getInt(4));
-                det.setDiscount(resultDetail.getDouble(5));
+                det.setOrderID(resultDetail.getInt("OrderID"));
+                det.setProductID(resultDetail.getInt("ProductID"));
+                det.setProductName(resultDetail.getString("ProductName"));
+                det.setUnitPrice(resultDetail.getDouble("UnitPrice"));
+                det.setQuantity(resultDetail.getInt("Quantity"));
+                det.setDiscount(resultDetail.getDouble("Discount"));
                 listDetail.addElement(det);
             }
         }catch(java.sql.SQLException e){

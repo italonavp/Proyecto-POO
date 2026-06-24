@@ -11,6 +11,9 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     Vector<Employee> listaEmployee;
     Vector<Shippers> listaShippers;
     DefaultTableModel dtm;
+    DefaultTableModel dtmDetalles;
+    DefaultTableModel dtmHistorial;
+    int orderId;
     public FrmOrders(int mdiW, int mdiH) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
@@ -23,6 +26,35 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         cargaEmpleado();
         cargaShippers();
         dtm = (DefaultTableModel)this.tblOrderDetails.getModel();
+        dtmDetalles = (DefaultTableModel) this.tblOrderDetailss.getModel();
+        dtmHistorial= (DefaultTableModel) this.tblOrderDetailss.getModel();
+    }
+    
+    public void llenaTablaOrdenes(String filtro) {
+        DefaultTableModel dtmOrdenes = (DefaultTableModel) this.tblOrderss.getModel(); 
+        dtmOrdenes.setRowCount(0);
+        
+        OrderDAO ordDao = new OrderDAO();
+        Vector<Order> listaHistorial = ordDao.listaOrders(filtro);
+        
+        for (int i = 0; i < listaHistorial.size(); i++) {
+            Vector vec = new Vector();
+            vec.addElement(listaHistorial.get(i).getOrderID());
+            vec.addElement(listaHistorial.get(i).getCustomerID());
+            vec.addElement(listaHistorial.get(i).getEmployeeID());
+            vec.addElement(listaHistorial.get(i).getOrderDate());
+            vec.addElement(listaHistorial.get(i).getRequiredDate());
+            vec.addElement(listaHistorial.get(i).getShippedDate());
+            vec.addElement(listaHistorial.get(i).getShipVia());
+            vec.addElement(listaHistorial.get(i).getFreight());
+            vec.addElement(listaHistorial.get(i).getShipName());
+            vec.addElement(listaHistorial.get(i).getShipCity());
+            vec.addElement(listaHistorial.get(i).getShipRegion());
+            vec.addElement(listaHistorial.get(i).getShipPostalCode());
+            vec.addElement(listaHistorial.get(i).getShipCountry());
+            
+            dtmOrdenes.addRow(vec);
+        }
     }
 
    
@@ -45,6 +77,24 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         for (int i = 0; i<listaShippers.size();i ++){
             this.cmbShipVia.addItem(listaShippers.get(i).getCompanyName());
         } 
+    }
+    public void llenaTablaDetalles(String idOrden) {
+         
+        dtmDetalles.setRowCount(0); // Usamos la variable global
+
+        OrderDetailDAO detDao = new OrderDetailDAO();
+        Vector<OrderDetail> listaDetalles = detDao.listaOrderDetails(idOrden);
+        
+        for (int i = 0; i < listaDetalles.size(); i++) {
+            Vector vec = new Vector();
+            vec.addElement(listaDetalles.get(i).getProductID());
+            vec.addElement(listaDetalles.get(i).getProductName()); 
+            vec.addElement(listaDetalles.get(i).getUnitPrice());
+            vec.addElement(listaDetalles.get(i).getQuantity());
+            vec.addElement(listaDetalles.get(i).getDiscount());
+
+            dtmDetalles.addRow(vec);
+        }
     }
     
     
@@ -104,6 +154,17 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        txtBusquedaCliente = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblOrderss = new javax.swing.JTable();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblOrderDetailss = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
+        btnSalida = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -258,7 +319,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(txtShipRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -486,7 +547,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -504,15 +565,125 @@ public class FrmOrders extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Registro de venta", jPanel1);
 
+        jLabel20.setText("Nombre de Cliente");
+
+        txtBusquedaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusquedaClienteActionPerformed(evt);
+            }
+        });
+        txtBusquedaCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBusquedaClienteKeyReleased(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial de Ordenes"));
+        jPanel6.setLayout(null);
+
+        tblOrderss.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "ClienteID", "EmpleadoID", "FechOrden", "FechRequerid", "FechEnvio", "via Envio", "Flete", "Destinatario", "CiudadDest", "RegionDest", "CodigoPostal", "PaisDestino"
+            }
+        ));
+        tblOrderss.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrderssMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblOrderss);
+
+        jPanel6.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 20, 910, 220);
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Detalle de la Orden"));
+        jPanel7.setPreferredSize(new java.awt.Dimension(900, 220));
+        jPanel7.setLayout(null);
+
+        tblOrderDetailss.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Producto", "Descripcion", "Precio", "Cantidad", "Descuento"
+            }
+        ));
+        tblOrderDetailss.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrderDetailssMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblOrderDetailss);
+
+        jPanel7.add(jScrollPane3);
+        jScrollPane3.setBounds(10, 20, 880, 190);
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnSalida.setText("Salir");
+        btnSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 925, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 15, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(btnEliminar)
+                .addGap(116, 116, 116)
+                .addComponent(btnSalida)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(txtBusquedaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnSalida))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Búsqueda de órdenes", jPanel2);
@@ -530,7 +701,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -648,7 +819,6 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         }
             vec.addElement(this.txtDiscount.getText());    
             dtm.addRow(vec);
-            limpiarProducto();
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -659,6 +829,59 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiarTodo();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        selCliente dialogcliente = new selCliente(new javax.swing.JFrame(), true);
+        dialogcliente.setVisible(true); 
+        Customer cust = dialogcliente.getCliente();
+       
+        if (cust.getCustomerID() != null) {
+            this.txtBusquedaCliente.setText(cust.getCompanyName());
+        }
+        this.llenaTablaOrdenes(cust.getCustomerID());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBusquedaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusquedaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusquedaClienteActionPerformed
+
+    private void tblOrderssMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderssMouseClicked
+        int fila = this.tblOrderss.getSelectedRow();
+        if (fila != -1) {
+            String orderId = this.tblOrderss.getValueAt(fila, 0).toString();
+            llenaTablaDetalles(orderId);
+        }
+        else {
+             
+            dtmDetalles.setRowCount(0);
+        }
+    }//GEN-LAST:event_tblOrderssMouseClicked
+
+    private void tblOrderDetailssMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderDetailssMouseClicked
+        
+    }//GEN-LAST:event_tblOrderDetailssMouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String msj;
+        Order order = new Order();
+        int fila = this.tblOrderss.getSelectedRow();
+        int idOrden = Integer.parseInt(this.tblOrderss.getValueAt(fila, 0).toString());
+        order.setOrderID(idOrden); 
+        OrderDAO orderDao = new OrderDAO();
+        orderDao.procesaOrder(order, "delete");
+        JOptionPane.showMessageDialog(this, "¡La Orden #" + idOrden + " ha sido eliminada con éxito");
+        llenaTablaOrdenes(this.txtBusquedaCliente.getText()); 
+        dtmDetalles.setRowCount(0);
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtBusquedaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaClienteKeyReleased
+        this.llenaTablaOrdenes(this.txtBusquedaCliente.getText());
+    }//GEN-LAST:event_txtBusquedaClienteKeyReleased
+
+    private void btnSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalidaActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalidaActionPerformed
 
     public void limpiarProducto(){
         this.txtProductID.setText("");
@@ -727,10 +950,13 @@ public class FrmOrders extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnBuscarProducto;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnSalida;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<String> cmbEmployee;
     private javax.swing.JComboBox<String> cmbShipVia;
@@ -746,6 +972,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -759,12 +986,19 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private com.toedter.calendar.JDateChooser jdOrderDate;
     private com.toedter.calendar.JDateChooser jdRequiredDate;
     private com.toedter.calendar.JDateChooser jdShippedDate;
     private javax.swing.JTable tblOrderDetails;
+    private javax.swing.JTable tblOrderDetailss;
+    private javax.swing.JTable tblOrderss;
+    private javax.swing.JTextField txtBusquedaCliente;
     private javax.swing.JTextField txtCompanyName;
     private javax.swing.JTextField txtCustomerID;
     private javax.swing.JTextField txtDiscount;

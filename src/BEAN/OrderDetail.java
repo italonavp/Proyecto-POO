@@ -5,6 +5,7 @@ public class OrderDetail {
     private double unitPrice;
     private int quantity;
     private double discount;
+    private String productName;
 
     public OrderDetail() {
     }
@@ -48,6 +49,13 @@ public class OrderDetail {
     public void setDiscount(double discount) {
         this.discount = discount;
     }
-    
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
     
 }

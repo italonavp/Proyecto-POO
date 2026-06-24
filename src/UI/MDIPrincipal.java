@@ -6,6 +6,7 @@ import java.awt.*;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import net.sf.jasperreports.engine.JRException;
 
 public class MDIPrincipal extends javax.swing.JFrame {
@@ -48,6 +49,8 @@ public class MDIPrincipal extends javax.swing.JFrame {
         menuUsers = new javax.swing.JMenuItem();
         menuCategories = new javax.swing.JMenuItem();
         menuEmployees = new javax.swing.JMenuItem();
+        menuRegion = new javax.swing.JMenuItem();
+        menuShippers = new javax.swing.JMenuItem();
         menuTrans = new javax.swing.JMenu();
         menuOrders = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -69,6 +72,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         repSuppliersSimp = new javax.swing.JMenuItem();
         RepSuppParam = new javax.swing.JMenuItem();
+        tablacruzada = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,6 +138,22 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         menuMant.add(menuEmployees);
+
+        menuRegion.setText("Region");
+        menuRegion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRegionActionPerformed(evt);
+            }
+        });
+        menuMant.add(menuRegion);
+
+        menuShippers.setText("Transportistas");
+        menuShippers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuShippersActionPerformed(evt);
+            }
+        });
+        menuMant.add(menuShippers);
 
         jMenuBar1.add(menuMant);
 
@@ -268,6 +290,26 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu7.add(RepSuppParam);
 
         jMenu1.add(jMenu7);
+
+        tablacruzada.setText("Ventas de empleado por categoria");
+        tablacruzada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tablacruzadaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(tablacruzada);
+
+        jMenu8.setText("Orden");
+
+        jMenuItem1.setText("Orden por ID");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem1);
+
+        jMenu1.add(jMenu8);
 
         jMenuBar1.add(jMenu1);
 
@@ -481,6 +523,57 @@ public class MDIPrincipal extends javax.swing.JFrame {
         ventanaUsers.setVisible(true);
     }//GEN-LAST:event_repUserParamActionPerformed
 
+    private void menuRegionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegionActionPerformed
+        abrirRegion();
+    }//GEN-LAST:event_menuRegionActionPerformed
+
+    private void menuShippersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuShippersActionPerformed
+        abrirShippers();
+    }//GEN-LAST:event_menuShippersActionPerformed
+
+    private void tablacruzadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tablacruzadaActionPerformed
+        try {
+            // 1. La ruta exacta de tu nuevo reporte compilado
+            String ruta = "src/REPORTS/repTablaCruzada.jasper";
+
+            // 2. Instanciamos tu clase de conexión
+            UTIL.dbBean db = new UTIL.dbBean();
+
+            // 3. ¡La magia directa!
+            // Mandamos null en el mapa y FALSE porque este reporte NO usa parámetros ($P{})
+            db.connectRep(ruta, null, false);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al generar la matriz analítica: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_tablacruzadaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FrmRepOrdersParam ventanaOrders = new FrmRepOrdersParam();
+        this.escritorio.add(ventanaOrders);
+        ventanaOrders.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void abrirRegion() {
+        FrmRegion formRegion = new FrmRegion();
+        abrirFormulario(formRegion);
+    }
+    
+    private void abrirShippers() {
+        FrmShippers formShippers = new FrmShippers();
+        abrirFormulario(formShippers);
+    }
+    
+    private void abrirFormulario(JInternalFrame formulario) {
+        escritorio.add(formulario);
+        formulario.setVisible(true);
+        try {
+            formulario.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }
     int dimW(){
         return wd;
     }
@@ -529,11 +622,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem menuCategories;
     private javax.swing.JMenuItem menuEmployees;
     private javax.swing.JMenu menuMant;
     private javax.swing.JMenuItem menuOrders;
+    private javax.swing.JMenuItem menuRegion;
+    private javax.swing.JMenuItem menuShippers;
     private javax.swing.JMenuItem menuSuppliers;
     private javax.swing.JMenu menuTrans;
     private javax.swing.JMenuItem menuUsers;
@@ -550,5 +647,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem repUsersSimp;
     private javax.swing.JMenuItem submenuCustomer;
     private javax.swing.JMenuItem submenuProducts;
+    private javax.swing.JMenuItem tablacruzada;
     // End of variables declaration//GEN-END:variables
 }

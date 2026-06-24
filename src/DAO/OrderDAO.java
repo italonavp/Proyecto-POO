@@ -15,7 +15,7 @@ public class OrderDAO {
         String sql = "Select * from Orders";
         
         if(!cad.isEmpty()){
-            sql += " Where CustomerID LIKE '"+cad+"%'";
+            sql += " Where CustomerID LIKE '"+cad+"%' or ShipName LIKE '"+cad+"%'";
         }
         System.out.println(sql);
         try{
@@ -34,7 +34,10 @@ public class OrderDAO {
                 ord.setShipName(resultOrder.getString(9));
                 ord.setShipAdress(resultOrder.getString(10));
                 ord.setShipCity(resultOrder.getString(11));
-                ord.setShipCountry(resultOrder.getString(12));
+                ord.setShipRegion(resultOrder.getString(12));
+                ord.setShipPostalCode(resultOrder.getString(13));
+                ord.setShipCountry(resultOrder.getString(14));
+                
                 listOrder.addElement(ord);
             }
         }catch(java.sql.SQLException e){
