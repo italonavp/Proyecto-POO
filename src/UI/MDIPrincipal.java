@@ -14,6 +14,7 @@ import net.sf.jasperreports.engine.JRException;
 public class MDIPrincipal extends javax.swing.JFrame {
     private int wd;
     private int hd;
+    private String titulo;
     FrmProducts formProd;
     FrmCustomer formCust;
     FrmOrders formOrder;
@@ -23,6 +24,19 @@ public class MDIPrincipal extends javax.swing.JFrame {
     frmEmployee formemployee;
     frmRepProductsRango repRango;
     frmRepCustomersRegion repRegion;
+    
+    public MDIPrincipal(String titulo) {
+        initComponents();
+        this.titulo = titulo;
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension dim = toolkit.getScreenSize();
+        wd = dim.width;
+        hd = dim.height;
+        this.setSize(wd, hd);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setTitle("Sistema Northwind — " + titulo);
+        aplicarPermisosPorTitulo();
+    }
 
     public MDIPrincipal() {
         initComponents();
@@ -624,36 +638,169 @@ public class MDIPrincipal extends javax.swing.JFrame {
     int dimH(){
         return hd;
     }
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    
+    private void aplicarPermisosPorTitulo() {
+        if (titulo == null) titulo = "";
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MDIPrincipal().setVisible(true);
+        switch (titulo) {
+
+            case "Vice President, Sales":
+                submenuProducts.setEnabled(true);
+                submenuCustomer.setEnabled(true);
+                menuSuppliers.setEnabled(true);
+                menuUsers.setEnabled(true);
+                menuCategories.setEnabled(true);
+                menuEmployees.setEnabled(true);
+                menuRegion.setEnabled(true);
+                menuShippers.setEnabled(true);
+                menuOrders.setEnabled(true);
+                // Reportes todos
+                repProductsSimp.setEnabled(true);
+                repProductsParam.setEnabled(true);
+                repCustomersSimp.setEnabled(true);
+                repCustomersParam.setEnabled(true);
+                repEmployeesSimp.setEnabled(true);
+                repEmployeesParam.setEnabled(true);
+                repCategoriesSimp.setEnabled(true);
+                repCategoriesParam.setEnabled(true);
+                repUsersSimp.setEnabled(true);
+                repUserParam.setEnabled(true);
+                repSuppliersSimp.setEnabled(true);
+                RepSuppParam.setEnabled(true);
+                tablacruzada.setEnabled(true);
+                jMenuItem1.setEnabled(true);
+                break;
+
+            case "Sales Manager":
+                
+                submenuProducts.setEnabled(true);
+                submenuCustomer.setEnabled(true);
+                menuSuppliers.setEnabled(true);
+                menuUsers.setEnabled(false);      
+                menuCategories.setEnabled(true);
+                menuEmployees.setEnabled(true);
+                menuRegion.setEnabled(false);      
+                menuShippers.setEnabled(true);
+                menuOrders.setEnabled(true);
+                // Reportes
+                repProductsSimp.setEnabled(true);
+                repProductsParam.setEnabled(true);
+                repCustomersSimp.setEnabled(true);
+                repCustomersParam.setEnabled(true);
+                repEmployeesSimp.setEnabled(true);
+                repEmployeesParam.setEnabled(true);
+                repCategoriesSimp.setEnabled(true);
+                repCategoriesParam.setEnabled(false); 
+                repUsersSimp.setEnabled(false);        
+                repUserParam.setEnabled(false);        
+                repSuppliersSimp.setEnabled(true);
+                RepSuppParam.setEnabled(true);
+                tablacruzada.setEnabled(true);
+                jMenuItem1.setEnabled(true);
+                break;
+
+            case "Sales Representative":
+              
+                submenuProducts.setEnabled(true);
+                submenuCustomer.setEnabled(true);
+                menuSuppliers.setEnabled(false);   
+                menuUsers.setEnabled(false);       
+                menuCategories.setEnabled(true);
+                menuEmployees.setEnabled(false);   
+                menuRegion.setEnabled(false);      
+                menuShippers.setEnabled(false);    
+                menuOrders.setEnabled(true);
+                // Reportes
+                repProductsSimp.setEnabled(true);
+                repProductsParam.setEnabled(true);
+                repCustomersSimp.setEnabled(true);
+                repCustomersParam.setEnabled(true);
+                repEmployeesSimp.setEnabled(false);    
+                repEmployeesParam.setEnabled(false);   
+                repCategoriesSimp.setEnabled(true);
+                repCategoriesParam.setEnabled(false);  
+                repUsersSimp.setEnabled(false);        
+                repUserParam.setEnabled(false);        
+                repSuppliersSimp.setEnabled(false);    
+                RepSuppParam.setEnabled(false);        
+                tablacruzada.setEnabled(false);        
+                jMenuItem1.setEnabled(true);
+                break;
+
+            case "Inside Sales Coordinator":
+                
+                submenuProducts.setEnabled(true);
+                submenuCustomer.setEnabled(true);
+                menuSuppliers.setEnabled(false);   
+                menuUsers.setEnabled(false);       
+                menuCategories.setEnabled(true);
+                menuEmployees.setEnabled(false);   
+                menuRegion.setEnabled(false);      
+                menuShippers.setEnabled(false);    
+                menuOrders.setEnabled(false);      
+                // Reportes
+                repProductsSimp.setEnabled(true);
+                repProductsParam.setEnabled(false);    
+                repCustomersSimp.setEnabled(true);
+                repCustomersParam.setEnabled(false);   
+                repEmployeesSimp.setEnabled(false);    
+                repEmployeesParam.setEnabled(false);   
+                repCategoriesSimp.setEnabled(true);
+                repCategoriesParam.setEnabled(false);  
+                repUsersSimp.setEnabled(false);        
+                repUserParam.setEnabled(false);        
+                repSuppliersSimp.setEnabled(false);    
+                RepSuppParam.setEnabled(false);        
+                tablacruzada.setEnabled(false);        
+                jMenuItem1.setEnabled(false);          
+                break;
+
+            default:
+                
+                submenuProducts.setEnabled(false);
+                submenuCustomer.setEnabled(false);
+                menuSuppliers.setEnabled(false);
+                menuUsers.setEnabled(false);
+                menuCategories.setEnabled(false);
+                menuEmployees.setEnabled(false);
+                menuRegion.setEnabled(false);
+                menuShippers.setEnabled(false);
+                menuOrders.setEnabled(false);
+                repProductsSimp.setEnabled(false);
+                repProductsParam.setEnabled(false);
+                repCustomersSimp.setEnabled(false);
+                repCustomersParam.setEnabled(false);
+                repEmployeesSimp.setEnabled(false);
+                repEmployeesParam.setEnabled(false);
+                repCategoriesSimp.setEnabled(false);
+                repCategoriesParam.setEnabled(false);
+                repUsersSimp.setEnabled(false);
+                repUserParam.setEnabled(false);
+                repSuppliersSimp.setEnabled(false);
+                RepSuppParam.setEnabled(false);
+                tablacruzada.setEnabled(false);
+                jMenuItem1.setEnabled(false);
+                break;
+        }
+    }
+    public static void main(String args[]) {
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        });
+        }
+    } catch (Exception ex) {
+        java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            // ← Abre el LOGIN primero, no el MDI
+            new FrmLogin().setVisible(true);
+        }
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

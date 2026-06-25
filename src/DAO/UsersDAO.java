@@ -1,4 +1,5 @@
 package DAO;
+
 import BEAN.*;
 import UTIL.*;
 import java.util.Vector;
@@ -9,113 +10,128 @@ public class UsersDAO {
     public UsersDAO() {
     }
 
+  
+    public boolean validarLogin(String userIdentification, String passwordInput) {
+        dbBean con = new dbBean();
+        try {
+            String sql = "SELECT password FROM Users WHERE userIdentification='"
+                    + userIdentification + "'";
+            ResultSet rs = con.execSQL(sql);
+            if (rs.next()) {
+                String passwordBD = rs.getString("password");
+                String passwordDesencriptada = SecurityUtil.decrypt(passwordBD);
+                if (passwordDesencriptada != null) {
+                    return passwordDesencriptada.trim().equals(passwordInput.trim());
+                }
+                return passwordBD.trim().equals(passwordInput.trim());
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+        }
+        return false;
+    }
+
     public Vector<Users> listaUsers(String cad) {
-        ResultSet resultUsers;
         Vector<Users> listUsers = new Vector<Users>();
         dbBean con = new dbBean();
-        String sql;
-
+        String sql = "SELECT * FROM Users";
+        if (cad != null && !cad.isEmpty()) {
+            sql += " WHERE userIdentification LIKE '" + cad + "%'";
+        }
         try {
-            sql = "SELECT * FROM Users";
-
-            if (!cad.isEmpty()) {
-                sql += " WHERE userIdentification LIKE '" + cad + "%'";
-            }
-
-            resultUsers = con.execSQL(sql);
-
-            while (resultUsers.next()) {
+            ResultSet rs = con.execSQL(sql);
+            while (rs.next()) {
                 Users user = new Users();
-
-                user.setUserID(resultUsers.getInt(1));
-                user.setEmployeeID(resultUsers.getInt(2));
-                user.setUserIdentification(resultUsers.getString(3));
-                user.setPassword(resultUsers.getString(4));
-                user.setStatus(resultUsers.getInt(5));
-
+                user.setUserID(rs.getInt("UserId"));
+                user.setEmployeeID(rs.getInt("EmployeeId"));
+                user.setUserIdentification(rs.getString("userIdentification"));
+                user.setPassword(rs.getString("password"));
+                user.setStatus(rs.getInt("status"));
                 listUsers.add(user);
             }
-
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
-
-        try {
-            con.close();
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        }
-
         return listUsers;
     }
 
-    public void insertaUser(Users user) {
+
+    public boolean insertaUser(Users user) {
         dbBean con = new dbBean();
-        String sql;
-
+        boolean exito = false;
         try {
-            sql = "INSERT INTO Users VALUES (";
-            sql +=""+ user.getUserID() + ", ";
-            sql +=""+ user.getEmployeeID() + ", '";
-            sql +=""+ user.getUserIdentification() + "', '";
-            sql +=""+ user.getPassword() + "', ";
-            sql +=""+ user.getStatus() + ")";
-
+            String sql = "INSERT INTO Users (UserId, EmployeeID, userIdentification, password, status) VALUES ("
+                    + user.getUserID() + ", "
+                    + user.getEmployeeID() + ", '"
+                    + user.getUserIdentification() + "', '"
+                    + user.getPassword() + "', "
+                    + user.getStatus() + ")";
             con.updateSQL(sql);
-
+            exito = true;
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
-
-        try {
-            con.close();
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        }
+        return exito;
     }
 
-    public void actualizaUser(Users user) {
+    public boolean actualizaUser(Users user) {
         dbBean con = new dbBean();
-        String sql;
-
+        boolean exito = false;
         try {
-            sql = "UPDATE Users SET ";
-            sql += "EmployeeId = " + user.getEmployeeID() + ", ";
-            sql += "userIdentification = '" + user.getUserIdentification() + "', ";
-            sql += "password = '" + user.getPassword() + "', ";
-            sql += "status = " + user.getStatus();
-            sql += " WHERE UserId = " + user.getUserID();
-
+            String sql = "UPDATE Users SET "
+                    + "EmployeeId = " + user.getEmployeeID() + ", "
+                    + "userIdentification = '" + user.getUserIdentification() + "', "
+                    + "password = '" + user.getPassword() + "', "
+                    + "status = " + user.getStatus()
+                    + " WHERE UserId = " + user.getUserID();
             con.updateSQL(sql);
-
+            exito = true;
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
-
-        try {
-            con.close();
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        }
+        return exito;
     }
 
-    public void eliminaUser(Users user) {
+    public boolean eliminaUser(Users user) {
         dbBean con = new dbBean();
-        String sql;
-
+        boolean exito = false;
         try {
-            sql = "DELETE FROM Users WHERE UserId = " + user.getUserID();
-
+            String sql = "DELETE FROM Users WHERE UserId = " + user.getUserID();
             con.updateSQL(sql);
-
+            exito = true;
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
+        return exito;
+    }
 
+    
+    public String getRolUsuario(String userIdentification) {
+        
+         dbBean con = new dbBean();
         try {
-            con.close();
+            String sql = "SELECT e.Title FROM Users u "
+                       + "INNER JOIN Employees e ON u.EmployeeID = e.EmployeeID "
+                       + "WHERE u.userIdentification = '" + userIdentification + "'";
+            ResultSet rs = con.execSQL(sql);
+            if (rs.next()) {
+                return rs.getString("Title");
+            }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
         }
+        return "Inside Sales Coordinator"; // mínimo acceso por defecto
     }
 }
