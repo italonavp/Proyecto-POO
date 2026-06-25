@@ -19,7 +19,7 @@ public class ArbolDecision {
         this.minSamplesSplit = minSamplesSplit;
     }
 
-    /** Entrena el modelo basándose en un conjunto de datos inicial (Fase de Ajuste). */
+    // Entrena el modelo basándose en un conjunto de datos inicial (Fase de Ajuste)
     public void fit(List<Registro> datos) {
         this.raiz = construirArbol(datos, 0);
     }
