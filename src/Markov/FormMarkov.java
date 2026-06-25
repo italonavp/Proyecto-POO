@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Locale;
 
-public class FormMarkov extends JFrame {
+public class FormMarkov extends JInternalFrame {
 
     private JComboBox<String> cmbProducto;
     private JTable tblResultados;
@@ -25,7 +25,6 @@ public class FormMarkov extends JFrame {
     private void initComponents() {
         setTitle("Análisis de Cadena de Markov - Northwind");
         setSize(750, 500);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(10, 10));
 

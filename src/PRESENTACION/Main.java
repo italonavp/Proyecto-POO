@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Main {
 
-    public static void main(String[] args) {
+    public static ReporteGrafico generarDashboard() {
         System.out.println("=== INICIANDO SISTEMA PREDICTIVO NORTHWIND ===");
         
         // 1. OBTENCIÓN DE DATOS (Capa de Datos)
@@ -22,7 +22,7 @@ public class Main {
         
         if (todosLosDatos.isEmpty()) {
             System.err.println("❌ No hay datos para procesar. Abortando ejecución.");
-            return;
+            return null;
         }
 
         // Aleatorización para garantizar un split insesgado y homogéneo
@@ -84,12 +84,11 @@ public class Main {
         final int vpGrafico = vPositivos;
         final double accGrafico = accuracyCalculado;
         
-        java.awt.EventQueue.invokeLater(() -> {
-            ReporteGrafico ventana = new ReporteGrafico(
-                vnGrafico, fpGrafico, fnGrafico, vpGrafico, accGrafico, todosLosDatos, miArbol
-            );
-            ventana.setVisible(true);
-        });
+        ReporteGrafico ventana = new ReporteGrafico(
+            vnGrafico, fpGrafico, fnGrafico, vpGrafico, accGrafico, todosLosDatos, miArbol
+        );
+        
+        
         
         // 6. LOG DE DESPLIEGUE COMERCIAL (Estrategia de Business Intelligence)
         int totalCampana = 0;
@@ -99,10 +98,12 @@ public class Main {
             }
         }
         
+        
         System.out.println("\n DESPLIEGUE COMERCIAL DE OPERACIONES:");
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Total de perfiles identificados para campaña de Marketing: " + totalCampana);
         System.out.println("Nota: El reporte detallado por cliente y país ha sido trasladado al Dashboard interactivo.");
         System.out.println("=============================================================================\n");
+        return ventana;
     }
 }

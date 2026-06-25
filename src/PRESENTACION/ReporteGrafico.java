@@ -22,7 +22,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 /**
  * Dashboard de Business Intelligence para visualización de predicciones.
  */
-public class ReporteGrafico extends javax.swing.JFrame {
+public class ReporteGrafico extends javax.swing.JInternalFrame {
 
     private final List<Registro> todosLosDatos;
     private final ArbolDecision miArbol;
@@ -36,8 +36,10 @@ public class ReporteGrafico extends javax.swing.JFrame {
 
         setTitle("Business Intelligence Dashboard - Northwind Predictivo");
         setSize(1000, 600);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setClosable(true);
+        setMaximizable(true);
+        setIconifiable(true);
+        setResizable(true);
 
         JTabbedPane pestañas = new JTabbedPane();
 
@@ -209,7 +211,7 @@ public class ReporteGrafico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

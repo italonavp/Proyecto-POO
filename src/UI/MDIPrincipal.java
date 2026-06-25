@@ -1,6 +1,8 @@
 package UI;
 import DAO.*;
 import BEAN.*;
+import Markov.*;
+import PRESENTACION.*;
 import UTIL.dbBean;
 import java.awt.*;
 import java.sql.SQLException;
@@ -75,6 +77,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tablacruzada = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -312,6 +317,26 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenu8);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu9.setText("Modelo Predictivo");
+
+        jMenuItem2.setText("Markov");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem2);
+
+        jMenuItem3.setText("Arboles de Decision");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu9);
 
         setJMenuBar(jMenuBar1);
 
@@ -555,6 +580,25 @@ public class MDIPrincipal extends javax.swing.JFrame {
         ventanaOrders.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FormMarkov ventamaMarkov = new FormMarkov();
+        this.escritorio.add(ventamaMarkov);
+        ventamaMarkov.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        ReporteGrafico dashboard = PRESENTACION.Main.generarDashboard();
+            this.escritorio.add(dashboard);
+            try {
+                    dashboard.setMaximum(true);
+                } catch (java.beans.PropertyVetoException e) {
+                  // si falla no se hace nada
+                }
+            dashboard.setVisible(true);
+            
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private void abrirRegion() {
         FrmRegion formRegion = new FrmRegion();
         abrirFormulario(formRegion);
@@ -623,8 +667,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem menuCategories;
     private javax.swing.JMenuItem menuEmployees;
     private javax.swing.JMenu menuMant;
