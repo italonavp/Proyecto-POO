@@ -60,10 +60,18 @@ public class ArbolDecision {
     private int calcularClaseMayoritaria(List<Registro> datos) {
         int c0 = 0, c1 = 0;
         for (Registro r : datos) {
-            if (r.getVolvioAComprar() == 1) c1++;
-            else c0++;
+            if (r.getVolvioAComprar() == 1) {
+                c1++;
+            } else {
+                c0++;
+            }
         }
-        return (c1 >= c0) ? 1 : 0;
+        
+        if (c1 >= c0) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     // Escaneo de hiperplanos de corte para maximizar la Ganancia de Información
@@ -124,12 +132,12 @@ public class ArbolDecision {
         }
 
         // 3. VARIABLE CATEGÓRICA: paisCliente
-        List<String> paises = new ArrayList<>();
+        List<String> países = new ArrayList<>();
         for (Registro r : datos) {
-            if (!paises.contains(r.getPaisCliente())) paises.add(r.getPaisCliente());
+            if (!países.contains(r.getPaisCliente())) países.add(r.getPaisCliente());
         }
 
-        for (String pais : paises) {
+        for (String pais : países) {
             List<Registro> izq = new ArrayList<>();
             List<Registro> der = new ArrayList<>();
 
@@ -191,19 +199,33 @@ public class ArbolDecision {
         boolean irIzquierda = false;
 
         if (nodo.isEsAtributoNumerico()) {
-            double valorRegistro = nodo.getAtributoCorte().equals("montoTotalGastado") 
-                ? nuevo.getMontoTotalGastado() : nuevo.getCantidadProductosComprados();
+            double valorRegistro;
+            if (nodo.getAtributoCorte().equals("montoTotalGastado")) {
+                valorRegistro = nuevo.getMontoTotalGastado();
+            } else {
+                valorRegistro = (double) nuevo.getCantidadProductosComprados();
+            }
                 
-            if (valorRegistro <= nodo.getUmbralNumericoCorte()) irIzquierda = true;
+            if (valorRegistro <= nodo.getUmbralNumericoCorte()) {
+                irIzquierda = true;
+            }
         } else {
-            String valorRegistroStr = nodo.getAtributoCorte().equals("paisCliente") 
-                ? nuevo.getPaisCliente() : nuevo.getNombreCategoria();
+            String valorRegistroStr;
+            if (nodo.getAtributoCorte().equals("paisCliente")) {
+                valorRegistroStr = nuevo.getPaisCliente();
+            } else {
+                valorRegistroStr = nuevo.getNombreCategoria();
+            }
                 
-            if (valorRegistroStr.equals(nodo.getValorCategoricoCorte())) irIzquierda = true;
+            if (valorRegistroStr.equals(nodo.getValorCategoricoCorte())) {
+                irIzquierda = true;
+            }
         }
 
-        return irIzquierda 
-            ? evaluarRegistroEnNodo(nodo.getHijoIzquierdo(), nuevo) 
-            : evaluarRegistroEnNodo(nodo.getHijoDerecho(), nuevo);
+        if (irIzquierda) {
+            return evaluarRegistroEnNodo(nodo.getHijoIzquierdo(), nuevo);
+        } else {
+            return evaluarRegistroEnNodo(nodo.getHijoDerecho(), nuevo);
+        }
     }
 }
