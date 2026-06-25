@@ -67,6 +67,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         menuEmployees = new javax.swing.JMenuItem();
         menuRegion = new javax.swing.JMenuItem();
         menuShippers = new javax.swing.JMenuItem();
+        menuTerritories = new javax.swing.JMenuItem();
         menuTrans = new javax.swing.JMenu();
         menuOrders = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -91,6 +92,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
         tablacruzada = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        repRegionSimp = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        repTerritoriesSimp = new javax.swing.JMenuItem();
+        repTerritoriesParam = new javax.swing.JMenuItem();
+        jMenu12 = new javax.swing.JMenu();
+        repShippersSimp = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -173,6 +182,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         menuMant.add(menuShippers);
+
+        menuTerritories.setText("Territorios");
+        menuTerritories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTerritoriesActionPerformed(evt);
+            }
+        });
+        menuMant.add(menuTerritories);
 
         jMenuBar1.add(menuMant);
 
@@ -328,7 +345,59 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem1);
 
+        jMenuItem4.setText("Orden por Transportistas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem4);
+
         jMenu1.add(jMenu8);
+
+        jMenu10.setText("Region");
+
+        repRegionSimp.setText("Region Simple");
+        repRegionSimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repRegionSimpActionPerformed(evt);
+            }
+        });
+        jMenu10.add(repRegionSimp);
+
+        jMenu1.add(jMenu10);
+
+        jMenu11.setText("Territorios");
+
+        repTerritoriesSimp.setText("Territorios Simple");
+        repTerritoriesSimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repTerritoriesSimpActionPerformed(evt);
+            }
+        });
+        jMenu11.add(repTerritoriesSimp);
+
+        repTerritoriesParam.setText("Territorios por Region");
+        repTerritoriesParam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repTerritoriesParamActionPerformed(evt);
+            }
+        });
+        jMenu11.add(repTerritoriesParam);
+
+        jMenu1.add(jMenu11);
+
+        jMenu12.setText("Transportistas");
+
+        repShippersSimp.setText("Transportistas Simples");
+        repShippersSimp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repShippersSimpActionPerformed(evt);
+            }
+        });
+        jMenu12.add(repShippersSimp);
+
+        jMenu1.add(jMenu12);
 
         jMenuBar1.add(jMenu1);
 
@@ -613,6 +682,75 @@ public class MDIPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void menuTerritoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTerritoriesActionPerformed
+        FrmTerritories formTerritories = new FrmTerritories();
+        escritorio.add(formTerritories);
+        formTerritories.setVisible(true);
+        try {
+            formTerritories.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_menuTerritoriesActionPerformed
+
+    private void repRegionSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repRegionSimpActionPerformed
+        try{
+           String r = "src/REPORTS/repRegionSimp.jasper";
+           dbBean db = new dbBean();
+           db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repRegionSimpActionPerformed
+
+    private void repTerritoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesSimpActionPerformed
+        try{
+           String r = "src/REPORTS/repTerritoriesSimp.jasper";
+           dbBean db = new dbBean();
+           db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repTerritoriesSimpActionPerformed
+
+    private void repTerritoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesParamActionPerformed
+        frmRepTerReg f = new frmRepTerReg();
+        escritorio.add(f);
+        f.setVisible(true);
+        try {
+            f.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repTerritoriesParamActionPerformed
+
+    private void repShippersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repShippersSimpActionPerformed
+        try{
+           String r = "src/REPORTS/repShippersSimp.jasper";
+           dbBean db = new dbBean();
+           db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_repShippersSimpActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        frmRepOrdersShipper f = new frmRepOrdersShipper();
+        escritorio.add(f);
+        f.setVisible(true);
+        try {
+            f.setSelected(true);
+        } catch (java.beans.PropertyVetoException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     private void abrirRegion() {
         FrmRegion formRegion = new FrmRegion();
         abrirFormulario(formRegion);
@@ -807,6 +945,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem RepSuppParam;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
+    private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -819,6 +960,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem menuCategories;
     private javax.swing.JMenuItem menuEmployees;
     private javax.swing.JMenu menuMant;
@@ -826,6 +968,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuRegion;
     private javax.swing.JMenuItem menuShippers;
     private javax.swing.JMenuItem menuSuppliers;
+    private javax.swing.JMenuItem menuTerritories;
     private javax.swing.JMenu menuTrans;
     private javax.swing.JMenuItem menuUsers;
     private javax.swing.JMenuItem repCategoriesParam;
@@ -836,7 +979,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem repEmployeesSimp;
     private javax.swing.JMenuItem repProductsParam;
     private javax.swing.JMenuItem repProductsSimp;
+    private javax.swing.JMenuItem repRegionSimp;
+    private javax.swing.JMenuItem repShippersSimp;
     private javax.swing.JMenuItem repSuppliersSimp;
+    private javax.swing.JMenuItem repTerritoriesParam;
+    private javax.swing.JMenuItem repTerritoriesSimp;
     private javax.swing.JMenuItem repUserParam;
     private javax.swing.JMenuItem repUsersSimp;
     private javax.swing.JMenuItem submenuCustomer;
