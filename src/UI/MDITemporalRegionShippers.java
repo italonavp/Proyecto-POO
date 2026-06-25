@@ -24,9 +24,13 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
         menuMantenimiento = new javax.swing.JMenu();
         menuRegion = new javax.swing.JMenuItem();
         menuShippers = new javax.swing.JMenuItem();
+        menuTerritories = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MDI Temporal - Region y Shippers");
@@ -60,6 +64,14 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
         });
         menuMantenimiento.add(menuShippers);
 
+        menuTerritories.setText("Territories");
+        menuTerritories.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTerritoriesActionPerformed(evt);
+            }
+        });
+        menuMantenimiento.add(menuTerritories);
+
         menuBar.add(menuMantenimiento);
 
         jMenu1.setText("Reportes");
@@ -79,6 +91,30 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Territories x Region");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Orders x Shipper");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("Territories Simple");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
 
         menuBar.add(jMenu1);
 
@@ -130,6 +166,32 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void menuTerritoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTerritoriesActionPerformed
+        abrirTerritories();
+    }//GEN-LAST:event_menuTerritoriesActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        frmRepTerReg f = new frmRepTerReg();
+        abrirFormulario(f);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        frmRepOrdersShipper f = new frmRepOrdersShipper();
+        abrirFormulario(f);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        try{
+           String r = "src/REPORTS/repTerritoriesSimp.jasper";
+           dbBean db = new dbBean();
+           db.connectRep(r, null, false);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }catch(JRException e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     private void maximizarVentana() {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dimension = toolkit.getScreenSize();
@@ -145,6 +207,11 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
     private void abrirShippers() {
         FrmShippers formShippers = new FrmShippers();
         abrirFormulario(formShippers);
+    }
+
+    private void abrirTerritories() {
+        FrmTerritories formTerritories = new FrmTerritories();
+        abrirFormulario(formTerritories);
     }
 
     private void abrirFormulario(JInternalFrame formulario) {
@@ -187,9 +254,13 @@ public class MDITemporalRegionShippers extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuMantenimiento;
     private javax.swing.JMenuItem menuRegion;
     private javax.swing.JMenuItem menuShippers;
+    private javax.swing.JMenuItem menuTerritories;
     // End of variables declaration//GEN-END:variables
 }

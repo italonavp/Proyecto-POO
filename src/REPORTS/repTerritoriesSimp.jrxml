@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="daae4970-8792-4373-bc2c-be6f4d140fe9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    T."TerritoryID" AS Territories_TerritoryID,
+    T."TerritoryDescription" AS Territories_TerritoryDescription,
+    R."RegionDescription" AS Region_Description
+FROM
+    "dbo"."Territories" T
+INNER JOIN
+    "dbo"."Region" R
+    ON T."RegionID" = R."RegionID"]]>
+	</queryString>
+	<field name="Territories_TerritoryID" class="java.lang.String"/>
+	<field name="Territories_TerritoryDescription" class="java.lang.String"/>
+	<field name="Region_Description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="15" width="171" height="23" uuid="ba75f3a3-666a-4d9f-b208-a00d9a43b1d0"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Territories]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="36" y="2" width="100" height="20" uuid="9843975d-d223-4068-9b61-130d54126496"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="225" y="2" width="100" height="20" uuid="a6f4089a-6daa-426d-a4cf-92a42ae24d47"/>
+				<text><![CDATA[Territories]]></text>
+			</staticText>
+			<line>
+				<reportElement x="22" y="22" width="513" height="1" uuid="0faaa2a4-f936-48e0-852a-e41863949604"/>
+			</line>
+			<staticText>
+				<reportElement x="420" y="2" width="100" height="20" uuid="a3a434d2-75ab-41b1-b8fe-df87b1a7e12e"/>
+				<text><![CDATA[Region]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="36" y="0" width="100" height="20" uuid="8187c6fe-74de-4076-9736-22e5a60844ab"/>
+				<textFieldExpression><![CDATA[$F{Territories_TerritoryID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="225" y="0" width="100" height="20" uuid="81db93fd-2336-49ba-b0a8-8d090137739d"/>
+				<textFieldExpression><![CDATA[$F{Territories_TerritoryDescription}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="100" height="20" uuid="c87b9ec7-067b-43d9-ba1d-de0afa8b9997"/>
+				<textFieldExpression><![CDATA[$F{Region_Description}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
