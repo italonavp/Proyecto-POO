@@ -1,4 +1,5 @@
 package UI;
+
 import DAO.*;
 import BEAN.*;
 import Markov.*;
@@ -12,11 +13,12 @@ import javax.swing.JInternalFrame;
 import net.sf.jasperreports.engine.JRException;
 
 public class MDIPrincipal extends javax.swing.JFrame {
+
     private int wd;
     private int hd;
     private String titulo;
     FrmProducts formProd;
-    FrmCustomer formCust;
+    FrmCustmers2 formCust;
     FrmOrders formOrder;
     FrmSupplier formsupplier;
     FrmUsers formUsers;
@@ -24,7 +26,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     frmEmployee formemployee;
     frmRepProductsRango repRango;
     frmRepCustomersRegion repRegion;
-    
+
     public MDIPrincipal(String titulo) {
         initComponents();
         this.titulo = titulo;
@@ -40,18 +42,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     public MDIPrincipal() {
         initComponents();
-        Toolkit toolkit =  Toolkit.getDefaultToolkit ();
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
         wd = dim.width;
         hd = dim.height;
-        
-        System.out.println("WD: "+wd);
-        System.out.println("HD: "+hd);
+
+        System.out.println("WD: " + wd);
+        System.out.println("HD: " + hd);
         this.setSize(wd, hd);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -438,95 +439,95 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submenuProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuProductsActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formProd = new FrmProducts(h, w);
         escritorio.add(formProd);
         formProd.setVisible(true);
         formProd.setSize(1100, 600);
-        
-        
+
+
     }//GEN-LAST:event_submenuProductsActionPerformed
 
     private void repProductsSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repProductsSimp.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_repProductsSimpActionPerformed
 
     private void repProductsParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsParamActionPerformed
-       repRango = new frmRepProductsRango(this.dimH(),this.dimW());
-       this.escritorio.add(repRango);
-       repRango.setVisible(true);
-       repRango.setSize(675,195);
+        repRango = new frmRepProductsRango(this.dimH(), this.dimW());
+        this.escritorio.add(repRango);
+        repRango.setVisible(true);
+        repRango.setSize(675, 195);
     }//GEN-LAST:event_repProductsParamActionPerformed
 
     private void submenuCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuCustomerActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
-        formCust = new FrmCustomer(w, h);
+
+        formCust = new FrmCustmers2(w, h);
         escritorio.add(formCust);
         formCust.setVisible(true);
         formCust.setSize(1200, 675);
     }//GEN-LAST:event_submenuCustomerActionPerformed
 
     private void repCustomersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repCustomers.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_repCustomersSimpActionPerformed
 
     private void repCustomersParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersParamActionPerformed
-       repRegion = new frmRepCustomersRegion(this.dimH(),this.dimW());
-       this.escritorio.add(repRegion);
-       repRegion.setVisible(true);
-       repRegion.setSize(675,195);
+        repRegion = new frmRepCustomersRegion(this.dimH(), this.dimW());
+        this.escritorio.add(repRegion);
+        repRegion.setVisible(true);
+        repRegion.setSize(675, 195);
     }//GEN-LAST:event_repCustomersParamActionPerformed
 
     private void repEmployeesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesParamActionPerformed
         UI.frmRepEmpParam ventanaParam = new UI.frmRepEmpParam();
-        this.escritorio.add(ventanaParam); 
+        this.escritorio.add(ventanaParam);
         ventanaParam.setVisible(true);
     }//GEN-LAST:event_repEmployeesParamActionPerformed
 
     private void repEmployeesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repEmployeesSimp.jasper";
             dbBean db = new dbBean();
             db.connectRep(r, null, false);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch(JRException e){
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_repEmployeesSimpActionPerformed
 
     private void repCategoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repCategoriesSimp.jasper";
             dbBean db = new dbBean();
             db.connectRep(r, null, false);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch(JRException e){
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_repCategoriesSimpActionPerformed
@@ -538,11 +539,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repCategoriesParamActionPerformed
 
     private void menuOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOrdersActionPerformed
-      int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formOrder = new FrmOrders(w, h);
         escritorio.add(formOrder);
         formOrder.setVisible(true);
@@ -550,11 +551,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuOrdersActionPerformed
 
     private void menuSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSuppliersActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formsupplier = new FrmSupplier(w, h);
         escritorio.add(formsupplier);
         formsupplier.setVisible(true);
@@ -562,11 +563,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSuppliersActionPerformed
 
     private void menuUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsersActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formUsers = new FrmUsers(w, h);
         escritorio.add(formUsers);
         formUsers.setVisible(true);
@@ -574,47 +575,47 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuUsersActionPerformed
 
     private void menuCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriesActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formcategory = new frmCategory(w, h);
         escritorio.add(formcategory);
         formcategory.setVisible(true);
     }//GEN-LAST:event_menuCategoriesActionPerformed
 
     private void menuEmployeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmployeesActionPerformed
-        int w,h;
-        
+        int w, h;
+
         w = dimW();
         h = dimH();
-        
+
         formemployee = new frmEmployee(w, h);
         escritorio.add(formemployee);
         formemployee.setVisible(true);
     }//GEN-LAST:event_menuEmployeesActionPerformed
 
     private void repUsersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repUsersSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repUsersSimp.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_repUsersSimpActionPerformed
 
     private void repSuppliersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repSuppliersSimpActionPerformed
-        try{
+        try {
             String r = "src/REPORTS/repSuppliersSimp.jasper";
             dbBean con = new dbBean();
             con.connectRep(r, null, false);
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } catch (JRException ex) {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_repSuppliersSimpActionPerformed
@@ -671,15 +672,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         ReporteGrafico dashboard = PRESENTACION.Main.generarDashboard();
-            this.escritorio.add(dashboard);
-            try {
-                    dashboard.setMaximum(true);
-                } catch (java.beans.PropertyVetoException e) {
-                  // si falla no se hace nada
-                }
-            dashboard.setVisible(true);
-            
-        
+        this.escritorio.add(dashboard);
+        try {
+            dashboard.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+            // si falla no se hace nada
+        }
+        dashboard.setVisible(true);
+
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void menuTerritoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTerritoriesActionPerformed
@@ -694,25 +695,25 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuTerritoriesActionPerformed
 
     private void repRegionSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repRegionSimpActionPerformed
-        try{
-           String r = "src/REPORTS/repRegionSimp.jasper";
-           dbBean db = new dbBean();
-           db.connectRep(r, null, false);
-        }catch(SQLException e){
+        try {
+            String r = "src/REPORTS/repRegionSimp.jasper";
+            dbBean db = new dbBean();
+            db.connectRep(r, null, false);
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch(JRException e){
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_repRegionSimpActionPerformed
 
     private void repTerritoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesSimpActionPerformed
-        try{
-           String r = "src/REPORTS/repTerritoriesSimp.jasper";
-           dbBean db = new dbBean();
-           db.connectRep(r, null, false);
-        }catch(SQLException e){
+        try {
+            String r = "src/REPORTS/repTerritoriesSimp.jasper";
+            dbBean db = new dbBean();
+            db.connectRep(r, null, false);
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch(JRException e){
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_repTerritoriesSimpActionPerformed
@@ -729,13 +730,13 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repTerritoriesParamActionPerformed
 
     private void repShippersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repShippersSimpActionPerformed
-        try{
-           String r = "src/REPORTS/repShippersSimp.jasper";
-           dbBean db = new dbBean();
-           db.connectRep(r, null, false);
-        }catch(SQLException e){
+        try {
+            String r = "src/REPORTS/repShippersSimp.jasper";
+            dbBean db = new dbBean();
+            db.connectRep(r, null, false);
+        } catch (SQLException e) {
             e.printStackTrace();
-        }catch(JRException e){
+        } catch (JRException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_repShippersSimpActionPerformed
@@ -755,12 +756,12 @@ public class MDIPrincipal extends javax.swing.JFrame {
         FrmRegion formRegion = new FrmRegion();
         abrirFormulario(formRegion);
     }
-    
+
     private void abrirShippers() {
         FrmShippers formShippers = new FrmShippers();
         abrirFormulario(formShippers);
     }
-    
+
     private void abrirFormulario(JInternalFrame formulario) {
         escritorio.add(formulario);
         formulario.setVisible(true);
@@ -770,15 +771,19 @@ public class MDIPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    int dimW(){
+
+    int dimW() {
         return wd;
     }
-    int dimH(){
+
+    int dimH() {
         return hd;
     }
-    
+
     private void aplicarPermisosPorTitulo() {
-        if (titulo == null) titulo = "";
+        if (titulo == null) {
+            titulo = "";
+        }
 
         switch (titulo) {
 
@@ -810,14 +815,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 break;
 
             case "Sales Manager":
-                
+
                 submenuProducts.setEnabled(true);
                 submenuCustomer.setEnabled(true);
                 menuSuppliers.setEnabled(true);
-                menuUsers.setEnabled(false);      
+                menuUsers.setEnabled(false);
                 menuCategories.setEnabled(true);
                 menuEmployees.setEnabled(true);
-                menuRegion.setEnabled(false);      
+                menuRegion.setEnabled(false);
                 menuShippers.setEnabled(true);
                 menuOrders.setEnabled(true);
                 // Reportes
@@ -828,9 +833,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 repEmployeesSimp.setEnabled(true);
                 repEmployeesParam.setEnabled(true);
                 repCategoriesSimp.setEnabled(true);
-                repCategoriesParam.setEnabled(false); 
-                repUsersSimp.setEnabled(false);        
-                repUserParam.setEnabled(false);        
+                repCategoriesParam.setEnabled(false);
+                repUsersSimp.setEnabled(false);
+                repUserParam.setEnabled(false);
                 repSuppliersSimp.setEnabled(true);
                 RepSuppParam.setEnabled(true);
                 tablacruzada.setEnabled(true);
@@ -838,63 +843,63 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 break;
 
             case "Sales Representative":
-              
+
                 submenuProducts.setEnabled(true);
                 submenuCustomer.setEnabled(true);
-                menuSuppliers.setEnabled(false);   
-                menuUsers.setEnabled(false);       
+                menuSuppliers.setEnabled(false);
+                menuUsers.setEnabled(false);
                 menuCategories.setEnabled(true);
-                menuEmployees.setEnabled(false);   
-                menuRegion.setEnabled(false);      
-                menuShippers.setEnabled(false);    
+                menuEmployees.setEnabled(false);
+                menuRegion.setEnabled(false);
+                menuShippers.setEnabled(false);
                 menuOrders.setEnabled(true);
                 // Reportes
                 repProductsSimp.setEnabled(true);
                 repProductsParam.setEnabled(true);
                 repCustomersSimp.setEnabled(true);
                 repCustomersParam.setEnabled(true);
-                repEmployeesSimp.setEnabled(false);    
-                repEmployeesParam.setEnabled(false);   
+                repEmployeesSimp.setEnabled(false);
+                repEmployeesParam.setEnabled(false);
                 repCategoriesSimp.setEnabled(true);
-                repCategoriesParam.setEnabled(false);  
-                repUsersSimp.setEnabled(false);        
-                repUserParam.setEnabled(false);        
-                repSuppliersSimp.setEnabled(false);    
-                RepSuppParam.setEnabled(false);        
-                tablacruzada.setEnabled(false);        
+                repCategoriesParam.setEnabled(false);
+                repUsersSimp.setEnabled(false);
+                repUserParam.setEnabled(false);
+                repSuppliersSimp.setEnabled(false);
+                RepSuppParam.setEnabled(false);
+                tablacruzada.setEnabled(false);
                 jMenuItem1.setEnabled(true);
                 break;
 
             case "Inside Sales Coordinator":
-                
+
                 submenuProducts.setEnabled(true);
                 submenuCustomer.setEnabled(true);
-                menuSuppliers.setEnabled(false);   
-                menuUsers.setEnabled(false);       
+                menuSuppliers.setEnabled(false);
+                menuUsers.setEnabled(false);
                 menuCategories.setEnabled(true);
-                menuEmployees.setEnabled(false);   
-                menuRegion.setEnabled(false);      
-                menuShippers.setEnabled(false);    
-                menuOrders.setEnabled(false);      
+                menuEmployees.setEnabled(false);
+                menuRegion.setEnabled(false);
+                menuShippers.setEnabled(false);
+                menuOrders.setEnabled(false);
                 // Reportes
                 repProductsSimp.setEnabled(true);
-                repProductsParam.setEnabled(false);    
+                repProductsParam.setEnabled(false);
                 repCustomersSimp.setEnabled(true);
-                repCustomersParam.setEnabled(false);   
-                repEmployeesSimp.setEnabled(false);    
-                repEmployeesParam.setEnabled(false);   
+                repCustomersParam.setEnabled(false);
+                repEmployeesSimp.setEnabled(false);
+                repEmployeesParam.setEnabled(false);
                 repCategoriesSimp.setEnabled(true);
-                repCategoriesParam.setEnabled(false);  
-                repUsersSimp.setEnabled(false);        
-                repUserParam.setEnabled(false);        
-                repSuppliersSimp.setEnabled(false);    
-                RepSuppParam.setEnabled(false);        
-                tablacruzada.setEnabled(false);        
-                jMenuItem1.setEnabled(false);          
+                repCategoriesParam.setEnabled(false);
+                repUsersSimp.setEnabled(false);
+                repUserParam.setEnabled(false);
+                repSuppliersSimp.setEnabled(false);
+                RepSuppParam.setEnabled(false);
+                tablacruzada.setEnabled(false);
+                jMenuItem1.setEnabled(false);
                 break;
 
             default:
-                
+
                 submenuProducts.setEnabled(false);
                 submenuCustomer.setEnabled(false);
                 menuSuppliers.setEnabled(false);
@@ -921,24 +926,25 @@ public class MDIPrincipal extends javax.swing.JFrame {
                 break;
         }
     }
-    public static void main(String args[]) {
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
-            }
-        }
-    } catch (Exception ex) {
-        java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
 
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            // ← Abre el LOGIN primero, no el MDI
-            new FrmLogin().setVisible(true);
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(MDIPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    });
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                // ← Abre el LOGIN primero, no el MDI
+                new FrmLogin().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
