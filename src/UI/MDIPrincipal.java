@@ -4,6 +4,7 @@ import DAO.*;
 import BEAN.*;
 import Markov.*;
 import PRESENTACION.*;
+import UTIL.MailUtil;
 import UTIL.dbBean;
 import java.awt.*;
 import java.sql.SQLException;
@@ -28,6 +29,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     frmRepCustomersRegion repRegion;
 
     public MDIPrincipal(String titulo) {
+        //MailUtil.sendTo("cielocamylav5@gmail.com", "Hola", "Chau");
         initComponents();
         this.titulo = titulo;
         Toolkit toolkit = Toolkit.getDefaultToolkit();

@@ -14,7 +14,7 @@ public class MailUtil {
 
     private static final String CORREO_ORIGEN = "proyectop572@gmail.com";
     private static final String CONTRA = "cajf qbla rujd joxi";
-
+    
     public static boolean sendTo(String destinatario, String asunto, String mensaje) {
         Properties props = new Properties();
         props.put("mail.smtp.auth", true);

@@ -18,6 +18,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
         
+        this.jdOrderDate.setDate(new java.util.Date());
         this.setSize(1200, 675);
         slx = (mdiW/2) - (this.getWidth()/2);
         sly = (mdiH/2) -(this.getHeight()/2);
