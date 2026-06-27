@@ -18,7 +18,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private int wd;
     private int hd;
     private String titulo;
-    FrmProducts formProd;
+    FrmProducts1 formProd;
     FrmCustmers2 formCust;
     FrmOrders formOrder;
     FrmSupplier formsupplier;
@@ -446,7 +446,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        formProd = new FrmProducts(h, w);
+        formProd = new FrmProducts1(h, w);
         escritorio.add(formProd);
         formProd.setVisible(true);
         formProd.setSize(1100, 600);
