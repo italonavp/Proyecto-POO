@@ -459,10 +459,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
         h = dimH();
         String tipReport = "Products";
 
-        formProd = new FrmProducts1(h, w);
-        escritorio.add(formProd);
-        formProd.setVisible(true);
-        formProd.setSize(1100, 600);
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipReport, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
 
     }//GEN-LAST:event_repProductsSimpActionPerformed
 
