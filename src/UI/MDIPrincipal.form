@@ -96,6 +96,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuOrdersActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="tablacruzada">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ventas de empleado por categoria"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tablacruzadaActionPerformed"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -241,14 +249,6 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="tablacruzada">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ventas de empleado por categoria"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tablacruzadaActionPerformed"/>
-              </Events>
-            </MenuItem>
             <Menu class="javax.swing.JMenu" name="jMenu8">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Orden"/>
@@ -396,7 +396,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="279" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="281" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import net.sf.jasperreports.engine.JRException;
 
 public class MDIPrincipal extends javax.swing.JFrame {
@@ -29,7 +31,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     frmRepCustomersRegion repRegion;
 
     public MDIPrincipal(String titulo) {
-        //MailUtil.sendTo("cielocamylav5@gmail.com", "Hola", "Chau");
         initComponents();
         this.titulo = titulo;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -73,6 +74,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         menuTerritories = new javax.swing.JMenuItem();
         menuTrans = new javax.swing.JMenu();
         menuOrders = new javax.swing.JMenuItem();
+        tablacruzada = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         repProductsSimp = new javax.swing.JMenuItem();
@@ -92,7 +94,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         repSuppliersSimp = new javax.swing.JMenuItem();
         RepSuppParam = new javax.swing.JMenuItem();
-        tablacruzada = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -117,7 +118,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 281, Short.MAX_VALUE)
         );
 
         menuMant.setText("Mantenimiento");
@@ -205,6 +206,14 @@ public class MDIPrincipal extends javax.swing.JFrame {
             }
         });
         menuTrans.add(menuOrders);
+
+        tablacruzada.setText("Ventas de empleado por categoria");
+        tablacruzada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tablacruzadaActionPerformed(evt);
+            }
+        });
+        menuTrans.add(tablacruzada);
 
         jMenuBar1.add(menuTrans);
 
@@ -330,14 +339,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jMenu1.add(jMenu7);
 
-        tablacruzada.setText("Ventas de empleado por categoria");
-        tablacruzada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tablacruzadaActionPerformed(evt);
-            }
-        });
-        jMenu1.add(tablacruzada);
-
         jMenu8.setText("Orden");
 
         jMenuItem1.setText("Orden por ID");
@@ -455,15 +456,17 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_submenuProductsActionPerformed
 
     private void repProductsSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repProductsSimp.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, null, false);
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
+        int w, h;
+
+        w = dimW();
+        h = dimH();
+        String tipReport = "Products";
+
+        formProd = new FrmProducts1(h, w);
+        escritorio.add(formProd);
+        formProd.setVisible(true);
+        formProd.setSize(1100, 600);
+
     }//GEN-LAST:event_repProductsSimpActionPerformed
 
     private void repProductsParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsParamActionPerformed
@@ -486,15 +489,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_submenuCustomerActionPerformed
 
     private void repCustomersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repCustomers.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, null, false);
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Customers";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repCustomersSimpActionPerformed
 
     private void repCustomersParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersParamActionPerformed
@@ -511,27 +515,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repEmployeesParamActionPerformed
 
     private void repEmployeesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repEmployeesSimp.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, null, false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Employees";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repEmployeesSimpActionPerformed
 
     private void repCategoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repCategoriesSimp.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, null, false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Categories";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repCategoriesSimpActionPerformed
 
     private void repCategoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesParamActionPerformed
@@ -599,27 +605,28 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuEmployeesActionPerformed
 
     private void repUsersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repUsersSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repUsersSimp.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, null, false);
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Users";
+        String tipo = "Simp";
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repUsersSimpActionPerformed
 
     private void repSuppliersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repSuppliersSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repSuppliersSimp.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, null, false);
-        } catch (java.sql.SQLException e) {
-            e.printStackTrace();
-        } catch (JRException ex) {
-            ex.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Suppliers";
+
+        w = dimW();
+        h = dimH();
+        String tipo = "Simp";
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repSuppliersSimpActionPerformed
 
     private void RepSuppParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepSuppParamActionPerformed
@@ -643,25 +650,20 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuShippersActionPerformed
 
     private void tablacruzadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tablacruzadaActionPerformed
-        try {
-            // 1. La ruta exacta de tu nuevo reporte compilado
-            String ruta = "src/REPORTS/repTablaCruzada.jasper";
+        int w, h;
+        String tipoRep = "TablaCruzada";
+        String tipo = "Simp";
 
-            // 2. Instanciamos tu clase de conexión
-            UTIL.dbBean db = new UTIL.dbBean();
+        w = dimW();
+        h = dimH();
 
-            // 3. ¡La magia directa!
-            // Mandamos null en el mapa y FALSE porque este reporte NO usa parámetros ($P{})
-            db.connectRep(ruta, null, false);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Error al generar la matriz analítica: " + ex.getMessage());
-        }
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_tablacruzadaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FrmRepOrdersParam ventanaOrders = new FrmRepOrdersParam();
+        FrmRepOrdersParam ventanaOrders = new FrmRepOrdersParam(escritorio);
         this.escritorio.add(ventanaOrders);
         ventanaOrders.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -697,27 +699,29 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuTerritoriesActionPerformed
 
     private void repRegionSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repRegionSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repRegionSimp.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, null, false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Region";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repRegionSimpActionPerformed
 
     private void repTerritoriesSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repTerritoriesSimp.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, null, false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Territories";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repTerritoriesSimpActionPerformed
 
     private void repTerritoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesParamActionPerformed
@@ -732,15 +736,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repTerritoriesParamActionPerformed
 
     private void repShippersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repShippersSimpActionPerformed
-        try {
-            String r = "src/REPORTS/repShippersSimp.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, null, false);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+        int w, h;
+        String tipoRep = "Shippers";
+        String tipo = "Simp";
+
+        w = dimW();
+        h = dimH();
+
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        escritorio.add(frmReporte);
+        frmReporte.setVisible(true);
     }//GEN-LAST:event_repShippersSimpActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

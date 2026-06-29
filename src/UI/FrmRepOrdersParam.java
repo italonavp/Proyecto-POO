@@ -7,6 +7,7 @@ package UI;
 
 import UTIL.dbBean;
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -15,11 +16,13 @@ import net.sf.jasperreports.engine.JRException;
  */
 public class FrmRepOrdersParam extends javax.swing.JInternalFrame {
 
+    private JDesktopPane desktop;
     /**
      * Creates new form FrmRepOrdersParam
      */
-    public FrmRepOrdersParam() {
+    public FrmRepOrdersParam(JDesktopPane desktop) {
         initComponents();
+        this.desktop = desktop;
     }
 
     /**
@@ -101,17 +104,16 @@ public class FrmRepOrdersParam extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int orderid = Integer.parseInt(this.txtOrderID.getText());
         HashMap map = new HashMap();
-        map.put("OrderID",orderid);
-        try{
-            String r = "src/REPORTS/repOrdersParam.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, map, true);
-            this.dispose();
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
-            ex.printStackTrace();
-        }
+        map.put("OrderID", orderid);
+
+        String tipoRep = "Orders";
+        String tipo = "Param";
+
+        FrmReporte frmReporte = new FrmReporte(tipoRep, map, tipo);
+        desktop.add(frmReporte);
+        frmReporte.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

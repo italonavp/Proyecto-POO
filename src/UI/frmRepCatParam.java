@@ -1,17 +1,20 @@
 package UI;
+
 public class frmRepCatParam extends javax.swing.JInternalFrame {
+
     public frmRepCatParam() {
         initComponents();
         cargarCategorias();
     }
+
     private void cargarCategorias() {
         try {
             DAO.CategoryDAO dao = new DAO.CategoryDAO();
             // Traemos la lista completa usando tu DAO de Categorías
-            java.util.Vector<BEAN.Category> lista = dao.listaCategories(""); 
-            
-            cboCategorias.removeAllItems(); 
-            
+            java.util.Vector<BEAN.Category> lista = dao.listaCategories("");
+
+            cboCategorias.removeAllItems();
+
             for (BEAN.Category cat : lista) {
                 // Formato: "1 - Beverages"
                 cboCategorias.addItem(cat.getCategoryID() + " - " + cat.getCategoryName());
@@ -20,6 +23,7 @@ public class frmRepCatParam extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,7 +90,7 @@ public class frmRepCatParam extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
-try {
+        try {
             if (cboCategorias.getSelectedItem() == null) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Por favor seleccione una categoría.");
                 return;
@@ -96,7 +100,7 @@ try {
             int idBusqueda = Integer.parseInt(seleccionado.split(" - ")[0].trim());
             // 2. Buscamos la foto (Picture) de la categoría
             DAO.CategoryDAO dao = new DAO.CategoryDAO();
-            java.util.Vector<BEAN.Category> lista = dao.listaCategories(""); 
+            java.util.Vector<BEAN.Category> lista = dao.listaCategories("");
             byte[] fotoLimpia = null;
             for (BEAN.Category cat : lista) {
                 if (cat.getCategoryID() == idBusqueda) {
@@ -114,14 +118,14 @@ try {
             parametros.put("param_id_categoria", idBusqueda);
             parametros.put("IMAGEN", isImagen);
             // 5. Lanzamos el reporte
-            String ruta = "src/REPORTS/repCategoriesParam.jasper"; 
+            String ruta = "src/REPORTS/repCategoriesParam.jasper";
             UTIL.dbBean db = new UTIL.dbBean();
             db.connectRep(ruta, parametros, true); // TRUE para que acepte los parámetros
             this.dispose();
         } catch (Exception ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + ex.getMessage());
-        }       
+        }
     }//GEN-LAST:event_btnReportarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
