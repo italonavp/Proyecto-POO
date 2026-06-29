@@ -18,60 +18,140 @@ FROM
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="52" splitType="Stretch">
-			<staticText>
-				<reportElement x="162" y="16" width="221" height="34" uuid="507c4add-202f-40c3-af3f-6482d1d99b2a"/>
-				<textElement>
-					<font size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Reporte de Shippers]]></text>
-			</staticText>
-		</band>
-	</title>
+    <band height="60">
+
+        <staticText>
+            <reportElement x="120" y="10" width="320" height="30"/>
+            <textElement textAlignment="Center">
+                <font size="20" isBold="true"/>
+            </textElement>
+            <text><![CDATA[REPORTE DE SHIPPERS]]></text>
+        </staticText>
+
+        <line>
+            <reportElement
+                x="0"
+                y="50"
+                width="555"
+                height="1"
+                forecolor="#0B3B75"/>
+        </line>
+
+    </band>
+</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
-			<staticText>
-				<reportElement x="81" y="2" width="100" height="20" uuid="0db09158-8a8c-4a98-8177-0af9f3cbc58a"/>
-				<text><![CDATA[ID]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="216" y="2" width="100" height="20" uuid="1e1c9d4a-d71a-4573-9542-e5c51620487e"/>
-				<text><![CDATA[Compañia]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="359" y="2" width="100" height="20" uuid="ab1c3d44-da46-4b5c-881c-000ef56ebfed"/>
-				<text><![CDATA[Teléfono]]></text>
-			</staticText>
-			<line>
-				<reportElement x="41" y="22" width="468" height="1" uuid="dd394d0f-2f7a-4e97-a7fd-1555e0c1d292"/>
-			</line>
-		</band>
-	</columnHeader>
+    <band height="30">
+
+        <rectangle>
+            <reportElement
+                x="0"
+                y="0"
+                width="555"
+                height="25"
+                mode="Opaque"
+                backcolor="#0B3B75"/>
+        </rectangle>
+
+        <staticText>
+            <reportElement
+                x="20"
+                y="5"
+                width="60"
+                height="15"
+                forecolor="#FFFFFF"/>
+            <textElement>
+                <font isBold="true"/>
+            </textElement>
+            <text><![CDATA[ID]]></text>
+        </staticText>
+
+        <staticText>
+            <reportElement
+                x="120"
+                y="5"
+                width="220"
+                height="15"
+                forecolor="#FFFFFF"/>
+            <textElement>
+                <font isBold="true"/>
+            </textElement>
+            <text><![CDATA[COMPAÑÍA]]></text>
+        </staticText>
+
+        <staticText>
+            <reportElement
+                x="380"
+                y="5"
+                width="140"
+                height="15"
+                forecolor="#FFFFFF"/>
+            <textElement>
+                <font isBold="true"/>
+            </textElement>
+            <text><![CDATA[TELÉFONO]]></text>
+        </staticText>
+
+    </band>
+</columnHeader>
 	<detail>
-		<band height="31" splitType="Stretch">
-			<textField>
-				<reportElement x="81" y="8" width="100" height="20" uuid="19859c99-1eb6-43fd-b04a-222568d64b1c"/>
-				<textFieldExpression><![CDATA[$F{Shippers_ShipperID}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="216" y="8" width="100" height="20" uuid="ff295a9f-b9ac-42f9-b297-5a45c3e97287"/>
-				<textFieldExpression><![CDATA[$F{Shippers_CompanyName}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="359" y="8" width="100" height="20" uuid="26501cd4-3d1f-4620-ab2d-1ffc27d98a79"/>
-				<textFieldExpression><![CDATA[$F{Shippers_Phone}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
+    <band height="25">
+
+        <textField>
+            <reportElement x="20" y="3" width="60" height="18"/>
+            <textFieldExpression><![CDATA[$F{Shippers_ShipperID}]]></textFieldExpression>
+        </textField>
+
+        <textField>
+            <reportElement x="120" y="3" width="220" height="18"/>
+            <textFieldExpression><![CDATA[$F{Shippers_CompanyName}]]></textFieldExpression>
+        </textField>
+
+        <textField>
+            <reportElement x="380" y="3" width="140" height="18"/>
+            <textFieldExpression><![CDATA[$F{Shippers_Phone}]]></textFieldExpression>
+        </textField>
+
+        <line>
+            <reportElement
+                x="0"
+                y="24"
+                width="555"
+                height="1"
+                forecolor="#D9D9D9"/>
+        </line>
+
+    </band>
+</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
+    <band height="25">
+
+        <line>
+            <reportElement
+                x="0"
+                y="0"
+                width="555"
+                height="1"
+                forecolor="#0B3B75"/>
+        </line>
+
+        <textField>
+            <reportElement
+                x="450"
+                y="5"
+                width="80"
+                height="15"/>
+            <textElement textAlignment="Right"/>
+            <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+        </textField>
+
+    </band>
+</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
 	</summary>

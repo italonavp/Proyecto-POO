@@ -21,59 +21,83 @@ INNER JOIN
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="42" splitType="Stretch">
+		<band height="60">
 			<staticText>
-				<reportElement x="198" y="15" width="171" height="23" uuid="ba75f3a3-666a-4d9f-b208-a00d9a43b1d0"/>
-				<textElement>
-					<font size="16" isBold="true"/>
+				<reportElement x="120" y="10" width="320" height="30" uuid="8b5bc7bd-2001-4add-a915-41a34b15a17a"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Reporte de Territories]]></text>
+				<text><![CDATA[REPORTE DE TERRITORIES]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="50" width="555" height="1" forecolor="#0B3B75" uuid="6e709d04-0d8f-4dd4-9340-689eb8ca2b93"/>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="3" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="24" splitType="Stretch">
+		<band height="30">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="25" backcolor="#0B3B75" uuid="5f79e2a6-c0fd-4f5c-940c-4e923ba66b58"/>
+			</rectangle>
 			<staticText>
-				<reportElement x="36" y="2" width="100" height="20" uuid="9843975d-d223-4068-9b61-130d54126496"/>
+				<reportElement x="20" y="5" width="80" height="15" forecolor="#FFFFFF" uuid="240834f3-b6a5-415a-aa41-d0062baeb04e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="225" y="2" width="100" height="20" uuid="a6f4089a-6daa-426d-a4cf-92a42ae24d47"/>
-				<text><![CDATA[Territories]]></text>
+				<reportElement x="180" y="5" width="150" height="15" forecolor="#FFFFFF" uuid="1e943145-25ba-4369-92c6-5bf01c5e17fb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TERRITORIO]]></text>
 			</staticText>
-			<line>
-				<reportElement x="22" y="22" width="513" height="1" uuid="0faaa2a4-f936-48e0-852a-e41863949604"/>
-			</line>
 			<staticText>
-				<reportElement x="420" y="2" width="100" height="20" uuid="a3a434d2-75ab-41b1-b8fe-df87b1a7e12e"/>
-				<text><![CDATA[Region]]></text>
+				<reportElement x="390" y="5" width="120" height="15" forecolor="#FFFFFF" uuid="7fd8cad4-744c-44af-a045-274a06cca699"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[REGIÓN]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="24" splitType="Stretch">
+		<band height="25">
 			<textField>
-				<reportElement x="36" y="0" width="100" height="20" uuid="8187c6fe-74de-4076-9736-22e5a60844ab"/>
+				<reportElement x="20" y="3" width="80" height="20" uuid="420dc010-58ac-4643-b5b9-dc9e059e757e"/>
 				<textFieldExpression><![CDATA[$F{Territories_TerritoryID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="225" y="0" width="100" height="20" uuid="81db93fd-2336-49ba-b0a8-8d090137739d"/>
+				<reportElement x="180" y="3" width="150" height="20" uuid="88e8b440-fd99-4889-8c9b-4c92dcd53ac7"/>
 				<textFieldExpression><![CDATA[$F{Territories_TerritoryDescription}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="420" y="0" width="100" height="20" uuid="c87b9ec7-067b-43d9-ba1d-de0afa8b9997"/>
+				<reportElement x="390" y="3" width="120" height="20" uuid="4700c340-e38c-46a3-abb2-2a50b775a74d"/>
 				<textFieldExpression><![CDATA[$F{Region_Description}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="24" width="555" height="1" forecolor="#D9D9D9" uuid="3b087fbe-7e24-47d1-98a6-5076ea1575b2"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="25">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" forecolor="#0B3B75" uuid="fc99c62b-add3-42ea-8ead-cdaa4e08ed82"/>
+			</line>
+			<textField>
+				<reportElement x="450" y="5" width="80" height="15" uuid="f4ca48d8-6956-42a4-b70d-a878ddb9a99e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
