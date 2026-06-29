@@ -55,7 +55,6 @@ public class dbBean {
 
         //TODO: Agregar opción para decidir enviar archivo o no.
         //FIXME: Evitar enviar archivos vacíos
-        MailUtil.sendTo("cielocamylav5@gmail.com", "Reporte", "Uwu", rutaPdf);
         
         JasperViewer ver = new JasperViewer(imp, false);
         ver.setTitle("Reporte");

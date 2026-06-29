@@ -13,11 +13,12 @@ public class Customer {
     private String country;
     private String phone;
     private String fax;
+    private String email;
 
     public Customer() {
     }
 
-    public Customer(String customerId, String companyName, String contactName, String contactTitle, String address, String city, String region, String postalCode, String country, String phone, String fax) {
+    public Customer(String customerId, String companyName, String contactName, String contactTitle, String address, String city, String region, String postalCode, String country, String phone, String fax, String email) {
         this.customerID = customerId;
         this.companyName = companyName;
         this.contactName = contactName;
@@ -29,6 +30,7 @@ public class Customer {
         this.country = country;
         this.phone = phone;
         this.fax = fax;
+        this.email = email;
     }
 
     public String getCustomerID() {
@@ -119,4 +121,13 @@ public class Customer {
         this.fax = fax;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
 }

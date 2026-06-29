@@ -31,6 +31,7 @@ public class CustomerDAO {
                 c.setCountry(res.getString(9));
                 c.setPhone(res.getString(10));
                 c.setFax(res.getString(11));
+                c.setEmail(res.getString(12));
 
                 vecCustomers.add(c);
             }
