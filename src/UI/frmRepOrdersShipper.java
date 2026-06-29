@@ -50,7 +50,7 @@ public class frmRepOrdersShipper extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jLabel1.setText("Shipper");
+        jLabel1.setText("Transportista");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel2.setText("Parametrizacion de Orders por Shipper");
@@ -75,7 +75,7 @@ public class frmRepOrdersShipper extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addGap(37, 37, 37)
                         .addComponent(cmbShipper, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addComponent(btnReportar))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

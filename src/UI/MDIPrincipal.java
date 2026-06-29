@@ -229,7 +229,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(repProductsSimp);
 
-        repProductsParam.setText("Producto por rango");
+        repProductsParam.setText("Producto por rango de precio unitario");
         repProductsParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repProductsParamActionPerformed(evt);

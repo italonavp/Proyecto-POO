@@ -126,7 +126,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="repProductsParam">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Producto por rango"/>
+                    <Property name="text" type="java.lang.String" value="Producto por rango de precio unitario"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="repProductsParamActionPerformed"/>

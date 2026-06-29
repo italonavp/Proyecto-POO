@@ -120,7 +120,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Mantenimiento Products");
+        jLabel1.setText("Mantenimiento Productos");
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -140,12 +140,12 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre Producto");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("SupplierID");
+        jLabel5.setText("ID proovedor");
 
         cmbSupplierID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("CategoryID");
+        jLabel4.setText("ID Categoria");
 
         cmbCategoryID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -338,7 +338,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Producto", "ID PROOV", "ID categoria", "Quantity per Unit", "PRECIO UNIT", "STOCK", "UNITS PEDIDAS", "Reorder Level", "Descontinuado"
+                "ID", "Producto", "ID Proovedor", "ID categoria", "Cant por unidad", "Precio unitario", "Stock", "Unidades pedidas", "Reorder Level", "Descontinuado"
             }
         ));
         tblProducts.addMouseListener(new java.awt.event.MouseAdapter() {

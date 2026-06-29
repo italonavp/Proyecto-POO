@@ -38,7 +38,7 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Hasta");
 
-        jLabel3.setText("REPORTE DE PRODUCTOS POR RANGO");
+        jLabel3.setText("REPORTE DE PRODUCTOS POR RANGO DE PRECIO UNITARIO");
 
         btnReportar.setText("Reportar");
         btnReportar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,11 +73,11 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(294, 294, 294)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
