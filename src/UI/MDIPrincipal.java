@@ -447,12 +447,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        formProd = new FrmProducts1(h, w);
+        formProd = new FrmProducts1(w, h);
         escritorio.add(formProd);
         formProd.setVisible(true);
-        formProd.setSize(1100, 600);
-
-
     }//GEN-LAST:event_submenuProductsActionPerformed
 
     private void repProductsSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsSimpActionPerformed
@@ -652,7 +649,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void tablacruzadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tablacruzadaActionPerformed
         int w, h;
         String tipoRep = "TablaCruzada";
-        String tipo = "Simp";
+        String tipo = "";
 
         w = dimW();
         h = dimH();

@@ -19,7 +19,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         int slx, sly, wd = mdiW, hd = mdiH;
         
         
-        this.setSize(900, 600);
+        this.setSize(1100, 600);
         slx = (mdiW/2) - (this.getWidth()/2);
         sly = (mdiH/2) -(this.getHeight()/2);
         this.setLocation(slx, sly);
