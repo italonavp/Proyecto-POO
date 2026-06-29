@@ -66,7 +66,9 @@ public class FrmShippers extends javax.swing.JInternalFrame {
         btnLim = new javax.swing.JButton();
         btnSal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Mantenimiento Shippers");
@@ -130,7 +132,7 @@ public class FrmShippers extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSal.setText("Salir");
+        btnSal.setText("Eliminar");
         btnSal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalActionPerformed(evt);
@@ -298,7 +300,7 @@ public class FrmShippers extends javax.swing.JInternalFrame {
         this.txtCompany.setText("");
         this.txtTel.setText("");
         this.btnAgre.setText("Agregar");
-        this.btnSal.setText("Salir");
+        this.btnSal.setText("Eliminar");
         this.llenatbl("");
     }
     /**

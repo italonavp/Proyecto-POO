@@ -112,10 +112,11 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         rbDescontinuado = new javax.swing.JRadioButton();
         btnGrabar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         btnTest = new javax.swing.JButton();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Mantenimiento Products");
@@ -228,13 +229,6 @@ public class FrmProducts extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         btnTest.setText("Reporte Simple");
         btnTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,11 +287,10 @@ public class FrmProducts extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(rbDescontinuado))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(btnGrabar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnLimpiar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSalir)))
+                        .addGap(45, 45, 45)
+                        .addComponent(btnLimpiar)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -366,10 +359,9 @@ public class FrmProducts extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGrabar)
                             .addComponent(btnLimpiar)
-                            .addComponent(btnSalir)
                             .addComponent(btnTest)
                             .addComponent(btnEliminar))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -479,10 +471,6 @@ public class FrmProducts extends javax.swing.JInternalFrame {
         limpia();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
         try{
             String r = "src/REPORTES/repProductsSimp.jasper";
@@ -558,7 +546,6 @@ public class FrmProducts extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnTest;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbCategoryID;

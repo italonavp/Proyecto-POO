@@ -194,13 +194,14 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         jDateChooserContratacion = new com.toedter.calendar.JDateChooser();
         btnGrabar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnSubirFoto = new javax.swing.JButton();
         lblFoto = new javax.swing.JLabel();
         cmbTituloEmp = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         jLabel1.setText("MANTENIMIENTO EMPLEADO");
 
@@ -260,7 +261,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
 
         jLabel18.setText("Buscar");
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(30, 10, 32, 14);
+        jLabel18.setBounds(30, 10, 38, 16);
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -268,7 +269,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(90, 10, 260, 20);
+        txtBuscar.setBounds(90, 10, 260, 22);
 
         txtEmpleadoId.setEnabled(false);
 
@@ -299,13 +300,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
             }
         });
 
@@ -412,11 +406,9 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                                 .addGap(55, 55, 55))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnGrabar)
-                                .addGap(59, 59, 59)
+                                .addGap(98, 98, 98)
                                 .addComponent(btnLimpiar)
-                                .addGap(57, 57, 57)
-                                .addComponent(btnSalir)
-                                .addGap(93, 93, 93))))))
+                                .addGap(118, 118, 118))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -481,8 +473,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                                 .addGap(209, 209, 209)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnGrabar)
-                                    .addComponent(btnLimpiar)
-                                    .addComponent(btnSalir)))
+                                    .addComponent(btnLimpiar)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -524,7 +515,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel13)
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -537,10 +528,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpia();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
         int idx = this.tblEmpleados.getSelectedRow();
@@ -721,7 +708,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSubirFoto;
     private javax.swing.JComboBox<String> cmbCortesia;
     private javax.swing.JComboBox<String> cmbEncargado;

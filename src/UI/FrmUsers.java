@@ -102,7 +102,6 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUserIdentification = new javax.swing.JTextField();
-        btnSalir = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnGrabar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -112,7 +111,9 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         btnRepParam = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
+        setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
@@ -191,13 +192,6 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("STATUS");
 
         btnGrabar.setText("Grabar");
@@ -244,10 +238,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(btnGrabar)
-                        .addGap(28, 28, 28)
-                        .addComponent(btnLimpiar)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnSalir))
+                        .addGap(83, 83, 83)
+                        .addComponent(btnLimpiar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,9 +303,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGrabar)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnSalir))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btnLimpiar))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -449,10 +440,6 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnRepParamActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -521,7 +508,6 @@ public class FrmUsers extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnRepParam;
     private javax.swing.JButton btnRepSimp;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox cmbEmployeeID;
     private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel1;

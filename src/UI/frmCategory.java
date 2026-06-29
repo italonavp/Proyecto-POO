@@ -114,11 +114,12 @@ public class frmCategory extends javax.swing.JInternalFrame {
         tblCategorias = new javax.swing.JTable();
         btnLimpiar = new javax.swing.JButton();
         btnGrabar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         jLabel1.setText("MANTENIMIENTO CATEGORÍA");
 
@@ -146,7 +147,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Buscar");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 20, 32, 14);
+        jLabel7.setBounds(30, 20, 38, 16);
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -154,7 +155,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(80, 20, 330, 20);
+        txtBuscar.setBounds(80, 20, 330, 22);
 
         tblCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,13 +189,6 @@ public class frmCategory extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
-
         btnEliminar.setText("Eliminar");
         btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -225,15 +219,13 @@ public class frmCategory extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(403, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnGrabar)
-                        .addGap(53, 53, 53)
+                        .addGap(95, 95, 95)
                         .addComponent(btnLimpiar)
-                        .addGap(51, 51, 51)
-                        .addComponent(btnSalir)
-                        .addGap(122, 122, 122))
+                        .addGap(136, 136, 136))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnEliminar)
                         .addGap(23, 23, 23))))
@@ -271,11 +263,10 @@ public class frmCategory extends javax.swing.JInternalFrame {
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnGrabar)
-                    .addComponent(btnSalir))
+                    .addComponent(btnGrabar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -315,10 +306,6 @@ public class frmCategory extends javax.swing.JInternalFrame {
         limpia();
         llenaTblCategorias("");
     }//GEN-LAST:event_btnGrabarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();     
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         if(idCat == 0) return;
@@ -395,7 +382,6 @@ public class frmCategory extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

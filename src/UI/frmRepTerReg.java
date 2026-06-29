@@ -61,8 +61,6 @@ public class frmRepTerReg extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         jLabel1.setText("Region");
 

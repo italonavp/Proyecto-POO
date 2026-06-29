@@ -70,7 +70,6 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
         btnReporte = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         txtCompName = new javax.swing.JTextField();
@@ -97,7 +96,9 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
         btnGrabar = new javax.swing.JButton();
         btnElimina = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,13 +137,6 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
-            }
-        });
-
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
             }
         });
 
@@ -302,7 +296,7 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(txtRegion, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                    .addComponent(txtRegion, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -339,12 +333,10 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(130, 130, 130)
+                                .addGap(179, 179, 179)
                                 .addComponent(btnElimina)
-                                .addGap(124, 124, 124)
-                                .addComponent(btnLimpiar)
-                                .addGap(105, 105, 105)
-                                .addComponent(btnSalir))
+                                .addGap(171, 171, 171)
+                                .addComponent(btnLimpiar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)))
                     .addComponent(btnReporte))
@@ -366,7 +358,6 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnLimpiar)
-                            .addComponent(btnSalir)
                             .addComponent(btnElimina))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -377,10 +368,6 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpia();
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnReporteActionPerformed
         try {
@@ -492,7 +479,6 @@ public class FrmCustomer extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGrabar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnReporte;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

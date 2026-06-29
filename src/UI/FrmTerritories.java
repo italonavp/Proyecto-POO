@@ -55,8 +55,6 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Mantenimiento Territories");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -84,7 +82,7 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalir.setText("Salir");
+        btnSalir.setText("Eliminar");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -138,7 +136,7 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
                         .addComponent(btnLimpiar)
                         .addGap(38, 38, 38)
                         .addComponent(btnSalir)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -178,7 +176,7 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,7 +251,7 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
         this.txtDescripcion.setText("");
         this.txtRegionID.setText("");
         this.btnAgregar.setText("Agregar");
-        this.btnSalir.setText("Salir");
+        this.btnSalir.setText("Eliminar");
         this.llenatbl("");
     }
 

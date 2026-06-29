@@ -49,7 +49,9 @@ public class FrmRegion extends javax.swing.JInternalFrame {
         btnLimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Region Mantenimiento");
@@ -113,7 +115,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSalir.setText("Salir");
+        btnSalir.setText("Eliminar");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -143,7 +145,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
                         .addComponent(btnAgregar)
                         .addGap(47, 47, 47)
                         .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addComponent(btnSalir)
                         .addGap(37, 37, 37)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +183,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
                             .addComponent(btnAgregar)
                             .addComponent(btnLimpiar)
                             .addComponent(btnSalir))
-                        .addGap(0, 17, Short.MAX_VALUE))
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -239,6 +241,14 @@ public class FrmRegion extends javax.swing.JInternalFrame {
         this.btnSalir.setText("Eliminar");
     }//GEN-LAST:event_tblRegionMouseClicked
 
+    private void txtBuscarRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarRegKeyReleased
+        if(this.txtBuscarReg.getText().isEmpty()){
+           this.llenatbl("");
+       }else{
+           this.llenatbl(this.txtBuscarReg.getText());
+       }
+    }//GEN-LAST:event_txtBuscarRegKeyReleased
+
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         if(this.btnSalir.getText().equals("Eliminar")){
             int respuesta = JOptionPane.showConfirmDialog(this, "¿Desea eliminar la región seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
@@ -258,21 +268,13 @@ public class FrmRegion extends javax.swing.JInternalFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
-
-    private void txtBuscarRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarRegKeyReleased
-        if(this.txtBuscarReg.getText().isEmpty()){
-           this.llenatbl("");
-       }else{
-           this.llenatbl(this.txtBuscarReg.getText());
-       }
-    }//GEN-LAST:event_txtBuscarRegKeyReleased
     
     private void limpia(){
         int idReg = u.idNext("Region", "RegionID");
         this.txtIDRegion.setText(String.valueOf(idReg));
         this.txtDescReg.setText("");
         this.btnAgregar.setText("Agregar");
-        this.btnSalir.setText("Salir");
+        this.btnSalir.setText("Eliminar");
         this.llenatbl("");
     }
     /**
