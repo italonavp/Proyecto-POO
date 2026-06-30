@@ -389,13 +389,13 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addGap(40, 40, 40))
         );
 
         jTabbedPane1.addTab("Reporte", jPanel1);
@@ -498,7 +498,22 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
+        int fila = tblCustomers.getSelectedRow();
+
+        txtId.setText(tblCustomers.getValueAt(fila, 0).toString());
+        txtCompName.setText(tblCustomers.getValueAt(fila, 1).toString());
+        txtContcName.setText(tblCustomers.getValueAt(fila, 2).toString());
+        txtCntcTitle.setText(tblCustomers.getValueAt(fila, 3).toString());
+        txtAddress.setText(tblCustomers.getValueAt(fila, 4).toString());
+        txtCity.setText(tblCustomers.getValueAt(fila, 5).toString());
+        txtRegion.setText(tblCustomers.getValueAt(fila, 6).toString());
+        txtPostalCode.setText(tblCustomers.getValueAt(fila, 7).toString());
+        txtCountry.setText(tblCustomers.getValueAt(fila, 8).toString());
+        txtPhone.setText(tblCustomers.getValueAt(fila, 9).toString());
+        txtFax.setText(tblCustomers.getValueAt(fila, 10).toString());
+        txtEmail.setText(tblCustomers.getValueAt(fila, 11).toString());
         
+        jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_tblCustomersMouseClicked
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
