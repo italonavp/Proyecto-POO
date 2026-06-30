@@ -29,6 +29,8 @@ public class FrmReporte extends JInternalFrame {
     private HashMap parametros;
     private String tipo;
 
+    private String cliente;
+
     public FrmReporte(int w, int h, String tipoRep, String tipo) {
         initComponents();
         dft = (DefaultTableModel) tblCustomers.getModel();
@@ -93,9 +95,10 @@ public class FrmReporte extends JInternalFrame {
         btnEnviar = new javax.swing.JButton();
         txtAbrir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        lblTitle = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
-        lblTitle = new javax.swing.JLabel();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -147,6 +150,8 @@ public class FrmReporte extends JInternalFrame {
             }
         });
 
+        lblTitle.setText("Envio de reportes");
+
         tblCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -162,29 +167,29 @@ public class FrmReporte extends JInternalFrame {
         });
         jScrollPane1.setViewportView(tblCustomers);
 
-        lblTitle.setText("Envio de reportes");
+        jTabbedPane1.addTab("Clientes", jScrollPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(txtAbrir)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 5, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitle)
                 .addGap(166, 166, 166))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(txtAbrir)
+                        .addGap(0, 7, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,25 +205,19 @@ public class FrmReporte extends JInternalFrame {
                         .addComponent(txtAbrir)
                         .addGap(67, 67, 67)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
-        int id = tblCustomers.getSelectedRow();
-
-        txtCorreo.setText(dft.getValueAt(id, 3).toString());
-    }//GEN-LAST:event_tblCustomersMouseClicked
-
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         String asunto = String.format("Reporte Generado - %s", this.tipoRep);
 
         String mensaje = String.format(
-                "Buen día,%n%n"
+                "Buen día " + cliente + ", "
                 + "En atención a su solicitud, se adjunta el reporte \"%s\".%n%n"
                 + "El documento contiene la información correspondiente al reporte solicitado y se encuentra disponible para su revisión.%n%n"
                 + "Agradecemos su preferencia y esperamos que la información proporcionada sea de utilidad.%n%n"
@@ -250,6 +249,13 @@ public class FrmReporte extends JInternalFrame {
         }
     }//GEN-LAST:event_txtAbrirActionPerformed
 
+    private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
+        int id = tblCustomers.getSelectedRow();
+
+        txtCorreo.setText(dft.getValueAt(id, 3).toString());
+        cliente = dft.getValueAt(id, 1).toString();
+    }//GEN-LAST:event_tblCustomersMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
@@ -257,6 +263,7 @@ public class FrmReporte extends JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblCustomers;
     private javax.swing.JButton txtAbrir;
