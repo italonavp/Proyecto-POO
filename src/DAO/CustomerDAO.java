@@ -109,7 +109,40 @@ public class CustomerDAO {
         }
     }
 
-    public void eliminaCustomer(Customer cust) {
+    public boolean eliminarCustomer(Customer c) {
+        String sql = "DELETE FROM Customers WHERE CustomerID = '" + c.getCustomerID() + "'";
 
+        dbBean db = new dbBean();
+        boolean state = false;
+
+        try {
+            db.execSQL(sql);
+            state = true;
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            state = false;
+        }
+
+        try {
+            db.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return state;
     }
+
+    public String generateID(String compName) {
+
+        String id = "";
+
+        String[] txt = compName.split(" ");
+        for (int i = 0; i < txt.length; i++) {
+            String c = txt[i];
+            id += c.substring(0, i + 2);
+        }
+
+        return id.substring(0, 5);
+    }
+
 }
