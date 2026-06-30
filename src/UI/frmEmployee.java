@@ -1,47 +1,61 @@
 package UI;
+
 import BEAN.*;
+import UTIL.dbBean;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class frmEmployee extends javax.swing.JInternalFrame {
+
     DAO.EmployeeDAO empDao;
     javax.swing.table.DefaultTableModel dtm;
     int idEmp = 0;
-    byte[] fotoBinaria = null; 
-    
-    java.util.Vector<Employee> listaEmpGlobal; 
+    byte[] fotoBinaria = null;
+
+    java.util.Vector<Employee> listaEmpGlobal;
     java.util.Vector<Employee> listaJefesGlobal;
-    
+
     public frmEmployee(int mdiW, int mdiH) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        
+
         this.setSize(1200, 675);
-        slx = (mdiW/2) - (this.getWidth()/2);
-        sly = (mdiH/2) -(this.getHeight()/2);
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
         //this.getContentPane().setBackground(java.awt.Color.WHITE); // Fondo limpio y estético
-        
+
         empDao = new DAO.EmployeeDAO();
         dtm = (javax.swing.table.DefaultTableModel) this.tblEmpleados.getModel();
-        
+
         // Protecciones de interfaz
-        this.txtEmpleadoId.setEnabled(false); 
+        this.txtEmpleadoId.setEnabled(false);
         this.btnEliminar.setEnabled(false); // Se enciende solo al elegir de la tabla
-        
+
         llenaComboJefes();
         llenaComboTitulos(); // <-- LLAMADA AL NUEVO MÉTODO
         llenaTblEmpleados("");
+
+        cmbTituloEmp.setEditable(true);
     }
 
     // NUEVO MÉTODO: Carga las opciones de cargos de la empresa
     private void llenaComboTitulos() {
         this.cmbTituloEmp.removeAllItems();
-        this.cmbTituloEmp.addItem(""); // Índice 0 (vacío, para forzar selección)
-        this.cmbTituloEmp.addItem("Sales Representative");
-        this.cmbTituloEmp.addItem("Vice President, Sales");
-        this.cmbTituloEmp.addItem("Sales Manager");
-        this.cmbTituloEmp.addItem("Inside Sales Coordinator");
+
+        String sql = "SELECT DISTINCT Title FROM Employees";
+        dbBean db = new dbBean();
+        try {
+            ResultSet res = db.execSQL(sql);
+            while (res.next()) {
+                cmbTituloEmp.addItem(res.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
+
     private void llenaTblEmpleados(String cad) {
         listaEmpGlobal = empDao.listaEmployees(cad);
         dtm.setRowCount(0);
@@ -55,22 +69,22 @@ public class frmEmployee extends javax.swing.JInternalFrame {
     }
 
     private void llenaComboJefes() {
-        listaJefesGlobal = empDao.listaCmbEmployee(); 
+        listaJefesGlobal = empDao.listaCmbEmployee();
         this.cmbEncargado.removeAllItems();
         this.cmbEncargado.addItem("Ninguno"); // Índice 0
         for (int i = 0; i < listaJefesGlobal.size(); i++) {
             this.cmbEncargado.addItem(listaJefesGlobal.get(i).getFirstName());
         }
     }
+
     private boolean valida() {
         // Valida campos de texto y combos esenciales
-        if (this.txtApellidos.getText().trim().isEmpty() || 
-            this.txtNombres.getText().trim().isEmpty() ||
-            this.cmbTituloEmp.getSelectedIndex() == 0 || // <-- VALIDA EL COMBO
-            this.txtDireccion.getText().trim().isEmpty() ||
-            this.txtCiudad.getText().trim().isEmpty() ||
-            this.txtPais.getText().trim().isEmpty()) {
-            
+        if (this.txtApellidos.getText().trim().isEmpty()
+                || this.txtNombres.getText().trim().isEmpty()
+                || this.txtDireccion.getText().trim().isEmpty()
+                || this.txtCiudad.getText().trim().isEmpty()
+                || this.txtPais.getText().trim().isEmpty()) {
+
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos de texto principales y seleccione un Título.");
             return false;
         }
@@ -109,15 +123,17 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         this.txtNotas.setText("");
         this.cmbEncargado.setSelectedIndex(0);
         this.txtRutaFoto.setText("");
-        
+
         this.fotoBinaria = null;
-        if (this.lblFoto != null) this.lblFoto.setIcon(null);
-        
+        if (this.lblFoto != null) {
+            this.lblFoto.setIcon(null);
+        }
+
         this.btnGrabar.setText("Grabar");
         this.btnEliminar.setEnabled(false);
         this.idEmp = 0;
     }
-    
+
     private void pintarImagenEnLabel(byte[] imgBytes) {
         if (imgBytes != null && imgBytes.length > 0) {
             try {
@@ -136,7 +152,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                     lblFoto.setIcon(new javax.swing.ImageIcon(imagenEscalada));
                 }
                 lblFoto.repaint(); // Fuerza al panel a redibujarse
-                
+
             } catch (Exception e) {
                 lblFoto.setIcon(null);
                 System.out.println("Error al renderizar foto: " + e.getMessage());
@@ -146,7 +162,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -531,10 +546,12 @@ public class frmEmployee extends javax.swing.JInternalFrame {
 
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
         int idx = this.tblEmpleados.getSelectedRow();
-        if (idx == -1) return;
-        
+        if (idx == -1) {
+            return;
+        }
+
         BEAN.Employee emp = listaEmpGlobal.get(idx);
-        
+
         idEmp = emp.getEmployeeID();
         this.txtEmpleadoId.setText(String.valueOf(idEmp));
         this.txtApellidos.setText(emp.getLastName());
@@ -548,7 +565,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         this.txtExtension.setText(emp.getExtension());
         this.txtNotas.setText(emp.getNotes());
         this.txtRutaFoto.setText(emp.getPhotoPath());
-
         // <-- LÓGICA PARA EL COMBO TÍTULO
         if (emp.getTitle() != null) {
             this.cmbTituloEmp.setSelectedItem(emp.getTitle());
@@ -589,26 +605,24 @@ public class frmEmployee extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        if (!valida()) return; // Si falta algo, detiene la grabación
+        if (!valida()) {
+            return; // Si falta algo, detiene la grabación
+        }
         
         Employee emp = new Employee();
         emp.setLastName(this.txtApellidos.getText().trim());
         emp.setFirstName(this.txtNombres.getText().trim());
         
-        if(this.cmbTituloEmp.getSelectedIndex() > 0){
-            emp.setTitle(this.cmbTituloEmp.getSelectedItem().toString());
-        } else {
-            emp.setTitle("");
-        }
-        
-        if(this.cmbCortesia.getSelectedItem() != null){
+        emp.setTitle(cmbTituloEmp.getEditor().getItem().toString());
+
+        if (this.cmbCortesia.getSelectedItem() != null) {
             emp.setTitleOfCourtesy(this.cmbCortesia.getSelectedItem().toString());
         }
 
         // Conversión de Fechas
         emp.setBirthDate(new java.sql.Date(this.jDateChooserNacimiento.getDate().getTime()));
         emp.setHireDate(new java.sql.Date(this.jDateChooserContratacion.getDate().getTime()));
-        
+
         emp.setAddress(this.txtDireccion.getText().trim());
         emp.setCity(this.txtCiudad.getText().trim());
         emp.setRegion(this.txtRegion.getText().trim());
@@ -618,7 +632,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         emp.setExtension(this.txtExtension.getText().trim());
         emp.setNotes(this.txtNotas.getText().trim());
         emp.setPhotoPath(this.txtRutaFoto.getText().trim());
-        
+
         emp.setPhoto(fotoBinaria); // Asignamos la memoria visual al BEAN
 
         // Lectura del Combo de Jefes
@@ -631,16 +645,16 @@ public class frmEmployee extends javax.swing.JInternalFrame {
 
         // Decisión de Inserción o Actualización
         if (this.btnGrabar.getText().equals("Grabar")) {
-                if (empDao.existeEmpleado(emp.getFirstName(), emp.getLastName())) {
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Acción denegada: Ya existe un empleado registrado con el nombre '" 
-                    + emp.getFirstName() + " " + emp.getLastName() + "'.", 
-                    "Registro Duplicado", 
-                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            if (empDao.existeEmpleado(emp.getFirstName(), emp.getLastName())) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Acción denegada: Ya existe un empleado registrado con el nombre '"
+                        + emp.getFirstName() + " " + emp.getLastName() + "'.",
+                        "Registro Duplicado",
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
                 return; // Interrumpe la ejecución completa del botón para que NO guarde
             }
             // ------------------------------
-            
+
             empDao.insertaEmployee(emp);
             javax.swing.JOptionPane.showMessageDialog(this, "Empleado registrado con éxito.");
         } else {
@@ -648,31 +662,44 @@ public class frmEmployee extends javax.swing.JInternalFrame {
             empDao.actualizaEmployee(emp);
             javax.swing.JOptionPane.showMessageDialog(this, "Empleado actualizado con éxito.");
         }
-        
+
+        System.out.println(emp.getTitle());
         limpia();
         llenaTblEmpleados("");
         llenaComboJefes(); // Actualiza por si el nuevo empleado ahora es jefe de alguien
     }//GEN-LAST:event_btnGrabarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(idEmp == 0) return;
+        if (idEmp == 0) {
+            return;
+        }
 
         int opcion = javax.swing.JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar a este empleado?", "Confirmar", javax.swing.JOptionPane.YES_NO_OPTION);
-        if(opcion == javax.swing.JOptionPane.YES_OPTION){
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             int resultado = empDao.eliminaEmployee(idEmp);
-            
-            switch(resultado) {
+
+            switch (resultado) {
                 case 0:
                     javax.swing.JOptionPane.showMessageDialog(this, "Empleado eliminado correctamente.");
                     limpia();
                     llenaTblEmpleados("");
                     llenaComboJefes();
                     break;
-                case 1: javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene cuenta activa (USERS)."); break;
-                case 2: javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene historial de ventas (ORDERS)."); break;
-                case 3: javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene territorios asignados."); break;
-                case 4: javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Es jefe de otros empleados."); break;
-                case -1: javax.swing.JOptionPane.showMessageDialog(this, "Error crítico de base de datos."); break;
+                case 1:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene cuenta activa (USERS).");
+                    break;
+                case 2:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene historial de ventas (ORDERS).");
+                    break;
+                case 3:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Tiene territorios asignados.");
+                    break;
+                case 4:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Denegado: Es jefe de otros empleados.");
+                    break;
+                case -1:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error crítico de base de datos.");
+                    break;
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -680,12 +707,12 @@ public class frmEmployee extends javax.swing.JInternalFrame {
     private void btnSubirFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirFotoActionPerformed
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         int seleccion = fileChooser.showOpenDialog(this);
-        
+
         if (seleccion == javax.swing.JFileChooser.APPROVE_OPTION) {
             java.io.File archivo = fileChooser.getSelectedFile();
             //Automatización de la ruta con la foto subida
             this.txtRutaFoto.setText(archivo.getAbsolutePath());
-            
+
             try {
                 java.io.FileInputStream fis = new java.io.FileInputStream(archivo);
                 java.io.ByteArrayOutputStream bos = new java.io.ByteArrayOutputStream();
@@ -693,10 +720,10 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                 for (int readNum; (readNum = fis.read(buf)) != -1;) {
                     bos.write(buf, 0, readNum);
                 }
-                
+
                 fotoBinaria = bos.toByteArray();
                 pintarImagenEnLabel(fotoBinaria);
-                
+
             } catch (Exception e) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Error al procesar la imagen.");
             }
