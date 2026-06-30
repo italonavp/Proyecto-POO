@@ -26,12 +26,12 @@ public class CustomerDAO {
                 c.setContactTitle(res.getString(4));
                 c.setAddress(res.getString(5));
                 c.setCity(res.getString(6));
-                c.setRegion(res.getString(7));
+                c.setRegion(res.getString(7) == null ? "" : res.getString(7));
                 c.setPostalCode(res.getString(8));
                 c.setCountry(res.getString(9));
                 c.setPhone(res.getString(10));
-                c.setFax(res.getString(11));
-                c.setEmail(res.getString(12));
+                c.setFax(res.getString(11) == null ? "" : res.getString(11));
+                c.setEmail(res.getString(12) == null ? "" : res.getString(12));
 
                 vecCustomers.add(c);
             }
