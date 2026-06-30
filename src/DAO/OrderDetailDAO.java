@@ -20,7 +20,6 @@ public class OrderDetailDAO {
         if(!cad.isEmpty()){
             sql += " WHERE od.OrderID LIKE '" + cad + "%' or od.ProductID LIKE '"+cad+"%'";
         }
-        System.out.println(sql);
         
         try{
             ResultSet resultDetail = con.execSQL(sql);
@@ -54,7 +53,6 @@ public class OrderDetailDAO {
         if(proc.equals("insert")){
             sql = "INSERT INTO [Order Details] (OrderID, ProductID, UnitPrice, Quantity, Discount) VALUES (";
             sql += det.getOrderID() + "," + det.getProductID() + "," + det.getUnitPrice() + "," + det.getQuantity() + "," + det.getDiscount() + ")";
-            System.out.println(sql);
         }
         
         if(proc.equals("update")){

@@ -49,7 +49,6 @@ public class FrmMarkov extends JInternalFrame {
             List<String> productos = dao.obtenerProductos();
             for (String p : productos) {
                 cmbProductos.addItem(p);
-                System.out.println(p);
             }
             lblProducts.setText("Modelo cargado con " + productos.size() + " productos");
         } catch (Exception e) {

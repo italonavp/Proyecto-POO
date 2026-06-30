@@ -137,12 +137,13 @@ public class CustomerDAO {
         String id = "";
 
         String[] txt = compName.split(" ");
+
         for (int i = 0; i < txt.length; i++) {
             String c = txt[i];
             id += c.substring(0, i + 2);
         }
 
-        return id.substring(0, 5);
+        return id.toUpperCase().substring(0, 5);
     }
 
 }

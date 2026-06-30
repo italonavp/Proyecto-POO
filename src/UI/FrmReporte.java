@@ -6,7 +6,10 @@
 package UI;
 
 import BEAN.Customer;
+import BEAN.Employee;
+import BEAN.Users;
 import DAO.CustomerDAO;
+import DAO.UsersDAO;
 import UTIL.MailUtil;
 import UTIL.dbBean;
 import java.sql.SQLException;
@@ -24,7 +27,9 @@ import net.sf.jasperreports.engine.JRException;
 public class FrmReporte extends JInternalFrame {
 
     private CustomerDAO custDAO = new CustomerDAO();
+    private UsersDAO userDAO = new UsersDAO();
     private DefaultTableModel dft;
+    private DefaultTableModel dft2;
     private String tipoRep;
     private HashMap parametros;
     private String tipo;
@@ -34,7 +39,9 @@ public class FrmReporte extends JInternalFrame {
     public FrmReporte(int w, int h, String tipoRep, String tipo) {
         initComponents();
         dft = (DefaultTableModel) tblCustomers.getModel();
-        fillTable("");
+        dft2 = (DefaultTableModel) tblEmployees.getModel();
+        fillCustomersTable("");
+        fillEmployeesTable("");
         this.tipoRep = tipoRep;
         this.tipo = tipo;
         lblTitle.setText("Reporte de " + this.tipoRep);
@@ -54,7 +61,8 @@ public class FrmReporte extends JInternalFrame {
         initComponents();
 
         dft = (DefaultTableModel) tblCustomers.getModel();
-        fillTable("");
+        dft2 = (DefaultTableModel) tblEmployees.getModel();
+        fillCustomersTable("");
 
         this.tipoRep = tipoRep;
         this.parametros = parametros;
@@ -73,7 +81,7 @@ public class FrmReporte extends JInternalFrame {
         }
     }
 
-    private void fillTable(String filtro) {
+    private void fillCustomersTable(String filtro) {
         Vector<Customer> vecCust = custDAO.listaCustomers(filtro);
         for (Customer c : vecCust) {
             Vector vec = new Vector();
@@ -82,6 +90,17 @@ public class FrmReporte extends JInternalFrame {
             vec.add(c.getContactName());
             vec.add(c.getEmail());
             dft.addRow(vec);
+        }
+    }
+
+    private void fillEmployeesTable(String filtro) {
+        Vector<Users> vecEmploy = userDAO.listaUsers(filtro);
+        for (Users u : vecEmploy) {
+            Vector vec = new Vector();
+            vec.add(u.getUserID());
+            vec.add(u.getUserIdentification());
+            vec.add(u.getEmail());
+            dft2.addRow(vec);
         }
     }
 
@@ -99,6 +118,8 @@ public class FrmReporte extends JInternalFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCustomers = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -168,6 +189,23 @@ public class FrmReporte extends JInternalFrame {
         jScrollPane1.setViewportView(tblCustomers);
 
         jTabbedPane1.addTab("Clientes", jScrollPane1);
+
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Usuario", "Username", "Email"
+            }
+        ));
+        tblEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmployeesMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblEmployees);
+
+        jTabbedPane1.addTab("Empleados", jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,16 +294,24 @@ public class FrmReporte extends JInternalFrame {
         cliente = dft.getValueAt(id, 1).toString();
     }//GEN-LAST:event_tblCustomersMouseClicked
 
+    private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked
+        int id = tblEmployees.getSelectedRow();
+
+        txtCorreo.setText(dft2.getValueAt(id, 2).toString());
+        cliente = dft2.getValueAt(id, 1).toString();
+    }//GEN-LAST:event_tblEmployeesMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblCustomers;
+    private javax.swing.JTable tblEmployees;
     private javax.swing.JButton txtAbrir;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables

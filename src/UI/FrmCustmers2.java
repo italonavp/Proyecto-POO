@@ -46,7 +46,6 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
         for (Customer c : vecCustomers) {
             Vector<String> vec = new Vector<String>();
-            System.out.println(c.getCompanyName());
             vec.add(c.getCustomerID());
             vec.add(c.getCompanyName());
             vec.add(c.getContactName());
@@ -512,7 +511,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
         txtPhone.setText(tblCustomers.getValueAt(fila, 9).toString());
         txtFax.setText(tblCustomers.getValueAt(fila, 10).toString());
         txtEmail.setText(tblCustomers.getValueAt(fila, 11).toString());
-        
+
         jTabbedPane1.setSelectedIndex(0);
         btnGrabar.setText("Actualizar");
     }//GEN-LAST:event_tblCustomersMouseClicked

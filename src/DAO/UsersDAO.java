@@ -49,6 +49,7 @@ public class UsersDAO {
                 user.setUserIdentification(rs.getString("userIdentification"));
                 user.setPassword(rs.getString("password"));
                 user.setStatus(rs.getInt("status"));
+                user.setEmail(rs.getString("Email"));
                 listUsers.add(user);
             }
         } catch (java.sql.SQLException e) {

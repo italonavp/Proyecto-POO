@@ -7,6 +7,7 @@ public class Users {
     private String userIdentification;
     private String password;
     private int status;
+    private String email;
 
     public Users() {
     }
@@ -49,6 +50,14 @@ public class Users {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     
