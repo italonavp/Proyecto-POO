@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="submenuCustomer">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Customer"/>
+                <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submenuCustomerActionPerformed"/>
@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSuppliers">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Suppliers"/>
+                <Property name="text" type="java.lang.String" value="Proveedor"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuSuppliersActionPerformed"/>
@@ -35,7 +35,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuUsers">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Users"/>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuUsersActionPerformed"/>
@@ -205,7 +205,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="jMenu6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Users"/>
+                <Property name="text" type="java.lang.String" value="Usuario"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="repUsersSimp">

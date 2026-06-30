@@ -131,7 +131,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         menuMant.add(submenuProducts);
 
-        submenuCustomer.setText("Customer");
+        submenuCustomer.setText("Cliente");
         submenuCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submenuCustomerActionPerformed(evt);
@@ -139,7 +139,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         menuMant.add(submenuCustomer);
 
-        menuSuppliers.setText("Suppliers");
+        menuSuppliers.setText("Proveedor");
         menuSuppliers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuSuppliersActionPerformed(evt);
@@ -147,7 +147,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         menuMant.add(menuSuppliers);
 
-        menuUsers.setText("Users");
+        menuUsers.setText("Usuario");
         menuUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuUsersActionPerformed(evt);
@@ -299,7 +299,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         jMenu1.add(jMenu5);
 
-        jMenu6.setText("Users");
+        jMenu6.setText("Usuario");
 
         repUsersSimp.setText("Usuarios Simple");
         repUsersSimp.addActionListener(new java.awt.event.ActionListener() {
