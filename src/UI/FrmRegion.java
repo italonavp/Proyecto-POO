@@ -54,7 +54,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Region Mantenimiento");
+        jLabel1.setText("Mantenimiento Región");
 
         jLabel2.setText("ID Region");
 
@@ -65,7 +65,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Descripción"
+                "ID Región", "Descripción"
             }
         ));
         tblRegion.addMouseListener(new java.awt.event.MouseAdapter() {

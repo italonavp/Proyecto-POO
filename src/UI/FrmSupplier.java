@@ -137,13 +137,13 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel14.setText("SupplierID:");
+        jLabel14.setText("ID Proveedor");
 
-        jLabel15.setText("Compañia:");
+        jLabel15.setText("Compañia");
 
-        jLabel16.setText("Nombre de Contacto;");
+        jLabel16.setText("Nombre de Contacto");
 
-        jLabel17.setText("Telefono:");
+        jLabel17.setText("Telefono");
 
         txtSupplierID.setEditable(false);
         txtSupplierID.addActionListener(new java.awt.event.ActionListener() {
@@ -152,21 +152,21 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel18.setText("Cargo:");
+        jLabel18.setText("Cargo");
 
-        jLabel19.setText("Direccion:");
+        jLabel19.setText("Direccion");
 
-        jLabel20.setText("Ciudad:");
+        jLabel20.setText("Ciudad");
 
-        jLabel2.setText("Region:");
+        jLabel2.setText("Region");
 
-        jLabel21.setText("Pais:");
+        jLabel21.setText("Pais");
 
-        jLabel22.setText("Codigo Postal:");
+        jLabel22.setText("Codigo Postal");
 
-        jLabel23.setText("Fax:");
+        jLabel23.setText("Fax");
 
-        jLabel24.setText("Pagina de inicio:");
+        jLabel24.setText("Pagina de inicio");
 
         txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +248,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
                                     .addComponent(txtRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtFax, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
+                        .addGap(228, 228, 228)
                         .addComponent(btnInsertar)
                         .addGap(60, 60, 60)
                         .addComponent(btnActualizar)
@@ -256,7 +256,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
                         .addComponent(btnEliminar)
                         .addGap(65, 65, 65)
                         .addComponent(btnLimpiar)))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +311,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel21)
                                 .addComponent(txtCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtHomePage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -323,7 +323,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
                     .addComponent(btnActualizar)
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar))
-                .addGap(277, 277, 277))
+                .addGap(465, 465, 465))
         );
 
         jTabbedPane1.addTab("Mantenimiento", jPanel1);
@@ -391,10 +391,10 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrSuppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(394, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Busqueda y Lista", jPanel2);
+        jTabbedPane1.addTab("Reporte", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

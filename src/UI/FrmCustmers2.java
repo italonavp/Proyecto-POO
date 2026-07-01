@@ -31,7 +31,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
         slx = (mdiW / 2) - (this.getWidth() / 2);
         sly = (mdiH / 2) - (this.getHeight() / 2);
-        this.setLocation(slx, sly);
+        //this.setLocation(slx, sly);
         this.setResizable(false);
         dft = (DefaultTableModel) tblCustomers.getModel();
         fillTableCustomers("");
@@ -143,7 +143,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Id");
+        jLabel2.setText("ID Cliente");
 
         jLabel3.setText("Compañía");
 
@@ -211,8 +211,8 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -353,11 +353,11 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Company Name", "Contact Name", "Contact Title", "Address", "City", "Region", "Postal Code", "Country", "Phone", "Fax", "Email"
+                "ID Cliente", "Compañía", "Nombre Contacto", "Titulo Contacto", "Dirección", "Ciudad", "Región", "Cód. Postal", "País", "Celular", "Fax", "Email"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -399,7 +399,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Reporte", jPanel1);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Mantenimiento Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -423,7 +423,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(12, 12, 12)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
