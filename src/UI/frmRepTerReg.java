@@ -10,6 +10,7 @@ import UTIL.dbBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 
@@ -19,32 +20,35 @@ import net.sf.jasperreports.engine.JRException;
  */
 public class frmRepTerReg extends javax.swing.JInternalFrame {
 
+    private JDesktopPane desktop;
     
-    public frmRepTerReg() {
+    public frmRepTerReg(JDesktopPane desktop) {
         initComponents();
         llenaCmb();
+        this.desktop = desktop;
     }
-    private void llenaCmb(){
+
+    private void llenaCmb() {
         dbBean con = new dbBean();
         String sql = "select RegionDescription from Region order by RegionDescription";
-        try{
+        try {
             ResultSet result = con.execSQL(sql);
             this.cmbReg.removeAllItems();
             this.cmbReg.addItem("");
-            while(result.next()){
+            while (result.next()) {
                 this.cmbReg.addItem(result.getString(1).trim());
             }
             result.close();
-        }catch(java.sql.SQLException e){
+        } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
-        try{
+        try {
             con.close();
-        }catch(java.sql.SQLException e){
+        } catch (java.sql.SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,7 +115,7 @@ public class frmRepTerReg extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
-        if(this.cmbReg.getSelectedItem() == null || this.cmbReg.getSelectedItem().toString().isEmpty()){
+        if (this.cmbReg.getSelectedItem() == null || this.cmbReg.getSelectedItem().toString().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Seleccione una region");
             return;
         }
@@ -121,15 +125,14 @@ public class frmRepTerReg extends javax.swing.JInternalFrame {
         int a = u.idExp("Region", "RegionID", "RegionDescription", region);
         HashMap h = new HashMap();
         h.put("paraRegID", a);
-        try{
-           String r = "src/REPORTS/repTerritoriesParam.jasper";
-           dbBean db = new dbBean();
-           db.connectRep(r, h, true);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }catch(JRException e){
-            e.printStackTrace();
-        }
+        String tipoRep = "Territories";
+        String tipo = "Param";
+
+        FrmReporte frmReporte = new FrmReporte(tipoRep, h, tipo);
+        desktop.add(frmReporte);
+        frmReporte.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnReportarActionPerformed
 
 

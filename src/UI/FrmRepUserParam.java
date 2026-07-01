@@ -1,37 +1,38 @@
-
 package UI;
+
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import UTIL.dbBean;
-
+import javax.swing.JDesktopPane;
 
 public class FrmRepUserParam extends javax.swing.JInternalFrame {
 
-    
-    public FrmRepUserParam(int mdiH, int mdiW) {
+    private JDesktopPane desktop;
+
+    public FrmRepUserParam(int mdiH, int mdiW, JDesktopPane desktop) {
         initComponents();
         int slx, sly;
-        
+
+        this.desktop = desktop;
+
         this.setSize(650, 250);
-        slx = (mdiW/2) - (650/2); 
-        sly = (mdiH/2) - (250/2); 
+        slx = (mdiW / 2) - (650 / 2);
+        sly = (mdiH / 2) - (250 / 2);
         this.setLocation(slx, sly);
-        
-        
+
         CmbEstado.removeAllItems();
-        CmbEstado.addItem("Activo");   
+        CmbEstado.addItem("Activo");
         CmbEstado.addItem("Inactivo");
-        
-        
-        this.setClosable(true); 
+
+        this.setClosable(true);
         this.setTitle("Parámetros del Reporte");
 
     }
 
     @SuppressWarnings("unchecked")
-    
-    
+
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -95,23 +96,21 @@ public class FrmRepUserParam extends javax.swing.JInternalFrame {
 
     private void btnReportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportarActionPerformed
         try {
-            
+
             String estadoSeleccionado = CmbEstado.getSelectedItem().toString();
-            
-           
-            Map<String, Object> parametros = new HashMap<>();
-            
-            
-            parametros.put("STATUS", estadoSeleccionado); 
-            
-            
-            String ruta = "src/REPORTS/repUsersParam.jasper"; 
-            
-            
-            dbBean db = new dbBean();
-            db.connectRep(ruta, (HashMap) parametros, true);
+
+            HashMap<String, Object> parametros = new HashMap<>();
+
+            parametros.put("STATUS", estadoSeleccionado);
+
+            String tipoRep = "Users";
+            String tipo = "Param";
+
+            FrmReporte frmReporte = new FrmReporte(tipoRep, parametros, tipo);
+            desktop.add(frmReporte);
+            frmReporte.setVisible(true);
             this.dispose();
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error al cargar el reporte:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

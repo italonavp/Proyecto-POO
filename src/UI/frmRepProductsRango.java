@@ -1,20 +1,25 @@
 package UI;
+
 import UTIL.dbBean;
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 import net.sf.jasperreports.engine.JRException;
 
 public class frmRepProductsRango extends javax.swing.JInternalFrame {
 
+    private JDesktopPane desktop;
+    
     /**
      * Creates new form frmRepProductsRango
      */
-    public frmRepProductsRango(int mdiH, int mdiW) {
+    public frmRepProductsRango(int mdiH, int mdiW, JDesktopPane desktop) {
         int slx, sly;
         initComponents();
-        slx = (mdiH/2)-(384/2);
-        sly = (mdiW/2)-(717/2);
-        this.setLocation(20,20);
-        
+        slx = (mdiH / 2) - (384 / 2);
+        sly = (mdiW / 2) - (717 / 2);
+        this.setLocation(20, 20);
+        this.desktop = desktop;
+
     }
 
     /**
@@ -92,19 +97,18 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
         double d = Double.parseDouble(this.txtdesde.getText());
         double a = Double.parseDouble(this.txtHasta.getText());
         HashMap map = new HashMap();
-        map.put("parPrecMin",d);
-        map.put("parPrecMax",a);
-        try{
-            String r = "src/REPORTS/repProductsParam.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, map, true);
-            this.dispose();
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
-            ex.printStackTrace();
-        }
+        map.put("parPrecMin", d);
+        map.put("parPrecMax", a);
         
+        String tipoRep = "Products";
+        String tipo = "Param";
+
+        FrmReporte frmReporte = new FrmReporte(tipoRep, map, tipo);
+        desktop.add(frmReporte);
+        frmReporte.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_btnReportarActionPerformed
 
 

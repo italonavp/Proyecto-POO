@@ -1,18 +1,26 @@
 package UI;
+
+import javax.swing.JDesktopPane;
+
 public class frmRepEmpParam extends javax.swing.JInternalFrame {
-    public frmRepEmpParam() {
+
+    private JDesktopPane desktop;
+    
+    public frmRepEmpParam(JDesktopPane desktop) {
         initComponents();
         cargarEmpleados();
-        
+        this.desktop = desktop;
+
     }
+
     private void cargarEmpleados() {
         try {
             DAO.EmployeeDAO dao = new DAO.EmployeeDAO();
             // Traemos la lista completa de tu base de datos
-            java.util.Vector<BEAN.Employee> lista = dao.listaEmployees(""); 
-            
+            java.util.Vector<BEAN.Employee> lista = dao.listaEmployees("");
+
             cboEmpleados.removeAllItems(); // Limpiamos por si acaso
-            
+
             for (BEAN.Employee emp : lista) {
                 // Metemos el ID, un guion y el nombre completo al combo
                 cboEmpleados.addItem(emp.getEmployeeID() + " - " + emp.getFirstName() + " " + emp.getLastName());
@@ -21,6 +29,7 @@ public class frmRepEmpParam extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,12 +91,12 @@ public class frmRepEmpParam extends javax.swing.JInternalFrame {
             // 2. Extraemos el texto (Ej: "1 - Nancy Davolio") y lo cortamos para sacar solo el "1"
             String seleccionado = cboEmpleados.getSelectedItem().toString();
             int idBusqueda = Integer.parseInt(seleccionado.split(" - ")[0].trim());
-            
+
             // 3. Usamos tu DAO para sacar la foto limpia de ese empleado específico
             DAO.EmployeeDAO dao = new DAO.EmployeeDAO();
-            java.util.Vector<BEAN.Employee> lista = dao.listaEmployees(""); 
+            java.util.Vector<BEAN.Employee> lista = dao.listaEmployees("");
             byte[] fotoLimpia = null;
-            
+
             for (BEAN.Employee emp : lista) {
                 if (emp.getEmployeeID() == idBusqueda) {
                     fotoLimpia = emp.getPhoto();
@@ -100,18 +109,21 @@ public class frmRepEmpParam extends javax.swing.JInternalFrame {
             if (fotoLimpia != null && fotoLimpia.length > 0) {
                 isImagen = new java.io.ByteArrayInputStream(fotoLimpia);
             }
-            
+
             // 5. Llenamos los parámetros exactos (¡Los nombres deben ser idénticos a tu iReport!)
             java.util.HashMap parametros = new java.util.HashMap();
             parametros.put("param_id_empleado", idBusqueda);
             parametros.put("IMAGEN", isImagen);
-            
+
             // 6. ¡Lanzamos el reporte! (Asegúrate de poner el nombre exacto de tu archivo .jasper)
-            String ruta = "src/REPORTS/repEmployeesParam.jasper"; 
-            UTIL.dbBean db = new UTIL.dbBean();
-            db.connectRep(ruta, parametros, true);
+            String tipoRep = "Employees";
+            String tipo = "Param";
+
+            FrmReporte frmReporte = new FrmReporte(tipoRep, parametros, tipo);
+            desktop.add(frmReporte);
+            frmReporte.setVisible(true);
             this.dispose();
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Error al generar la ficha: " + ex.getMessage());

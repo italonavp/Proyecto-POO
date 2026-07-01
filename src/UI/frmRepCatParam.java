@@ -1,10 +1,15 @@
 package UI;
 
+import javax.swing.JDesktopPane;
+
 public class frmRepCatParam extends javax.swing.JInternalFrame {
 
-    public frmRepCatParam() {
+    private JDesktopPane desktop;
+
+    public frmRepCatParam(JDesktopPane desktop) {
         initComponents();
         cargarCategorias();
+        this.desktop = desktop;
     }
 
     private void cargarCategorias() {
@@ -103,10 +108,14 @@ public class frmRepCatParam extends javax.swing.JInternalFrame {
             parametros.put("param_id_categoria", idBusqueda);
             parametros.put("IMAGEN", isImagen);
             // 5. Lanzamos el reporte
-            String ruta = "src/REPORTS/repCategoriesParam.jasper";
-            UTIL.dbBean db = new UTIL.dbBean();
-            db.connectRep(ruta, parametros, true); // TRUE para que acepte los parámetros
+            String tipoRep = "Category";
+            String tipo = "Param";
+
+            FrmReporte frmReporte = new FrmReporte(tipoRep, parametros, tipo);
+            desktop.add(frmReporte);
+            frmReporte.setVisible(true);
             this.dispose();
+
         } catch (Exception ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + ex.getMessage());

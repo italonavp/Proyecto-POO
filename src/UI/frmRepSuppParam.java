@@ -6,6 +6,7 @@
 package UI;
 
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -13,15 +14,19 @@ import java.util.HashMap;
  */
 public class frmRepSuppParam extends javax.swing.JInternalFrame {
 
+    private JDesktopPane desktop;
+
     /**
      * Creates new form frmRepSuppParam
      */
-    public frmRepSuppParam() {
+    public frmRepSuppParam(JDesktopPane desktop) {
         initComponents();
         cargarPaises();
+        this.desktop = desktop;
     }
-    private void cargarPaises(){
-        try{
+
+    private void cargarPaises() {
+        try {
             DAO.SupplierDAO dao = new DAO.SupplierDAO();
             java.util.Vector<BEAN.Supplier> lista = dao.listaSuppliers("");
             cmbPaises.removeAllItems();
@@ -34,11 +39,11 @@ public class frmRepSuppParam extends javax.swing.JInternalFrame {
             }
             java.util.List<String> listaOrdenada = new java.util.ArrayList<>(pUnicos);
             java.util.Collections.sort(listaOrdenada);
-            
+
             for (String p : listaOrdenada) {
                 cmbPaises.addItem(p);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -107,11 +112,14 @@ public class frmRepSuppParam extends javax.swing.JInternalFrame {
             String paisSeleccionado = cmbPaises.getSelectedItem().toString();
             HashMap parametros = new HashMap();
             parametros.put("PaisParam", paisSeleccionado);
-            String ruta = "src/REPORTS/repSuppliersParam.jasper"; 
-            UTIL.dbBean db = new UTIL.dbBean();
-            db.connectRep(ruta, parametros, true);
+            String tipoRep = "Suppliers";
+            String tipo = "Param";
+
+            FrmReporte frmReporte = new FrmReporte(tipoRep, parametros, tipo);
+            desktop.add(frmReporte);
+            frmReporte.setVisible(true);
             this.dispose();
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
             javax.swing.JOptionPane.showMessageDialog(this, "Error al generar el reporte: " + ex.getMessage());

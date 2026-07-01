@@ -5,14 +5,18 @@ import UTIL.dbBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 
 public class frmRepOrdersShipper extends javax.swing.JInternalFrame {
 
-    public frmRepOrdersShipper() {
+    private JDesktopPane desktop;
+
+    public frmRepOrdersShipper(JDesktopPane desktop) {
         initComponents();
         llenaCmb();
+        this.desktop = desktop;
     }
 
     private void llenaCmb() {
@@ -108,15 +112,16 @@ public class frmRepOrdersShipper extends javax.swing.JInternalFrame {
 
         HashMap h = new HashMap();
         h.put("paraShipID", a);
-        try {
-            String r = "src/REPORTS/repOrdersShipperParam.jasper";
-            dbBean db = new dbBean();
-            db.connectRep(r, h, true);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (JRException e) {
-            e.printStackTrace();
-        }
+
+        String tipoRep = "Shippers";
+        String tipo = "Param";
+
+        FrmReporte frmReporte = new FrmReporte(tipoRep, h, tipo);
+        desktop.add(frmReporte);
+        frmReporte.setVisible(true);
+        this.dispose();
+
+
     }//GEN-LAST:event_btnReportarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

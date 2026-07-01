@@ -7,6 +7,7 @@ package UI;
 
 import UTIL.dbBean;
 import java.util.HashMap;
+import javax.swing.JDesktopPane;
 import net.sf.jasperreports.engine.JRException;
 
 /**
@@ -15,16 +16,20 @@ import net.sf.jasperreports.engine.JRException;
  */
 public class frmRepCustomersRegion extends javax.swing.JInternalFrame {
 
+    private JDesktopPane desktop;
+    
     /**
      * Creates new form frmRepCustomersRegion
      */
-    public frmRepCustomersRegion(int mdiH, int mdiW) {
+    public frmRepCustomersRegion(int mdiH, int mdiW, JDesktopPane desktop) {
         initComponents();
         int slx, sly;
+        this.desktop = desktop;
+        
         initComponents();
-        slx = (mdiH/2)-(204/2);
-        sly = (mdiW/2)-(575/2);
-        this.setLocation(20,20);
+        slx = (mdiH / 2) - (204 / 2);
+        sly = (mdiW / 2) - (575 / 2);
+        this.setLocation(20, 20);
     }
 
     /**
@@ -105,18 +110,17 @@ public class frmRepCustomersRegion extends javax.swing.JInternalFrame {
         String reg = this.txtRegion.getText();
         String ciudad = this.txtCiudad.getText();
         HashMap map = new HashMap();
-        map.put("parRegion",reg);
-        map.put("parCity",ciudad);
-        try{
-            String r = "src/REPORTS/repCustomersParam.jasper";
-            dbBean con = new dbBean();
-            con.connectRep(r, map, true);
-            this.dispose();
-        }catch(java.sql.SQLException e){
-        e.printStackTrace();
-         }catch(JRException ex){
-            ex.printStackTrace();
-        }
+        map.put("parRegion", reg);
+        map.put("parCity", ciudad);
+        
+        String tipoRep = "Customers";
+        String tipo = "Param";
+
+        FrmReporte frmReporte = new FrmReporte(tipoRep, map, tipo);
+        desktop.add(frmReporte);
+        frmReporte.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnReportarActionPerformed
 
 
