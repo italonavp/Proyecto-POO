@@ -121,7 +121,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Mantenimiento Categoria");
+        jLabel1.setText("Mantenimiento Categoría");
 
         jLabel2.setText("ID Categoría");
 
