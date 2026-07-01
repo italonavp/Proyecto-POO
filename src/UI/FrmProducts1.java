@@ -322,7 +322,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(50, 10, 680, 20);
+        txtBuscar.setBounds(50, 10, 930, 20);
 
         tblProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -61,9 +61,24 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         dtm.setRowCount(0);
         for (int i = 0; i < listaEmpGlobal.size(); i++) {
             java.util.Vector vec = new java.util.Vector();
-            vec.addElement(listaEmpGlobal.get(i).getEmployeeID());
-            vec.addElement(listaEmpGlobal.get(i).getLastName());
-            vec.addElement(listaEmpGlobal.get(i).getFirstName());
+            BEAN.Employee emp = listaEmpGlobal.get(i);
+            vec.addElement(emp.getEmployeeID());
+            vec.addElement(emp.getLastName());
+            vec.addElement(emp.getFirstName());
+            vec.addElement(emp.getTitle());
+            vec.addElement(emp.getTitleOfCourtesy());
+            vec.addElement(emp.getBirthDate());
+            vec.addElement(emp.getHireDate());
+            vec.addElement(emp.getAddress());
+            vec.addElement(emp.getCity());
+            vec.addElement(emp.getRegion());
+            vec.addElement(emp.getPostalCode());
+            vec.addElement(emp.getCountry());
+            vec.addElement(emp.getHomePhone());
+            vec.addElement(emp.getExtension());
+            vec.addElement(emp.getNotes());
+            vec.addElement(emp.getReportsTo());
+            vec.addElement(emp.getPhotoPath());
             dtm.addRow(vec);
         }
     }
@@ -364,7 +379,6 @@ public class frmEmployee extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Mantenimiento", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(null);
 
@@ -373,7 +387,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Empleado Id", "Apellidos", "Nombres"
+                "Empleado Id", "Apellidos", "Nombres", "Título", "Título de Cortesía", "F. de Cumpleaños", "F. de Contrato", "Dirección", "Ciudad", "Región", "Código Postal", "País", "Teléfono", "Extensión", "Notas", "E. a Cargo", "Url Foto"
             }
         ));
         tblEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -384,7 +398,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblEmpleados);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 40, 340, 190);
+        jScrollPane1.setBounds(30, 40, 1050, 420);
 
         jLabel18.setText("Buscar");
         jPanel1.add(jLabel18);
@@ -396,7 +410,7 @@ public class frmEmployee extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(90, 10, 260, 20);
+        txtBuscar.setBounds(90, 10, 980, 20);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -406,8 +420,8 @@ public class frmEmployee extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1099, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(30, Short.MAX_VALUE)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,13 +429,14 @@ public class frmEmployee extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel4Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(40, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Reporte", jPanel4);
 
-        jLabel1.setText("MANTENIMIENTO EMPLEADO");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Mantenimiento Empleado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,15 +446,16 @@ public class frmEmployee extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(510, 510, 510))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(459, 459, 459))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

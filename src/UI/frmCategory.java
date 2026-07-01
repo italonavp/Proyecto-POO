@@ -116,14 +116,14 @@ public class frmCategory extends javax.swing.JInternalFrame {
         btnGrabar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconifiable(true);
 
-        jLabel1.setText("MANTENIMIENTO CATEGORÍA");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Mantenimiento Categoria");
 
-        jLabel2.setText("Id Categoría");
+        jLabel2.setText("ID Categoría");
 
         jLabel3.setText("Nombre");
 
@@ -147,7 +147,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Buscar");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 20, 38, 16);
+        jLabel7.setBounds(30, 20, 32, 14);
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -155,14 +155,14 @@ public class frmCategory extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(txtBuscar);
-        txtBuscar.setBounds(80, 20, 330, 22);
+        txtBuscar.setBounds(80, 20, 330, 20);
 
         tblCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Categoría Id", "Nombre", "Descripción"
+                "ID Categoría", "Nombre", "Descripción"
             }
         ));
         tblCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,20 +215,17 @@ public class frmCategory extends javax.swing.JInternalFrame {
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCategoriaId, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(403, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGrabar)
-                        .addGap(95, 95, 95)
-                        .addComponent(btnLimpiar)
-                        .addGap(136, 136, 136))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEliminar)
-                        .addGap(23, 23, 23))))
+                .addContainerGap(364, Short.MAX_VALUE)
+                .addComponent(btnGrabar)
+                .addGap(89, 89, 89)
+                .addComponent(btnLimpiar)
+                .addGap(63, 63, 63)
+                .addComponent(btnEliminar)
+                .addGap(53, 53, 53))
             .addGroup(layout.createSequentialGroup()
                 .addGap(297, 297, 297)
                 .addComponent(jLabel1)
@@ -263,10 +260,9 @@ public class frmCategory extends javax.swing.JInternalFrame {
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpiar)
-                    .addComponent(btnGrabar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(btnGrabar)
+                    .addComponent(btnEliminar))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
