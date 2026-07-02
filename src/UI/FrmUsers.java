@@ -466,6 +466,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         this.cmbStatus.setSelectedIndex(0);
         this.btnGrabar.setText("Grabar");
         this.btnEliminar.setEnabled(false);
+        this.txtEmail.setText("");
         this.userId = 0;
     }
 
