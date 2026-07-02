@@ -37,8 +37,9 @@ public class FrmReporte extends JInternalFrame {
     private String tipo;
 
     private String cliente;
+    private String empleado;
 
-    public FrmReporte(int mdiW, int mdiH, String tipoRep, String tipo) {
+    public FrmReporte(int mdiW, int mdiH, String tipoRep, String tipo, String empleado) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
         slx = (mdiW / 2) - (this.getWidth() / 2);
@@ -52,6 +53,8 @@ public class FrmReporte extends JInternalFrame {
         this.tipo = tipo;
         txtSelected.setEnabled(false);
         lblTitle.setText("Reporte de " + this.tipoRep);
+        
+        this.empleado = empleado;
 
         try {
             String r = "src/REPORTS/rep" + this.tipoRep + "Simp.jasper";
@@ -295,7 +298,8 @@ public class FrmReporte extends JInternalFrame {
                 + "En atención a su solicitud, se adjunta el reporte \"%s\".%n%n"
                 + "El documento contiene la información correspondiente al reporte solicitado y se encuentra disponible para su revisión.%n%n"
                 + "Agradecemos su preferencia y esperamos que la información proporcionada sea de utilidad.%n%n"
-                + "Saludos cordiales.",
+                + "Saludos cordiales."
+                + this.empleado,
                 this.tipoRep
         );
 

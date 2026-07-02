@@ -480,7 +480,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipReport, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipReport, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
 
@@ -517,7 +517,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repCustomersSimpActionPerformed
@@ -546,7 +546,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repEmployeesSimpActionPerformed
@@ -559,7 +559,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repCategoriesSimpActionPerformed
@@ -636,7 +636,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repUsersSimpActionPerformed
@@ -649,7 +649,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         h = dimH();
         String tipo = "Simp";
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repSuppliersSimpActionPerformed
@@ -685,7 +685,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_tablacruzadaActionPerformed
@@ -740,7 +740,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repRegionSimpActionPerformed
@@ -753,7 +753,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repTerritoriesSimpActionPerformed
@@ -780,7 +780,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo);
+        FrmReporte frmReporte = new FrmReporte(w, h, tipoRep, tipo, usuario);
         escritorio.add(frmReporte);
         frmReporte.setVisible(true);
     }//GEN-LAST:event_repShippersSimpActionPerformed
