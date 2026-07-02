@@ -84,7 +84,7 @@ public class UsersDAO {
                 user.setUserIdentification(rs.getString("userIdentification"));
                 user.setPassword(rs.getString("password"));
                 user.setStatus(rs.getInt("status"));
-                user.setEmail(rs.getString("Email"));
+                user.setEmail(rs.getString("Email") == null ? "" : rs.getString("Email"));
                 listUsers.add(user);
             }
         } catch (java.sql.SQLException e) {
@@ -103,12 +103,13 @@ public class UsersDAO {
         dbBean con = new dbBean();
         boolean exito = false;
         try {
-            String sql = "INSERT INTO Users (UserId, EmployeeID, userIdentification, password, status) VALUES ("
+            String sql = "INSERT INTO Users (UserId, EmployeeID, userIdentification, password, status, Email) VALUES ("
                     + user.getUserID() + ", "
                     + user.getEmployeeID() + ", '"
                     + user.getUserIdentification() + "', '"
                     + user.getPassword() + "', "
-                    + user.getStatus() + ")";
+                    + user.getStatus() + ", '"
+                    + user.getEmail() + "')";
             con.updateSQL(sql);
             exito = true;
         } catch (java.sql.SQLException e) {
@@ -131,8 +132,10 @@ public class UsersDAO {
                     + "EmployeeId = " + user.getEmployeeID() + ", "
                     + "userIdentification = '" + user.getUserIdentification() + "', "
                     + "password = '" + user.getPassword() + "', "
-                    + "status = " + user.getStatus()
+                    + "status = " + user.getStatus() + ", "
+                    + "Email = '" + user.getEmail()+"' "
                     + " WHERE UserId = " + user.getUserID();
+            System.out.println(sql);
             con.updateSQL(sql);
             exito = true;
         } catch (java.sql.SQLException e) {
