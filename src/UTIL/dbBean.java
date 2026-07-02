@@ -13,7 +13,7 @@ import net.sf.jasperreports.view.JasperViewer;
 public class dbBean {
     //Conexión: a través del ODBC
 
-    String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Northwind";
+    String dbURL = "jdbc:sqlserver://26.248.155.216:1433;databaseName=Northwind";
     String dbDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private Connection dbCon;
     private String Login = "sa";
