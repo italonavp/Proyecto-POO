@@ -6,8 +6,12 @@ public class frmRepEmpParam extends javax.swing.JInternalFrame {
 
     private JDesktopPane desktop;
     
-    public frmRepEmpParam(JDesktopPane desktop) {
+    public frmRepEmpParam(JDesktopPane desktop, int mdiW, int mdiH) {
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
         cargarEmpleados();
         this.desktop = desktop;
 

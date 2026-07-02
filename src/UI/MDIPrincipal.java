@@ -138,7 +138,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         menuMant.setText("Mantenimiento");
 
-        submenuProducts.setText("Products");
+        submenuProducts.setText("Productos");
         submenuProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submenuProductsActionPerformed(evt);
@@ -465,6 +465,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         formProd = new FrmProducts1(w, h);
         escritorio.add(formProd);
         formProd.setVisible(true);
+        
     }//GEN-LAST:event_submenuProductsActionPerformed
 
     private void repProductsSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsSimpActionPerformed
@@ -486,10 +487,15 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repProductsSimpActionPerformed
 
     private void repProductsParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repProductsParamActionPerformed
-        repRango = new frmRepProductsRango(this.dimH(), this.dimW(), escritorio);
+        int w, h;
+
+        w = dimW();
+        h = dimH();
+        
+        repRango = new frmRepProductsRango(w, h, escritorio);
         this.escritorio.add(repRango);
         repRango.setVisible(true);
-        repRango.setSize(675, 195);
+
     }//GEN-LAST:event_repProductsParamActionPerformed
 
     private void submenuCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submenuCustomerActionPerformed
@@ -501,7 +507,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         formCust = new FrmCustmers2(w, h);
         escritorio.add(formCust);
         formCust.setVisible(true);
-        formCust.setSize(1200, 675);
     }//GEN-LAST:event_submenuCustomerActionPerformed
 
     private void repCustomersSimpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCustomersSimpActionPerformed
@@ -525,7 +530,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repCustomersParamActionPerformed
 
     private void repEmployeesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesParamActionPerformed
-        UI.frmRepEmpParam ventanaParam = new UI.frmRepEmpParam(escritorio);
+        int w, h;
+        w = dimW();
+        h = dimH();
+        UI.frmRepEmpParam ventanaParam = new UI.frmRepEmpParam(escritorio, w,h);
         this.escritorio.add(ventanaParam);
         ventanaParam.setVisible(true);
     }//GEN-LAST:event_repEmployeesParamActionPerformed
@@ -557,7 +565,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repCategoriesSimpActionPerformed
 
     private void repCategoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repCategoriesParamActionPerformed
-        UI.frmRepCatParam ventanaCat = new UI.frmRepCatParam(escritorio);
+        int w = dimW();
+        int h = dimH();
+        
+        UI.frmRepCatParam ventanaCat = new UI.frmRepCatParam(escritorio,w,h);
         this.escritorio.add(ventanaCat);
         ventanaCat.setVisible(true);
     }//GEN-LAST:event_repCategoriesParamActionPerformed
@@ -583,7 +594,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         formsupplier = new FrmSupplier(w, h);
         escritorio.add(formsupplier);
         formsupplier.setVisible(true);
-        formsupplier.setSize(1200, 739);
     }//GEN-LAST:event_menuSuppliersActionPerformed
 
     private void menuUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsersActionPerformed
@@ -595,7 +605,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
         formUsers = new FrmUsers(w, h);
         escritorio.add(formUsers);
         formUsers.setVisible(true);
-        formUsers.setSize(900, 450);
     }//GEN-LAST:event_menuUsersActionPerformed
 
     private void menuCategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoriesActionPerformed
@@ -646,7 +655,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repSuppliersSimpActionPerformed
 
     private void RepSuppParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepSuppParamActionPerformed
-        frmRepSuppParam ventanaSupp = new frmRepSuppParam(escritorio);
+        int w, h;
+        w = dimW();
+        h = dimH();
+        frmRepSuppParam ventanaSupp = new frmRepSuppParam(escritorio,w,h);
         this.escritorio.add(ventanaSupp);
         ventanaSupp.setVisible(true);
     }//GEN-LAST:event_RepSuppParamActionPerformed
@@ -679,7 +691,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_tablacruzadaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        FrmRepOrdersParam ventanaOrders = new FrmRepOrdersParam(escritorio);
+        int w, h;
+        w = dimW();
+        h = dimH();
+        FrmRepOrdersParam ventanaOrders = new FrmRepOrdersParam(escritorio, w,h);
         this.escritorio.add(ventanaOrders);
         ventanaOrders.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -704,7 +719,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void menuTerritoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTerritoriesActionPerformed
-        FrmTerritories formTerritories = new FrmTerritories();
+        int w, h;
+        w = dimW();
+        h = dimH();
+        FrmTerritories formTerritories = new FrmTerritories(w,h);
         escritorio.add(formTerritories);
         formTerritories.setVisible(true);
         try {
@@ -741,7 +759,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repTerritoriesSimpActionPerformed
 
     private void repTerritoriesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repTerritoriesParamActionPerformed
-        frmRepTerReg f = new frmRepTerReg(escritorio);
+        int w, h;
+        w = dimW();
+        h = dimH();
+        frmRepTerReg f = new frmRepTerReg(escritorio,w,h);
         escritorio.add(f);
         f.setVisible(true);
         try {
@@ -765,7 +786,10 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_repShippersSimpActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        frmRepOrdersShipper f = new frmRepOrdersShipper(escritorio);
+        int w, h;
+        w = dimW();
+        h = dimH();
+        frmRepOrdersShipper f = new frmRepOrdersShipper(escritorio,w,h);
         escritorio.add(f);
         f.setVisible(true);
         try {
@@ -776,12 +800,16 @@ public class MDIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void abrirRegion() {
-        FrmRegion formRegion = new FrmRegion();
+        int w = dimW();
+        int h = dimH();
+        FrmRegion formRegion = new FrmRegion(w,h);
         abrirFormulario(formRegion);
     }
 
     private void abrirShippers() {
-        FrmShippers formShippers = new FrmShippers();
+        int w = dimW();
+        int h = dimH();
+        FrmShippers formShippers = new FrmShippers(w,h);
         abrirFormulario(formShippers);
     }
 

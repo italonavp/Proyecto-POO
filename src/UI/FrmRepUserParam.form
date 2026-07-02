@@ -28,18 +28,18 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="CmbEstado" min="-2" pref="247" max="-2" attributes="0"/>
-              <EmptySpace pref="148" max="32767" attributes="0"/>
+              <EmptySpace pref="154" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="225" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel2" min="-2" pref="225" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnReportar" min="-2" pref="84" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel2" min="-2" pref="281" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -57,7 +57,7 @@
               </Group>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="btnReportar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

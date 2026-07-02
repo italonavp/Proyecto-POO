@@ -8,15 +8,13 @@ public class frmCategory extends javax.swing.JInternalFrame {
     java.util.Vector<BEAN.Category> listaCatGlobal; 
 
     public frmCategory(int mdiW, int mdiH) { // Ajusta este nombre si tu clase se llama distinto
+        initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        
-        this.setSize(1200, 675);
-        slx = (mdiW/2) - (this.getWidth()/2);
-        sly = (mdiH/2) -(this.getHeight()/2);
+
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
-        initComponents();
-        this.getContentPane().setBackground(java.awt.Color.WHITE); // Fondo limpio
         
         catDao = new DAO.CategoryDAO();
         dtm = (javax.swing.table.DefaultTableModel) this.tblCategorias.getModel();

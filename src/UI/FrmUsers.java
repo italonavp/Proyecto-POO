@@ -20,6 +20,12 @@ public class FrmUsers extends javax.swing.JInternalFrame {
 
     public FrmUsers(int mdiW, int mdiH) {
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
+        this.setResizable(false);
         txtUserID.setEditable(false);
         txtUserID.setFocusable(false);
         txtUserID.setBackground(new java.awt.Color(220, 220, 220));

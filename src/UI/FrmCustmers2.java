@@ -25,13 +25,12 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
      */
     public FrmCustmers2(int mdiW, int mdiH) {
         initComponents();
-        this.setSize(1200, 675);
 
         int slx, sly, wd = mdiW, hd = mdiH;
 
         slx = (mdiW / 2) - (this.getWidth() / 2);
         sly = (mdiH / 2) - (this.getHeight() / 2);
-        //this.setLocation(slx, sly);
+        this.setLocation(slx, sly);
         this.setResizable(false);
         dft = (DefaultTableModel) tblCustomers.getModel();
         fillTableCustomers("");

@@ -84,29 +84,29 @@ public class OrderDAO {
             sql += "SET IDENTITY_INSERT Orders OFF;";
         }
 
-        if (proc.equals("update")) {
-            String orderDateVal = (ord.getOrderDate() != null) ? "'" + ord.getOrderDate() + "'" : "NULL";
-            String reqDateVal = (ord.getRequiredDate() != null) ? "'" + ord.getRequiredDate() + "'" : "NULL";
-            String shipDateVal = (ord.getShippedDate() != null) ? "'" + ord.getShippedDate() + "'" : "NULL";
-            String regionVal = (ord.getShipRegion() == null || ord.getShipRegion().trim().isEmpty()) ? "NULL" : "'" + ord.getShipRegion() + "'";
-            String postalVal = (ord.getShipPostalCode() == null || ord.getShipPostalCode().trim().isEmpty()) ? "NULL" : "'" + ord.getShipPostalCode() + "'";
-
-            sql = "UPDATE Orders SET "
-                    + "CustomerID = '" + ord.getCustomerID() + "', "
-                    + "EmployeeID = " + ord.getEmployeeID() + ", "
-                    + "OrderDate = " + orderDateVal + ", "
-                    + "RequiredDate = " + reqDateVal + ", "
-                    + "ShippedDate = " + shipDateVal + ", "
-                    + "ShipVia = " + ord.getShipVia() + ", "
-                    + "Freight = " + ord.getFreight() + ", "
-                    + "ShipName = '" + ord.getShipName() + "', "
-                    + "ShipAddress = '" + ord.getShipAddress() + "', "
-                    + "ShipCity = '" + ord.getShipCity() + "', "
-                    + "ShipRegion = " + regionVal + ", "
-                    + "ShipPostalCode = " + postalVal + ", "
-                    + "ShipCountry = '" + ord.getShipCountry() + "' "
-                    + "WHERE OrderID = " + ord.getOrderID();
-        }
+//        if (proc.equals("update")) {
+//            String orderDateVal = (ord.getOrderDate() != null) ? "'" + ord.getOrderDate() + "'" : "NULL";
+//            String reqDateVal = (ord.getRequiredDate() != null) ? "'" + ord.getRequiredDate() + "'" : "NULL";
+//            String shipDateVal = (ord.getShippedDate() != null) ? "'" + ord.getShippedDate() + "'" : "NULL";
+//            String regionVal = (ord.getShipRegion() == null || ord.getShipRegion().trim().isEmpty()) ? "NULL" : "'" + ord.getShipRegion() + "'";
+//            String postalVal = (ord.getShipPostalCode() == null || ord.getShipPostalCode().trim().isEmpty()) ? "NULL" : "'" + ord.getShipPostalCode() + "'";
+//
+//            sql = "UPDATE Orders SET "
+//                    + "CustomerID = '" + ord.getCustomerID() + "', "
+//                    + "EmployeeID = " + ord.getEmployeeID() + ", "
+//                    + "OrderDate = " + orderDateVal + ", "
+//                    + "RequiredDate = " + reqDateVal + ", "
+//                    + "ShippedDate = " + shipDateVal + ", "
+//                    + "ShipVia = " + ord.getShipVia() + ", "
+//                    + "Freight = " + ord.getFreight() + ", "
+//                    + "ShipName = '" + ord.getShipName() + "', "
+//                    + "ShipAddress = '" + ord.getShipAddress() + "', "
+//                    + "ShipCity = '" + ord.getShipCity() + "', "
+//                    + "ShipRegion = " + regionVal + ", "
+//                    + "ShipPostalCode = " + postalVal + ", "
+//                    + "ShipCountry = '" + ord.getShipCountry() + "' "
+//                    + "WHERE OrderID = " + ord.getOrderID();
+//        }
         if (proc.equals("delete")) {
             sql = "DELETE FROM [Order Details] WHERE OrderID = " + ord.getOrderID() + "; ";
             sql += "DELETE FROM Orders WHERE OrderID = " + ord.getOrderID() + ";";

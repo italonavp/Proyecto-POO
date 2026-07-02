@@ -15,9 +15,9 @@ public class frmRepProductsRango extends javax.swing.JInternalFrame {
     public frmRepProductsRango(int mdiH, int mdiW, JDesktopPane desktop) {
         int slx, sly;
         initComponents();
-        slx = (mdiH / 2) - (384 / 2);
-        sly = (mdiW / 2) - (717 / 2);
-        this.setLocation(20, 20);
+        slx = (mdiH / 2) - (675 / 2);
+        sly = (mdiW / 2) - (215 / 2);
+        this.setLocation(slx, sly);
         this.desktop = desktop;
 
     }

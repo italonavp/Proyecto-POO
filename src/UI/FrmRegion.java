@@ -13,9 +13,15 @@ public class FrmRegion extends javax.swing.JInternalFrame {
     RegionDAO regDAO;
     DefaultTableModel dtm;
     Util u = new Util();
-    public FrmRegion() {
+    public FrmRegion(int mdiW, int mdiH) {
         regDAO = new RegionDAO();
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
+        this.setResizable(false);
         dtm = (DefaultTableModel)this.tblRegion.getModel();
         llenatbl("");
         limpia();

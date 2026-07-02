@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="submenuProducts">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Products"/>
+                <Property name="text" type="java.lang.String" value="Productos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submenuProductsActionPerformed"/>

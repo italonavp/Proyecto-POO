@@ -19,8 +19,12 @@ public class frmRepSuppParam extends javax.swing.JInternalFrame {
     /**
      * Creates new form frmRepSuppParam
      */
-    public frmRepSuppParam(JDesktopPane desktop) {
+    public frmRepSuppParam(JDesktopPane desktop, int mdiW, int mdiH) {
         initComponents();
+        int slx, sly;
+        slx = (mdiW / 2) - (350 / 2);
+        sly = (mdiH / 2) - (192 / 2);
+        this.setLocation(slx, sly);
         cargarPaises();
         this.desktop = desktop;
     }

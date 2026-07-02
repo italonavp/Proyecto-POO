@@ -17,8 +17,6 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
     public FrmSupplier(int mdiW, int mdiH) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        
-        this.setSize(1100, 600);
         slx = (mdiW/2) - (this.getWidth()/2);
         sly = (mdiH/2) -(this.getHeight()/2);
         this.setLocation(slx, sly);

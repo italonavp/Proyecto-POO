@@ -38,8 +38,12 @@ public class FrmReporte extends JInternalFrame {
 
     private String cliente;
 
-    public FrmReporte(int w, int h, String tipoRep, String tipo) {
+    public FrmReporte(int mdiW, int mdiH, String tipoRep, String tipo) {
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
         dft = (DefaultTableModel) tblCustomers.getModel();
         dft2 = (DefaultTableModel) tblEmployees.getModel();
         fillCustomersTable("");

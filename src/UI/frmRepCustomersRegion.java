@@ -23,13 +23,15 @@ public class frmRepCustomersRegion extends javax.swing.JInternalFrame {
      */
     public frmRepCustomersRegion(int mdiH, int mdiW, JDesktopPane desktop) {
         initComponents();
-        int slx, sly;
-        this.desktop = desktop;
-        
+        int slx, sly, wd = mdiW, hd = mdiH;
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
+        this.desktop = desktop; 
         initComponents();
-        slx = (mdiH / 2) - (204 / 2);
-        sly = (mdiW / 2) - (575 / 2);
-        this.setLocation(20, 20);
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
     }
 
     /**

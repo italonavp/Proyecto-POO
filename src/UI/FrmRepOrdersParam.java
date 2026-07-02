@@ -20,7 +20,11 @@ public class FrmRepOrdersParam extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmRepOrdersParam
      */
-    public FrmRepOrdersParam(JDesktopPane desktop) {
+    public FrmRepOrdersParam(JDesktopPane desktop, int mdiW, int mdiH) {
+        int slx, sly;
+        slx = (mdiH / 2) - (384 / 2);
+        sly = (mdiW / 2) - (717 / 2);
+        this.setLocation(slx, sly);
         initComponents();
         this.desktop = desktop;
     }

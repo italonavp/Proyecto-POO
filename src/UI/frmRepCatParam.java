@@ -9,8 +9,12 @@ public class frmRepCatParam extends javax.swing.JInternalFrame {
 
     private JDesktopPane desktop;
 
-    public frmRepCatParam(JDesktopPane desktop) {
+    public frmRepCatParam(JDesktopPane desktop, int mdiW, int mdiH) {
         initComponents();
+        int slx, sly, wd = mdiW, hd = mdiH;
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
+        this.setLocation(slx, sly);
         cargarCategorias();
         this.desktop = desktop;
     }

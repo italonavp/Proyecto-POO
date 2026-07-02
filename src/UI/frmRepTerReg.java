@@ -22,8 +22,12 @@ public class frmRepTerReg extends javax.swing.JInternalFrame {
 
     private JDesktopPane desktop;
     
-    public frmRepTerReg(JDesktopPane desktop) {
+    public frmRepTerReg(JDesktopPane desktop, int mdiW, int mdiH) {
         initComponents();
+        int slx, sly;
+        slx = (mdiW / 2) - (496 / 2);
+        sly = (mdiH / 2) - (153 / 2);
+        this.setLocation(slx, sly);
         llenaCmb();
         this.desktop = desktop;
     }

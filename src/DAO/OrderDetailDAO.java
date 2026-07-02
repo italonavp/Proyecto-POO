@@ -55,13 +55,13 @@ public class OrderDetailDAO {
             sql += det.getOrderID() + "," + det.getProductID() + "," + det.getUnitPrice() + "," + det.getQuantity() + "," + det.getDiscount() + ")";
         }
         
-        if(proc.equals("update")){
-            sql = "UPDATE [Order Details] SET "
-                + "UnitPrice = " + det.getUnitPrice() + ", "
-                + "Quantity = " + det.getQuantity() + ", "
-                + "Discount = " + det.getDiscount() + " "
-                + "WHERE OrderID = " + det.getOrderID() + " AND ProductID = " + det.getProductID();
-        }
+//        if(proc.equals("update")){
+//            sql = "UPDATE [Order Details] SET "
+//                + "UnitPrice = " + det.getUnitPrice() + ", "
+//                + "Quantity = " + det.getQuantity() + ", "
+//                + "Discount = " + det.getDiscount() + " "
+//                + "WHERE OrderID = " + det.getOrderID() + " AND ProductID = " + det.getProductID();
+//        }
         
         if(proc.equals("delete")){
             // Borramos un producto puntual del carrito
