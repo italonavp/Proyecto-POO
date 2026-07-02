@@ -10,7 +10,6 @@ public class UsersDAO {
     public UsersDAO() {
     }
 
-  
     public boolean validarLogin(String userIdentification, String passwordInput) {
         dbBean con = new dbBean();
         try {
@@ -28,9 +27,45 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return false;
+    }
+
+    public String getNombreEmpleado(String userIdentification) {
+
+        dbBean con = new dbBean();
+
+        try {
+            String sql = "SELECT e.FirstName, e.LastName "
+                    + "FROM Users u "
+                    + "INNER JOIN Employees e "
+                    + "ON u.EmployeeID = e.EmployeeID "
+                    + "WHERE u.userIdentification = '" + userIdentification + "'";
+
+            ResultSet rs = con.execSQL(sql);
+
+            if (rs.next()) {
+                return rs.getString("FirstName")
+                        + " "
+                        + rs.getString("LastName");
+            }
+
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "";
     }
 
     public Vector<Users> listaUsers(String cad) {
@@ -55,11 +90,14 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return listUsers;
     }
-
 
     public boolean insertaUser(Users user) {
         dbBean con = new dbBean();
@@ -76,7 +114,11 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return exito;
     }
@@ -96,7 +138,11 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return exito;
     }
@@ -111,19 +157,22 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return exito;
     }
 
-    
     public String getRolUsuario(String userIdentification) {
-        
-         dbBean con = new dbBean();
+
+        dbBean con = new dbBean();
         try {
             String sql = "SELECT e.Title FROM Users u "
-                       + "INNER JOIN Employees e ON u.EmployeeID = e.EmployeeID "
-                       + "WHERE u.userIdentification = '" + userIdentification + "'";
+                    + "INNER JOIN Employees e ON u.EmployeeID = e.EmployeeID "
+                    + "WHERE u.userIdentification = '" + userIdentification + "'";
             ResultSet rs = con.execSQL(sql);
             if (rs.next()) {
                 return rs.getString("Title");
@@ -131,7 +180,11 @@ public class UsersDAO {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (java.sql.SQLException e) { e.printStackTrace(); }
+            try {
+                con.close();
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
         }
         return "Inside Sales Coordinator"; // mínimo acceso por defecto
     }

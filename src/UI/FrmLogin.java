@@ -1,7 +1,12 @@
 package UI;
 
+import BEAN.Employee;
+import DAO.EmployeeDAO;
 import DAO.UsersDAO;
+import UTIL.LimiteCaracteres;
+import java.util.Vector;
 import javax.swing.JOptionPane;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -15,6 +20,14 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+
+        ((AbstractDocument) txtUsername.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+
+        ((AbstractDocument) txtContraseña.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+        
+        
     }
 
     /**
@@ -108,8 +121,8 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
 
-        if (txtUsername.getText().isEmpty() ||
-            new String(txtContraseña.getPassword()).isEmpty()) {
+        if (txtUsername.getText().isEmpty()
+                || new String(txtContraseña.getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
             return;
         }
@@ -120,24 +133,25 @@ public class FrmLogin extends javax.swing.JFrame {
         UsersDAO dao = new UsersDAO();
 
         if (dao.validarLogin(usuario, password)) {
-
+            
             // Obtener Title del empleado desde la BD
             String titulo = dao.getRolUsuario(usuario);
+            usuario = dao.getNombreEmpleado(usuario);
 
             JOptionPane.showMessageDialog(this,
-                "¡Bienvenido al sistema!\nCargo: " + titulo);
+                    "¡Bienvenido al sistema!\nCargo: " + titulo);
 
             // Abrir MDI pasando el titulo
-            MDIPrincipal mdi = new MDIPrincipal(titulo);
+            MDIPrincipal mdi = new MDIPrincipal(titulo, usuario);
             mdi.setVisible(true);
 
             this.dispose(); // cerrar login
 
         } else {
             JOptionPane.showMessageDialog(this,
-                "Usuario o contraseña incorrectos.",
-                "Error de acceso",
-                JOptionPane.ERROR_MESSAGE);
+                    "Usuario o contraseña incorrectos.",
+                    "Error de acceso",
+                    JOptionPane.ERROR_MESSAGE);
 
             txtContraseña.setText("");
             txtContraseña.requestFocus();

@@ -29,8 +29,9 @@ public class MDIPrincipal extends javax.swing.JFrame {
     frmEmployee formemployee;
     frmRepProductsRango repRango;
     frmRepCustomersRegion repRegion;
+    String usuario;
 
-    public MDIPrincipal(String titulo) {
+    public MDIPrincipal(String titulo, String usuario) {
         initComponents();
         this.titulo = titulo;
         Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -41,9 +42,11 @@ public class MDIPrincipal extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setTitle("Sistema Northwind — " + titulo);
         aplicarPermisosPorTitulo();
+        this.usuario = usuario;
+        txtUsuario.setText(usuario);
     }
 
-    public MDIPrincipal() {
+    public MDIPrincipal(String usuario) {
         initComponents();
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Dimension dim = toolkit.getScreenSize();
@@ -54,6 +57,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         System.out.println("HD: " + hd);
         this.setSize(wd, hd);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        txtUsuario.setText(usuario);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,6 +65,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        txtUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuMant = new javax.swing.JMenu();
         submenuProducts = new javax.swing.JMenuItem();
@@ -110,15 +115,25 @@ public class MDIPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtUsuario.setText("jLabel1");
+
+        escritorio.setLayer(txtUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(305, Short.MAX_VALUE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtUsuario)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
 
         menuMant.setText("Mantenimiento");
@@ -553,7 +568,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         w = dimW();
         h = dimH();
 
-        formOrder = new FrmOrders(w, h);
+        formOrder = new FrmOrders(w, h, usuario);
         escritorio.add(formOrder);
         formOrder.setVisible(true);
         formOrder.setSize(1000, 685);
@@ -1003,5 +1018,6 @@ public class MDIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem submenuCustomer;
     private javax.swing.JMenuItem submenuProducts;
     private javax.swing.JMenuItem tablacruzada;
+    private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

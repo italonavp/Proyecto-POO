@@ -1,11 +1,14 @@
 package UI;
+
 import BEAN.*;
 import UTIL.*;
 import DAO.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 import net.sf.jasperreports.engine.JRException;
+
 public class FrmOrders extends javax.swing.JInternalFrame {
 
     Vector<Employee> listaEmployee;
@@ -14,30 +17,43 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDetalles;
     DefaultTableModel dtmHistorial;
     int orderId;
-    public FrmOrders(int mdiW, int mdiH) {
+
+    public FrmOrders(int mdiW, int mdiH, String empleado) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        
+
         this.jdOrderDate.setDate(new java.util.Date());
         this.setSize(1200, 675);
-        slx = (mdiW/2) - (this.getWidth()/2);
-        sly = (mdiH/2) -(this.getHeight()/2);
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
         cargaEmpleado();
         cargaShippers();
-        dtm = (DefaultTableModel)this.tblOrderDetails.getModel();
+        dtm = (DefaultTableModel) this.tblOrderDetails.getModel();
         dtmDetalles = (DefaultTableModel) this.tblOrderDetailss.getModel();
-        dtmHistorial= (DefaultTableModel) this.tblOrderDetailss.getModel();
-    }
-    
-    public void llenaTablaOrdenes(String filtro) {
-        DefaultTableModel dtmOrdenes = (DefaultTableModel) this.tblOrderss.getModel(); 
-        dtmOrdenes.setRowCount(0);
+        dtmHistorial = (DefaultTableModel) this.tblOrderDetailss.getModel();
+
+        ((AbstractDocument) txtCustomerID.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(5));
+        ((AbstractDocument) txtShipAdress.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(60));
+        ((AbstractDocument) txtShipRegion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(155));
+        ((AbstractDocument) txtShipCountry.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
         
+        cmbEmployee.setSelectedItem(empleado);
+        cmbEmployee.setEnabled(false);
+    }
+
+    public void llenaTablaOrdenes(String filtro) {
+        DefaultTableModel dtmOrdenes = (DefaultTableModel) this.tblOrderss.getModel();
+        dtmOrdenes.setRowCount(0);
+
         OrderDAO ordDao = new OrderDAO();
         Vector<Order> listaHistorial = ordDao.listaOrders(filtro);
-        
+
         for (int i = 0; i < listaHistorial.size(); i++) {
             Vector vec = new Vector();
             vec.addElement(listaHistorial.get(i).getOrderID());
@@ -53,43 +69,44 @@ public class FrmOrders extends javax.swing.JInternalFrame {
             vec.addElement(listaHistorial.get(i).getShipRegion());
             vec.addElement(listaHistorial.get(i).getShipPostalCode());
             vec.addElement(listaHistorial.get(i).getShipCountry());
-            
+
             dtmOrdenes.addRow(vec);
         }
     }
 
-   
-    public void cargaEmpleado(){
-        
+    public void cargaEmpleado() {
+
         EmployeeDAO employeeDao = new EmployeeDAO();
         listaEmployee = employeeDao.listaEmployees("");
         this.cmbEmployee.removeAllItems();
         this.cmbEmployee.addItem("");
-        for (int i = 0; i<listaEmployee.size();i ++){
-            this.cmbEmployee.addItem(listaEmployee.get(i).getFirstName()+" "+listaEmployee.get(i).getLastName());
-        } 
+        for (int i = 0; i < listaEmployee.size(); i++) {
+            this.cmbEmployee.addItem(listaEmployee.get(i).getFirstName() + " " + listaEmployee.get(i).getLastName());
+        }
     }
-    public void cargaShippers(){
-        
+
+    public void cargaShippers() {
+
         ShippersDAO shippersDao = new ShippersDAO();
         listaShippers = shippersDao.listaShippers("");
         this.cmbShipVia.removeAllItems();
         this.cmbShipVia.addItem("");
-        for (int i = 0; i<listaShippers.size();i ++){
+        for (int i = 0; i < listaShippers.size(); i++) {
             this.cmbShipVia.addItem(listaShippers.get(i).getCompanyName());
-        } 
+        }
     }
+
     public void llenaTablaDetalles(String idOrden) {
-         
+
         dtmDetalles.setRowCount(0); // Usamos la variable global
 
         OrderDetailDAO detDao = new OrderDetailDAO();
         Vector<OrderDetail> listaDetalles = detDao.listaOrderDetails(idOrden);
-        
+
         for (int i = 0; i < listaDetalles.size(); i++) {
             Vector vec = new Vector();
             vec.addElement(listaDetalles.get(i).getProductID());
-            vec.addElement(listaDetalles.get(i).getProductName()); 
+            vec.addElement(listaDetalles.get(i).getProductName());
             vec.addElement(listaDetalles.get(i).getUnitPrice());
             vec.addElement(listaDetalles.get(i).getQuantity());
             vec.addElement(listaDetalles.get(i).getDiscount());
@@ -97,8 +114,7 @@ public class FrmOrders extends javax.swing.JInternalFrame {
             dtmDetalles.addRow(vec);
         }
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -710,33 +726,33 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtShipCountryActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-          if(valida() == true){
+        if (valida() == true) {
             try {
                 Util u = new Util();
-                Order order = new Order(); 
-                
-                int orderId = u.idNext("Orders", "OrderID"); 
+                Order order = new Order();
+
+                int orderId = u.idNext("Orders", "OrderID");
                 order.setOrderID(orderId);
-                
+
                 order.setCustomerID(this.txtCustomerID.getText());
-                
+
                 int posemp = this.cmbEmployee.getSelectedIndex() - 1;
                 order.setEmployeeID(listaEmployee.get(posemp).getEmployeeID());
-                
+
                 int posship = this.cmbShipVia.getSelectedIndex() - 1;
                 order.setShipVia(listaShippers.get(posship).getIdShippers());
-                
+
                 if (this.jdOrderDate.getDate() != null) {
                     order.setOrderDate(new java.sql.Date(this.jdOrderDate.getDate().getTime()));
                 }
-                
+
                 if (this.jdRequiredDate.getDate() != null) {
                     order.setRequiredDate(new java.sql.Date(this.jdRequiredDate.getDate().getTime()));
                 }
                 if (this.jdShippedDate.getDate() != null) {
-                    order.setShippedDate(new java.sql.Date(this.jdShippedDate.getDate().getTime())); 
+                    order.setShippedDate(new java.sql.Date(this.jdShippedDate.getDate().getTime()));
                 }
-                
+
                 order.setFreight(Double.parseDouble(this.txtFreight.getText()));
                 order.setShipName(this.txtCompanyName.getText());
                 order.setShipAdress(this.txtShipAdress.getText());
@@ -744,57 +760,55 @@ public class FrmOrders extends javax.swing.JInternalFrame {
                 order.setShipRegion(this.txtShipRegion.getText());
                 order.setShipPostalCode(this.txtShipAdress1.getText());
                 order.setShipCountry(this.txtShipCountry.getText());
-                
+
                 OrderDAO orderDao = new OrderDAO();
                 orderDao.procesaOrder(order, "insert");
-                
-                
+
                 OrderDetailDAO detailDao = new OrderDetailDAO();
-                
+
                 // Recorremos la tabla visual fila por fila
-                for(int i = 0; i < dtm.getRowCount(); i++){
-                    OrderDetail det = new OrderDetail(); 
-                    
-                    det.setOrderID(orderId); 
+                for (int i = 0; i < dtm.getRowCount(); i++) {
+                    OrderDetail det = new OrderDetail();
+
+                    det.setOrderID(orderId);
                     det.setProductID(Integer.parseInt(dtm.getValueAt(i, 0).toString()));
                     det.setUnitPrice(Double.parseDouble(dtm.getValueAt(i, 2).toString()));
                     det.setQuantity(Integer.parseInt(dtm.getValueAt(i, 3).toString()));
                     det.setDiscount(Double.parseDouble(dtm.getValueAt(i, 4).toString()));
-                    
-                   
+
                     detailDao.procesaOrderDetail(det, "insert");
                 }
                 JOptionPane.showMessageDialog(this, "¡Éxito! La Orden #" + orderId + " ha sido registrada.");
                 limpiarTodo();
-                
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error crítico al grabar: " + e.getMessage());
             }
-         }
+        }
     }//GEN-LAST:event_btnGrabarActionPerformed
 
     private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
         selCliente dialogcliente = new selCliente(new javax.swing.JFrame(), true);
-        dialogcliente.setVisible(true); 
+        dialogcliente.setVisible(true);
         Customer cust = dialogcliente.getCliente();
-       
+
         if (cust.getCustomerID() != null) {
-            this.txtCustomerID.setText(cust.getCustomerID());        
-            this.txtCompanyName.setText(cust.getCompanyName());    
-            this.txtShipAdress.setText(cust.getAddress());         
-            this.txtShipCity.setText(cust.getCity());              
-            this.txtShipCountry.setText(cust.getCountry());        
-            this.txtShipRegion.setText(cust.getRegion());          
-            this.txtShipAdress1.setText(cust.getPostalCode());     
+            this.txtCustomerID.setText(cust.getCustomerID());
+            this.txtCompanyName.setText(cust.getCompanyName());
+            this.txtShipAdress.setText(cust.getAddress());
+            this.txtShipCity.setText(cust.getCity());
+            this.txtShipCountry.setText(cust.getCountry());
+            this.txtShipRegion.setText(cust.getRegion());
+            this.txtShipAdress1.setText(cust.getPostalCode());
         }
     }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
-        SelProducts dialogProducts = new SelProducts(new javax.swing.JFrame(),true);
+        SelProducts dialogProducts = new SelProducts(new javax.swing.JFrame(), true);
         dialogProducts.setVisible(true);
         Product prod = dialogProducts.getProduct();
-        
-        if(prod != null){
+
+        if (prod != null) {
             this.txtProductID.setText(String.valueOf(prod.getProductID()));
             this.txtProductName.setText(prod.getProductName());
             this.txtUnitPrice.setText(String.valueOf(prod.getUnitPrice()));
@@ -803,18 +817,18 @@ public class FrmOrders extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        if(this.txtProductID.getText().isEmpty() || this.txtQuantity.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "Debe seleccionar producto o cantidad");
-            }else{
+        if (this.txtProductID.getText().isEmpty() || this.txtQuantity.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar producto o cantidad");
+        } else {
             Vector vec = new Vector();
             vec.addElement(this.txtProductID.getText());
             vec.addElement(this.txtProductName.getText());
             vec.addElement(this.txtUnitPrice.getText());
             vec.addElement(this.txtQuantity.getText());
-            if(this.txtDiscount.getText().isEmpty()){
-            this.txtDiscount.setText("0");
-        }
-            vec.addElement(this.txtDiscount.getText());    
+            if (this.txtDiscount.getText().isEmpty()) {
+                this.txtDiscount.setText("0");
+            }
+            vec.addElement(this.txtDiscount.getText());
             dtm.addRow(vec);
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -825,9 +839,9 @@ public class FrmOrders extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         selCliente dialogcliente = new selCliente(new javax.swing.JFrame(), true);
-        dialogcliente.setVisible(true); 
+        dialogcliente.setVisible(true);
         Customer cust = dialogcliente.getCliente();
-       
+
         if (cust.getCustomerID() != null) {
             this.txtBusquedaCliente.setText(cust.getCompanyName());
         }
@@ -843,15 +857,14 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         if (fila != -1) {
             String orderId = this.tblOrderss.getValueAt(fila, 0).toString();
             llenaTablaDetalles(orderId);
-        }
-        else {
-             
+        } else {
+
             dtmDetalles.setRowCount(0);
         }
     }//GEN-LAST:event_tblOrderssMouseClicked
 
     private void tblOrderDetailssMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrderDetailssMouseClicked
-        
+
     }//GEN-LAST:event_tblOrderDetailssMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -859,13 +872,13 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         Order order = new Order();
         int fila = this.tblOrderss.getSelectedRow();
         int idOrden = Integer.parseInt(this.tblOrderss.getValueAt(fila, 0).toString());
-        order.setOrderID(idOrden); 
+        order.setOrderID(idOrden);
         OrderDAO orderDao = new OrderDAO();
         orderDao.procesaOrder(order, "delete");
         JOptionPane.showMessageDialog(this, "¡La Orden #" + idOrden + " ha sido eliminada con éxito");
-        llenaTablaOrdenes(this.txtBusquedaCliente.getText()); 
+        llenaTablaOrdenes(this.txtBusquedaCliente.getText());
         dtmDetalles.setRowCount(0);
-        
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtBusquedaClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBusquedaClienteKeyReleased
@@ -880,51 +893,53 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerIDActionPerformed
 
-    public void limpiarProducto(){
+    public void limpiarProducto() {
         this.txtProductID.setText("");
         this.txtProductName.setText("");
         this.txtUnitPrice.setText("");
         this.txtQuantity.setText("");
         this.txtDiscount.setText("");
     }
-    public boolean valida(){
+
+    public boolean valida() {
         String cad = "";
-        if(this.txtCustomerID.getText().isEmpty()){
+        if (this.txtCustomerID.getText().isEmpty()) {
             cad += "Seleccione un Cliente";
         }
-        if(this.txtProductID.getText().isEmpty()){
+        if (this.txtProductID.getText().isEmpty()) {
             cad += "\nSeleccione un producto";
         }
-        if(this.txtQuantity.getText().isEmpty()){
+        if (this.txtQuantity.getText().isEmpty()) {
             cad += "\nIngrese la cantidad";
         }
-        if(this.cmbEmployee.getSelectedItem().equals("")){
+        if (this.cmbEmployee.getSelectedItem().equals("")) {
             cad += "\nSeleccione el empleado encargado de esta orden";
         }
-        if(this.cmbShipVia.getSelectedItem().equals("")){
+        if (this.cmbShipVia.getSelectedItem().equals("")) {
             cad += "\nSeleccione la compañia de envio encargada de esta orden";
         }
-        if(this.jdOrderDate.getDate()== null){
+        if (this.jdOrderDate.getDate() == null) {
             cad += "\nSeleccione la fecha de la orden";
         }
-        if(this.jdRequiredDate.getDate()== null){
+        if (this.jdRequiredDate.getDate() == null) {
             cad += "\nSeleccione la fecha requerida ";
         }
-        if(this.txtFreight.getText().isEmpty()){
+        if (this.txtFreight.getText().isEmpty()) {
             cad += "\nIngrese el flete";
         }
         if (this.tblOrderDetails.getRowCount() == 0) {
             cad += "\nDebe agregar al menos un producto al carrito.";
         }
-        if (cad.equals("")){
-        return true;
-        }else{
+        if (cad.equals("")) {
+            return true;
+        } else {
             JOptionPane.showMessageDialog(this, cad);
             return false;
         }
-        
+
     }
-    public void limpiarTodo(){
+
+    public void limpiarTodo() {
         this.txtCustomerID.setText("");
         this.txtCompanyName.setText("");
         this.cmbEmployee.setSelectedIndex(0);
@@ -938,12 +953,11 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         this.txtShipRegion.setText("");
         this.txtShipAdress1.setText("");
         this.txtShipCountry.setText("");
-        
+
         limpiarProducto();
         dtm.setRowCount(0);
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
