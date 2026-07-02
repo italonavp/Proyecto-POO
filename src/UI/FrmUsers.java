@@ -358,7 +358,12 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         this.userId = Integer.parseInt(dtm.getValueAt(idFil, 0).toString());
         this.txtUserID.setText(dtm.getValueAt(idFil, 0).toString());
         this.txtUserIdentification.setText(dtm.getValueAt(idFil, 2).toString());
-        this.txtPassword.setText(dtm.getValueAt(idFil, 3).toString());
+
+        // Desencriptar para poder mostrarla/editarla
+        String passEncriptada = dtm.getValueAt(idFil, 3).toString();
+        String passDesencriptada = SecurityUtil.decrypt(passEncriptada);
+        this.txtPassword.setText(passDesencriptada != null ? passDesencriptada : passEncriptada);
+
         this.cmbStatus.setSelectedItem(dtm.getValueAt(idFil, 4).toString());
 
         int idEmpBD = Integer.parseInt(dtm.getValueAt(idFil, 1).toString());
@@ -373,6 +378,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
 
         this.btnEliminar.setEnabled(true);
         this.btnGrabar.setText("Actualizar");
+        this.jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_tblUsersMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -404,7 +410,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        if (valida()) {
+        if(valida()){
             Users user = new Users();
             Util u = new Util();
 
@@ -412,11 +418,15 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             user.setEmployeeID(itemSeleccionado.getId());
 
             user.setUserIdentification(this.txtUserIdentification.getText());
-            user.setPassword(this.txtPassword.getText());
+
+            // Encriptar la contraseña ANTES de guardarla en la BD
+            String passTexto = this.txtPassword.getText();
+            String passEncriptada = SecurityUtil.encrypt(passTexto);
+            user.setPassword(passEncriptada != null ? passEncriptada : passTexto);
+
             user.setStatus(this.cmbStatus.getSelectedItem().equals("Activo") ? 1 : 0);
-            user.setEmail(txtEmail.getText());
-            
-            if (this.btnGrabar.getText().equals("Grabar")) {
+
+            if(this.btnGrabar.getText().equals("Grabar")){
                 this.userId = u.idNext("Users", "UserId");
                 user.setUserID(userId);
                 this.userDao.insertaUser(user);
