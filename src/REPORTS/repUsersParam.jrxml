@@ -1,11 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fb249cf-4028-4deb-87dc-aa60ee2993c2">
-	<property name="ireport.zoom" value="1.0" />
-	<property name="ireport.x" value="0" />
-	<property name="ireport.y" value="0" />
-	<parameter name="STATUS" class="java.lang.String" />
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="STATUS" class="java.lang.String"/>
 	<queryString>
-		SELECT
+		<![CDATA[SELECT
      Users."UserId" AS Users_UserId,
      Users."EmployeeId" AS Users_EmployeeId,
      Users."userIdentification" AS Users_userIdentification,
@@ -18,128 +18,128 @@ CASE
     WHEN LOWER($P{STATUS}) = 'activo' THEN 1
     WHEN LOWER($P{STATUS}) = 'inactivo' THEN 0
     ELSE -1 
-END
+END]]>
 	</queryString>
-	<field name="Users_UserId" class="java.lang.Integer" />
-	<field name="Users_EmployeeId" class="java.lang.Integer" />
-	<field name="Users_userIdentification" class="java.lang.String" />
-	<field name="Users_password" class="java.lang.String" />
-	<field name="Users_status" class="java.lang.Integer" />
+	<field name="Users_UserId" class="java.lang.Integer"/>
+	<field name="Users_EmployeeId" class="java.lang.Integer"/>
+	<field name="Users_userIdentification" class="java.lang.String"/>
+	<field name="Users_password" class="java.lang.String"/>
+	<field name="Users_status" class="java.lang.Integer"/>
 	<background>
-		<band splitType="Stretch" />
+		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="566ba282-04c6-4bcc-b5b7-abe07de4a737" />
+				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="566ba282-04c6-4bcc-b5b7-abe07de4a737"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true" />
+					<font size="20" isBold="true"/>
 				</textElement>
-				<text>Reporte Users</text>
+				<text><![CDATA[Reporte Usuarios]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="45" width="555" height="1" uuid="cdd1112a-503a-424c-b621-3748d79c54ee" />
+				<reportElement x="0" y="45" width="555" height="1" uuid="cdd1112a-503a-424c-b621-3748d79c54ee"/>
 				<graphicElement>
-					<pen lineWidth="2.0" lineColor="#003366" />
+					<pen lineWidth="2.0" lineColor="#003366"/>
 				</graphicElement>
 			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch" />
+		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="29" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="81" height="20" uuid="b5bc122c-c85a-4c7f-a1ac-67af736cc955" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<reportElement mode="Opaque" x="0" y="0" width="81" height="20" forecolor="#FFFFFF" backcolor="#003366" uuid="b5bc122c-c85a-4c7f-a1ac-67af736cc955"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" size="9" />
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text>UserId</text>
+				<text><![CDATA[ID Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="96" y="0" width="100" height="20" uuid="62139c00-609f-4424-be8e-02187acca0dc" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<reportElement mode="Opaque" x="96" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#003366" uuid="62139c00-609f-4424-be8e-02187acca0dc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" size="9" />
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text>EmployeeId</text>
+				<text><![CDATA[Empleado ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="212" y="0" width="100" height="20" uuid="1186aaba-9cd7-4a5c-b082-d689e1681c64" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<reportElement mode="Opaque" x="212" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#003366" uuid="1186aaba-9cd7-4a5c-b082-d689e1681c64"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" size="9" />
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text>userIdentification</text>
+				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="0" width="100" height="20" uuid="b3ba2641-795e-4850-8f12-78a009c2c9d6" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<reportElement mode="Opaque" x="329" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#003366" uuid="b3ba2641-795e-4850-8f12-78a009c2c9d6"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" size="9" />
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text>password</text>
+				<text><![CDATA[Contraseña]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="0" width="100" height="20" uuid="bf314d21-052c-4f7b-88d9-2a93f1c279ad" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<reportElement mode="Opaque" x="455" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#003366" uuid="bf314d21-052c-4f7b-88d9-2a93f1c279ad"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true" size="9" />
+					<font size="9" isBold="true"/>
 				</textElement>
-				<text>status</text>
+				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="0" width="555" height="1" uuid="cdca0a29-0ccc-423e-98e8-501ec7accb46" />
+				<reportElement x="0" y="0" width="555" height="1" uuid="cdca0a29-0ccc-423e-98e8-501ec7accb46"/>
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="25" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="81" height="20" uuid="df91100d-031e-4a28-a2e5-c9ee28850497" forecolor="#333333" />
+				<reportElement x="0" y="0" width="81" height="20" forecolor="#333333" uuid="df91100d-031e-4a28-a2e5-c9ee28850497"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" />
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression>$F{Users_UserId}</textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Users_UserId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="96" y="0" width="100" height="20" uuid="27d641ff-26e7-457a-9536-b9710bbb4973" forecolor="#333333" />
+				<reportElement x="96" y="0" width="100" height="20" forecolor="#333333" uuid="27d641ff-26e7-457a-9536-b9710bbb4973"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" />
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression>$F{Users_EmployeeId}</textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Users_EmployeeId}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="212" y="0" width="100" height="20" uuid="906339bd-214e-4f3d-80a4-24c05da2adeb" forecolor="#333333" />
+				<reportElement x="212" y="0" width="100" height="20" forecolor="#333333" uuid="906339bd-214e-4f3d-80a4-24c05da2adeb"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" />
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression>$F{Users_userIdentification}</textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Users_userIdentification}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="329" y="0" width="100" height="20" uuid="247d48ce-f10b-44dd-8fe4-ba56b7609ec8" forecolor="#333333" />
+				<reportElement x="329" y="0" width="100" height="20" forecolor="#333333" uuid="247d48ce-f10b-44dd-8fe4-ba56b7609ec8"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" />
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression>$F{Users_password}</textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Users_password}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="c3ab4eef-249f-4f9a-8b12-80c7009b3bee" forecolor="#333333" />
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#333333" uuid="c3ab4eef-249f-4f9a-8b12-80c7009b3bee"/>
 				<textElement verticalAlignment="Middle">
-					<font size="9" />
+					<font size="9"/>
 				</textElement>
-				<textFieldExpression>$F{Users_status}</textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Users_status}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="0" width="555" height="1" uuid="68fffd69-9405-46ba-9b6f-7ee0336f3ee7" />
+				<reportElement x="0" y="0" width="555" height="1" uuid="68fffd69-9405-46ba-9b6f-7ee0336f3ee7"/>
 			</line>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch" />
+		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch" />
+		<band height="42" splitType="Stretch"/>
 	</summary>
 </jasperReport>

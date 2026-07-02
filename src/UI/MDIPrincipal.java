@@ -264,7 +264,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         });
         jMenu3.add(repCustomersSimp);
 
-        repCustomersParam.setText("Cliente por Region");
+        repCustomersParam.setText("Cliente por ID");
         repCustomersParam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 repCustomersParamActionPerformed(evt);
@@ -526,7 +526,7 @@ public class MDIPrincipal extends javax.swing.JFrame {
         repRegion = new frmRepCustomersRegion(this.dimH(), this.dimW(), escritorio);
         this.escritorio.add(repRegion);
         repRegion.setVisible(true);
-        repRegion.setSize(675, 195);
+        
     }//GEN-LAST:event_repCustomersParamActionPerformed
 
     private void repEmployeesParamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repEmployeesParamActionPerformed

@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="repOrdersShipperParam" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b720178c-830b-45e1-b0f1-8ee693f9df04">
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
+	<parameter name="paraShipID" class="java.lang.Integer">
+		<defaultValueExpression />
+	</parameter>
+	<queryString>
+		SELECT
+    o.OrderID,
+    o.CustomerID,
+    o.EmployeeID,
+    o.OrderDate,
+    o.RequiredDate,
+    o.ShippedDate,
+    o.ShipVia,
+    o.Freight,
+    o.ShipName,
+    o.ShipCity,
+    o.ShipCountry,
+    s.CompanyName AS ShipperName
+FROM Orders o
+INNER JOIN Shippers s ON o.ShipVia = s.ShipperID
+WHERE o.ShipVia = $P{paraShipID}
+ORDER BY o.OrderID
+	</queryString>
+	<field name="OrderID" class="java.lang.Integer" />
+	<field name="CustomerID" class="java.lang.String" />
+	<field name="EmployeeID" class="java.lang.Integer" />
+	<field name="OrderDate" class="java.sql.Timestamp" />
+	<field name="RequiredDate" class="java.sql.Timestamp" />
+	<field name="ShippedDate" class="java.sql.Timestamp" />
+	<field name="ShipVia" class="java.lang.Integer" />
+	<field name="Freight" class="java.math.BigDecimal" />
+	<field name="ShipName" class="java.lang.String" />
+	<field name="ShipCity" class="java.lang.String" />
+	<field name="ShipCountry" class="java.lang.String" />
+	<field name="ShipperName" class="java.lang.String" />
+	<background>
+		<band splitType="Stretch" />
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="802" height="30" forecolor="#003366" uuid="65c23eab-4556-43e6-86d3-d88e85c4324f" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" />
+				</textElement>
+				<text>Reporte de Orders por Shipper</text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="802" height="1" uuid="16ec5c83-fde6-4673-aafb-33ac88452e00" />
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#003366" />
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch" />
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="55" height="20" uuid="7716fc0d-113d-4d0c-94ad-7595522fda96" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>OrderID</text>
+			</staticText>
+			<staticText>
+				<reportElement x="65" y="4" width="65" height="20" uuid="60c6dcb1-8b72-4b77-a115-7a958ed3de4c" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Cliente</text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="4" width="65" height="20" uuid="34406756-8be6-4029-a178-0898f3da69fe" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Empleado</text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="4" width="92" height="20" uuid="63b71fe5-8039-44ee-82c6-7492f1480470" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Orden</text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="4" width="92" height="20" uuid="92de871e-9157-441e-b52b-1e9f815d96b6" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Requerida</text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="4" width="92" height="20" uuid="90f5275f-c80c-4d6e-953a-1d8e40e60b9a" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Enviada</text>
+			</staticText>
+			<staticText>
+				<reportElement x="521" y="4" width="70" height="20" uuid="a1ad5ce4-1229-48d3-9317-dea6cd325c5a" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Flete</text>
+			</staticText>
+			<staticText>
+				<reportElement x="601" y="4" width="95" height="20" uuid="7633e8bb-c7d7-4e0d-badc-2c2c5b80f8c3" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Ciudad</text>
+			</staticText>
+			<staticText>
+				<reportElement x="706" y="4" width="96" height="20" uuid="a84d68bb-e633-40fa-9174-f6cc752977ab" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Shipper</text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="25" width="802" height="1" uuid="1c70fb47-41f1-444f-8330-608a16e062a3" />
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="55" height="18" uuid="50bf3728-36e9-482e-a2dc-7ed45cd40f4d" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{OrderID}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="2" width="65" height="18" uuid="6e9bb76b-8dd1-40d6-874d-cfae2c09c9ed" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{CustomerID}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="2" width="65" height="18" uuid="1576e637-6ff8-4c99-8e8e-5675d9f14935" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{EmployeeID}</textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="215" y="2" width="92" height="18" uuid="33a16702-9e02-4c04-8ecb-f036f241da6a" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{OrderDate}</textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="317" y="2" width="92" height="18" uuid="d7d048c0-40c1-4e7b-9563-733d10473d89" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{RequiredDate}</textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="419" y="2" width="92" height="18" uuid="b2ac9e8f-c0f0-4385-8167-7e3846cda9f6" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{ShippedDate}</textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="521" y="2" width="70" height="18" uuid="2b0eae0b-57cc-4b61-a878-a3e66fb08fb7" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Freight}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="601" y="2" width="95" height="18" uuid="085c5efd-964d-44b9-a698-b889ce475984" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{ShipCity}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="706" y="2" width="96" height="18" uuid="afc26804-b8ed-4cb5-8a22-ed66141cf2a1" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{ShipperName}</textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch" />
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="702" y="2" width="100" height="20" uuid="8e9f909b-b470-4b9a-b334-0df4ee896bda" />
+				<textElement textAlignment="Right" />
+				<textFieldExpression>"Pagina " + $V{PAGE_NUMBER}</textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch" />
+	</summary>
+</jasperReport>
