@@ -229,6 +229,11 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
         });
 
         btnElimina.setText("Eliminar");
+        btnElimina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminaActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -421,7 +426,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,6 +501,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
         }
         fillTableCustomers("");
+        limpia();
     }//GEN-LAST:event_btnGrabarActionPerformed
 
     private void txtCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryActionPerformed
@@ -536,6 +542,7 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
 
     private void tblCustomersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCustomersMouseClicked
         int fila = tblCustomers.getSelectedRow();
+        btnElimina.setEnabled(true);
 
         txtId.setText(tblCustomers.getValueAt(fila, 0).toString());
         txtCompName.setText(tblCustomers.getValueAt(fila, 1).toString());
@@ -555,8 +562,37 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblCustomersMouseClicked
 
     private void txtCompNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCompNameKeyReleased
-        txtId.setText(custDAO.generateID(txtCompName.getText()));
+        if (txtCompName.getText().length() > 5) {
+            txtId.setText(custDAO.generateID(txtCompName.getText()));
+        }
     }//GEN-LAST:event_txtCompNameKeyReleased
+
+    private void btnEliminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminaActionPerformed
+        Customer c = new Customer();
+        c.setCustomerId(txtId.getText());
+        c.setCompanyName(txtCompName.getText());
+        c.setContactName(txtContcName.getText());
+        c.setContactTitle(txtCntcTitle.getText());
+        c.setAddress(txtAddress.getText());
+        c.setCity(txtCity.getText());
+        c.setRegion(txtRegion.getText());
+        c.setPostalCode(txtPostalCode.getText());
+        c.setCountry(txtCountry.getText());
+        c.setPhone(txtPhone.getText());
+        c.setFax(txtFax.getText());
+        c.setEmail(txtEmail.getText());
+
+        boolean state = custDAO.eliminarCustomer(c);
+        
+        if(state == true){
+            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "El cliente tiene órdenes activas.");
+        }
+        
+        limpia();
+        fillTableCustomers("");
+    }//GEN-LAST:event_btnEliminaActionPerformed
 
     public void limpia() {
         txtId.setText("");

@@ -13,7 +13,7 @@ public class CustomerDAO {
         dbBean db = new dbBean();
         String sql = "SELECT * FROM Customers";
         if (!cad.isEmpty()) {
-            sql += " WHERE ContactName LIKE '%" + cad + "%'";
+            sql += " WHERE ContactName LIKE '%" + cad + "%' OR CompanyName LIKE '%"+cad + "%'";
         }
 
         try {
@@ -61,7 +61,8 @@ public class CustomerDAO {
         sql += "'" + cust.getPostalCode() + "', ";
         sql += "'" + cust.getCountry() + "', ";
         sql += "'" + cust.getPhone() + "', ";
-        sql += "'" + cust.getFax() + "')";
+        sql += "'" + cust.getFax() + "', ";
+        sql += "'" + cust.getEmail() + "')";
 
         dbBean db = new dbBean();
 
@@ -92,6 +93,7 @@ public class CustomerDAO {
         sql += "Country='" + cust.getCountry() + "', ";
         sql += "Phone='" + cust.getPhone() + "', ";
         sql += "Fax='" + cust.getFax() + "' ";
+        sql += "Email='" + cust.getEmail() + "' ";
         sql += "WHERE CustomerID='" + cust.getCustomerID() + "'";
 
         dbBean db = new dbBean();
@@ -116,7 +118,7 @@ public class CustomerDAO {
         boolean state = false;
 
         try {
-            db.execSQL(sql);
+            db.updateSQL(sql);
             state = true;
         } catch (SQLException e) {
             //e.printStackTrace();
@@ -133,17 +135,33 @@ public class CustomerDAO {
     }
 
     public String generateID(String compName) {
-
         String id = "";
 
-        String[] txt = compName.split(" ");
+        try {
 
-        for (int i = 0; i < txt.length; i++) {
-            String c = txt[i];
-            id += c.substring(0, i + 2);
+            String[] txt = compName.split(" ");
+
+            // Si solo hay una palabra y tiene al menos 5 caracteres
+            if (txt.length == 1 && txt[0].length() >= 5) {
+                return txt[0].substring(0, 5).toUpperCase();
+            }
+
+            for (int i = 0; i < txt.length; i++) {
+                String c = txt[i];
+                if (c.length() >= i + 2) {
+                    id += c.substring(0, i + 2);
+                } else {
+                    id += c;
+                }
+            }
+
+        } catch (Exception e) {
+
         }
 
-        return id.toUpperCase().substring(0, 5);
-    }
+        return id.length() >= 5
+                ? id.toUpperCase().substring(0, 5)
+                : id.toUpperCase();
 
+    }
 }
