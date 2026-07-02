@@ -427,6 +427,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             String passTexto = this.txtPassword.getText();
             String passEncriptada = SecurityUtil.encrypt(passTexto);
             user.setPassword(passEncriptada != null ? passEncriptada : passTexto);
+            user.setEmail(this.txtEmail.getText());
 
             user.setStatus(this.cmbStatus.getSelectedItem().equals("Activo") ? 1 : 0);
 
