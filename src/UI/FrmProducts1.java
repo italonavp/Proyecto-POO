@@ -1,27 +1,29 @@
 package UI;
+
 import BEAN.*;
 import UTIL.*;
 import DAO.*;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 import net.sf.jasperreports.engine.JRException;
 
 public class FrmProducts1 extends javax.swing.JInternalFrame {
+
     ProductDAO productDao;
     DefaultTableModel dtm;
     int idProduct;
     Vector<Supplier> listaSupplier;
     Vector<Category> listaCategory;
-    
-    public FrmProducts1(int mdiW, int mdiH){
+
+    public FrmProducts1(int mdiW, int mdiH) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        
-        
+
         this.setSize(1100, 600);
-        slx = (mdiW/2) - (this.getWidth()/2);
-        sly = (mdiH/2) -(this.getHeight()/2);
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
         productDao = new ProductDAO();
@@ -29,13 +31,17 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         cargaSupplier();
         cargaCategory();
         llenaProducts("");
+        ((AbstractDocument) txtProductName.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(40));
+        ((AbstractDocument) txtQuantityPerUnit.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(40));
     }
-    
-    public void llenaProducts(String cad){
+
+    public void llenaProducts(String cad) {
         Vector<Product> listProduct;
         listProduct = productDao.listaProducts(cad);
         dtm.setRowCount(0);
-        for(int i = 0; i<listProduct.size(); i++){
+        for (int i = 0; i < listProduct.size(); i++) {
             Vector vec = new Vector();
             vec.addElement(listProduct.get(i).getProductID());
             vec.addElement(listProduct.get(i).getProductName());
@@ -50,33 +56,31 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
             dtm.addRow(vec);
         }
     }
-    
-    public void cargaSupplier(){
-        
+
+    public void cargaSupplier() {
+
         SupplierDAO supplierDao = new SupplierDAO();
         listaSupplier = supplierDao.listaSuppliers("");
         this.cmbSupplierID.removeAllItems();
         this.cmbSupplierID.addItem("");
-        for (int i = 0; i<listaSupplier.size();i ++){
+        for (int i = 0; i < listaSupplier.size(); i++) {
             this.cmbSupplierID.addItem(listaSupplier.get(i).getCompanyName());
         }
-        
-        
+
     }
-    
-    public void cargaCategory(){
-        
+
+    public void cargaCategory() {
+
         CategoryDAO categoryDao = new CategoryDAO();
         listaCategory = categoryDao.listaCategories("");
         this.cmbCategoryID.removeAllItems();
-        this.cmbCategoryID.addItem("");        
-        for (int i = 0; i<listaCategory.size();i ++){
+        this.cmbCategoryID.addItem("");
+        for (int i = 0; i < listaCategory.size(); i++) {
             this.cmbCategoryID.addItem(listaCategory.get(i).getCategoryName());
         }
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -391,7 +395,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         if(valida() == true){   
+        if (valida() == true) {
             String msj;
             Product prod = new Product();
             prod.setProductID(idProduct);
@@ -401,7 +405,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, msj);
             limpia();
             this.btnEliminar.setEnabled(false);
-         } 
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductsMouseClicked
@@ -411,7 +415,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         this.txtProductID.setText(dtm.getValueAt(idFil, 0).toString());
         this.txtProductName.setText(dtm.getValueAt(idFil, 1).toString());
         int idSupplier = Integer.parseInt(dtm.getValueAt(idFil, 2).toString());
-        int idCategory =Integer.parseInt(dtm.getValueAt(idFil, 3).toString());
+        int idCategory = Integer.parseInt(dtm.getValueAt(idFil, 3).toString());
         this.txtQuantityPerUnit.setText(dtm.getValueAt(idFil, 4).toString());
         this.txtUnitPrice.setText(dtm.getValueAt(idFil, 5).toString());
         this.txtUnitsInStock.setText(dtm.getValueAt(idFil, 6).toString());
@@ -419,28 +423,27 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         this.txtReorderLevel.setText(dtm.getValueAt(idFil, 8).toString());
         this.txtReorderLevel.setText(dtm.getValueAt(idFil, 8).toString());
         String descontinuado = dtm.getValueAt(idFil, 9).toString();
-        
-        
+
         if (descontinuado.equalsIgnoreCase("true") || descontinuado.equals("1")) {
             this.rbDescontinuado.setSelected(true);
         } else {
             this.rbActivo.setSelected(true);
         }
-       
-        for(int i = 0; i<listaSupplier.size();i++){
-            if(listaSupplier.get(i).getSupplierID() == idSupplier){
-                this.cmbSupplierID.setSelectedIndex(i+1);
+
+        for (int i = 0; i < listaSupplier.size(); i++) {
+            if (listaSupplier.get(i).getSupplierID() == idSupplier) {
+                this.cmbSupplierID.setSelectedIndex(i + 1);
                 break;
             }
         }
-        
-        for(int i = 0; i<listaCategory.size();i++){
-            if(listaCategory.get(i).getCategoryID() == idCategory){
-                this.cmbCategoryID.setSelectedIndex(i+1);
+
+        for (int i = 0; i < listaCategory.size(); i++) {
+            if (listaCategory.get(i).getCategoryID() == idCategory) {
+                this.cmbCategoryID.setSelectedIndex(i + 1);
                 break;
             }
         }
-        
+
         this.btnEliminar.setEnabled(true);
         this.btnGrabar.setText("Actualizar");
         jTabbedPane1.setSelectedIndex(0);
@@ -455,7 +458,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        if(valida() == true){
+        if (valida() == true) {
             String msj;
             Product prod = new Product();
             Util u = new Util();
@@ -471,14 +474,13 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
             prod.setReorderLevel(Integer.parseInt(this.txtReorderLevel.getText()));
             prod.setDiscontinued(this.rbDescontinuado.isSelected());
 
-            if(this.btnGrabar.getText().equals("Grabar")){
+            if (this.btnGrabar.getText().equals("Grabar")) {
                 this.idProduct = u.idNext("Products", "ProductID");
                 prod.setProductID(idProduct);
                 this.productDao.insertaProduct(prod);
                 msj = "Producto añadido con exito";
 
-            }
-            else{
+            } else {
                 prod.setProductID(idProduct);
                 this.productDao.actualizaProduct(prod);
                 msj = "Producto actualizado con exito";
@@ -494,8 +496,7 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbDescontinuadoActionPerformed
 
-    
-    public void limpia(){
+    public void limpia() {
         this.txtProductID.setText("");
         this.txtProductName.setText("");
         this.cmbSupplierID.setSelectedIndex(0);
@@ -509,38 +510,38 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         this.btnEliminar.setEnabled(false);
         this.btnGrabar.setText("Grabar");
     }
-    public boolean valida(){
+
+    public boolean valida() {
         String cad = "";
-        
-        if(this.txtProductName.getText().isEmpty()){
+
+        if (this.txtProductName.getText().isEmpty()) {
             cad += "\n ingrese el nombre del producto";
         }
-        if(this.cmbSupplierID.getSelectedIndex()==-1){
+        if (this.cmbSupplierID.getSelectedIndex() == -1) {
             cad += "\n ingrese Proovedor";
         }
-        if(this.cmbCategoryID.getSelectedIndex()==-1){
+        if (this.cmbCategoryID.getSelectedIndex() == -1) {
             cad += "\n ingrese categoria";
         }
-        if(this.txtQuantityPerUnit.getText().isEmpty()){
+        if (this.txtQuantityPerUnit.getText().isEmpty()) {
             cad += "\n ingrese la cantidad por unidad";
         }
-        if(this.txtUnitPrice.getText().isEmpty()){
+        if (this.txtUnitPrice.getText().isEmpty()) {
             cad += "\n ingrese el precio unitario";
         }
-        if(this.txtUnitsInStock.getText().isEmpty()){
+        if (this.txtUnitsInStock.getText().isEmpty()) {
             cad += "\n ingrese el stock";
         }
-        if(this.txtUnitsOnOrder.getText().isEmpty()){
+        if (this.txtUnitsOnOrder.getText().isEmpty()) {
             cad += "\n ingrese las unidades pendientes de recibir";
         }
-        if(this.txtReorderLevel.getText().isEmpty()){
+        if (this.txtReorderLevel.getText().isEmpty()) {
             cad += "\n ingrese el limite para reordenar";
         }
-        
-        if (cad.isEmpty()){
+
+        if (cad.isEmpty()) {
             return true;
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, cad);
         }
         return false;
