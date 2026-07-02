@@ -1,18 +1,20 @@
 package UI;
+
 import BEAN.Region;
 import DAO.RegionDAO;
+import UTIL.LimiteCaracteres;
 import UTIL.Util;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-
+import javax.swing.text.AbstractDocument;
 
 public class FrmRegion extends javax.swing.JInternalFrame {
 
     RegionDAO regDAO;
     DefaultTableModel dtm;
     Util u = new Util();
+
     public FrmRegion(int mdiW, int mdiH) {
         regDAO = new RegionDAO();
         initComponents();
@@ -22,22 +24,25 @@ public class FrmRegion extends javax.swing.JInternalFrame {
         sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
-        dtm = (DefaultTableModel)this.tblRegion.getModel();
+        dtm = (DefaultTableModel) this.tblRegion.getModel();
         llenatbl("");
         limpia();
-        
+        ((AbstractDocument) txtDescReg.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(50));
     }
-    private void llenatbl(String cad){
-            Vector<Region> lista;
-            lista = regDAO.listaRegion(cad);
-            dtm.setRowCount(0);
-            for(int i=0;i<lista.size();i++){
-                Vector vec = new Vector();
-                vec.addElement(lista.get(i).getIDregion());
-                vec.addElement(lista.get(i).getRegdesc());
-                dtm.addRow(vec);
-            }
+
+    private void llenatbl(String cad) {
+        Vector<Region> lista;
+        lista = regDAO.listaRegion(cad);
+        dtm.setRowCount(0);
+        for (int i = 0; i < lista.size(); i++) {
+            Vector vec = new Vector();
+            vec.addElement(lista.get(i).getIDregion());
+            vec.addElement(lista.get(i).getRegdesc());
+            dtm.addRow(vec);
+        }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -216,19 +221,18 @@ public class FrmRegion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtBuscarRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarRegActionPerformed
-       
+
     }//GEN-LAST:event_txtBuscarRegActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
-        
+
         Region r = new Region();
         r.setRegdesc(this.txtDescReg.getText());
-        if(this.btnAgregar.getText().equals("Agregar")){
-            
+        if (this.btnAgregar.getText().equals("Agregar")) {
+
             r.setIDregion(Integer.parseInt(this.txtIDRegion.getText()));
             regDAO.insertaRegion(r);
-        }else{
+        } else {
             r.setIDregion(Integer.parseInt(this.txtIDRegion.getText()));
             regDAO.actualizarReg(r);
         }
@@ -240,7 +244,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
     private void tblRegionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegionMouseClicked
         int idx;
         idx = this.tblRegion.getSelectedRow();
-        
+
         this.txtIDRegion.setText(dtm.getValueAt(idx, 0).toString());
         this.txtDescReg.setText(dtm.getValueAt(idx, 1).toString());
         this.btnAgregar.setText("Actualizar");
@@ -248,34 +252,34 @@ public class FrmRegion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblRegionMouseClicked
 
     private void txtBuscarRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarRegKeyReleased
-        if(this.txtBuscarReg.getText().isEmpty()){
-           this.llenatbl("");
-       }else{
-           this.llenatbl(this.txtBuscarReg.getText());
-       }
+        if (this.txtBuscarReg.getText().isEmpty()) {
+            this.llenatbl("");
+        } else {
+            this.llenatbl(this.txtBuscarReg.getText());
+        }
     }//GEN-LAST:event_txtBuscarRegKeyReleased
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        if(this.btnSalir.getText().equals("Eliminar")){
+        if (this.btnSalir.getText().equals("Eliminar")) {
             int respuesta = JOptionPane.showConfirmDialog(this, "¿Desea eliminar la región seleccionada?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-            if(respuesta == JOptionPane.YES_OPTION){
+            if (respuesta == JOptionPane.YES_OPTION) {
                 int idRegion = Integer.parseInt(this.txtIDRegion.getText());
                 int resultado = regDAO.eliminaRegion(idRegion);
-                if(resultado == 0){
+                if (resultado == 0) {
                     limpia();
                     JOptionPane.showMessageDialog(this, "Región eliminada correctamente");
-                }else if(resultado == 1){
+                } else if (resultado == 1) {
                     JOptionPane.showMessageDialog(this, "No se puede eliminar la región porque tiene territorios asociados");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar la región");
                 }
             }
-        }else{
+        } else {
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnSalirActionPerformed
-    
-    private void limpia(){
+
+    private void limpia() {
         int idReg = u.idNext("Region", "RegionID");
         this.txtIDRegion.setText(String.valueOf(idReg));
         this.txtDescReg.setText("");
@@ -286,7 +290,7 @@ public class FrmRegion extends javax.swing.JInternalFrame {
     /**
      * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

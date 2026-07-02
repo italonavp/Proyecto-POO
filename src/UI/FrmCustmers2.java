@@ -7,9 +7,11 @@ package UI;
 
 import BEAN.Customer;
 import DAO.CustomerDAO;
+import UTIL.LimiteCaracteres;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -36,6 +38,43 @@ public class FrmCustmers2 extends javax.swing.JInternalFrame {
         fillTableCustomers("");
         btnElimina.setEnabled(false);
         txtId.setEnabled(false);
+
+        ((AbstractDocument) txtId.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(5));
+
+        ((AbstractDocument) txtCompName.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(40));
+
+        ((AbstractDocument) txtContcName.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(30));
+
+        ((AbstractDocument) txtCntcTitle.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(30));
+
+        ((AbstractDocument) txtAddress.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(60));
+
+        ((AbstractDocument) txtCity.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtRegion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtPostalCode.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(10));
+
+        ((AbstractDocument) txtCountry.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtPhone.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
+
+        ((AbstractDocument) txtFax.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
+
+        ((AbstractDocument) txtEmail.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(51));
+
     }
 
     private void fillTableCustomers(String filtro) {

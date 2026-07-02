@@ -2,10 +2,12 @@ package UI;
 
 import BEAN.Territories;
 import DAO.TerritoriesDAO;
+import UTIL.LimiteCaracteres;
 import UTIL.Util;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 
 public class FrmTerritories extends javax.swing.JInternalFrame {
 
@@ -23,6 +25,12 @@ public class FrmTerritories extends javax.swing.JInternalFrame {
         dtm = (DefaultTableModel) this.tblTerritories.getModel();
         llenatbl("");
         limpia();
+
+        ((AbstractDocument) txtID.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+
+        ((AbstractDocument) txtDescripcion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(50));
     }
 
     private void llenatbl(String cad) {

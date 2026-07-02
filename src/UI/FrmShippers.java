@@ -7,10 +7,12 @@ package UI;
 
 import BEAN.Shippers;
 import DAO.ShippersDAO;
+import UTIL.LimiteCaracteres;
 import UTIL.Util;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -21,6 +23,7 @@ public class FrmShippers extends javax.swing.JInternalFrame {
     ShippersDAO shipDAO;
     DefaultTableModel dtm;
     Util u = new Util();
+
     public FrmShippers(int mdiW, int mdiH) {
         shipDAO = new ShippersDAO();
         initComponents();
@@ -29,21 +32,27 @@ public class FrmShippers extends javax.swing.JInternalFrame {
         sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
-        dtm = (DefaultTableModel)this.tblShip.getModel();
+        dtm = (DefaultTableModel) this.tblShip.getModel();
         llenatbl("");
         limpia();
+        ((AbstractDocument) txtCompany.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(40));
+
+        ((AbstractDocument) txtTel.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
     }
-     private void llenatbl(String cad){
-            Vector<Shippers> lista;
-            lista = shipDAO.listaShippers(cad);
-            dtm.setRowCount(0);
-            for(int i=0;i<lista.size();i++){
-                Vector vec = new Vector();
-                vec.addElement(lista.get(i).getIdShippers());
-                vec.addElement(lista.get(i).getCompanyName());
-                vec.addElement(lista.get(i).getPhone());
-                dtm.addRow(vec);
-            }
+
+    private void llenatbl(String cad) {
+        Vector<Shippers> lista;
+        lista = shipDAO.listaShippers(cad);
+        dtm.setRowCount(0);
+        for (int i = 0; i < lista.size(); i++) {
+            Vector vec = new Vector();
+            vec.addElement(lista.get(i).getIdShippers());
+            vec.addElement(lista.get(i).getCompanyName());
+            vec.addElement(lista.get(i).getPhone());
+            dtm.addRow(vec);
+        }
     }
 
     /**
@@ -241,29 +250,29 @@ public class FrmShippers extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        if(this.txtBuscar.getText().isEmpty()){
-           this.llenatbl("");
-       }else{
-           this.llenatbl(this.txtBuscar.getText());
-       }
+        if (this.txtBuscar.getText().isEmpty()) {
+            this.llenatbl("");
+        } else {
+            this.llenatbl(this.txtBuscar.getText());
+        }
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalActionPerformed
-        if(this.btnSal.getText().equals("Eliminar")){
+        if (this.btnSal.getText().equals("Eliminar")) {
             int respuesta = JOptionPane.showConfirmDialog(this, "¿Desea eliminar el shipper seleccionado?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
-            if(respuesta == JOptionPane.YES_OPTION){
+            if (respuesta == JOptionPane.YES_OPTION) {
                 int idShippers = Integer.parseInt(this.txtID.getText());
                 int resultado = shipDAO.eliminaShippers(idShippers);
-                if(resultado == 0){
+                if (resultado == 0) {
                     limpia();
                     JOptionPane.showMessageDialog(this, "Shipper eliminado correctamente");
-                }else if(resultado == 1){
+                } else if (resultado == 1) {
                     JOptionPane.showMessageDialog(this, "No se puede eliminar el shipper porque tiene órdenes asociadas");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, "No se pudo eliminar el shipper");
                 }
             }
-        }else{
+        } else {
             this.setVisible(false);
         }
     }//GEN-LAST:event_btnSalActionPerformed
@@ -272,11 +281,11 @@ public class FrmShippers extends javax.swing.JInternalFrame {
         Shippers s = new Shippers();
         s.setCompanyName(this.txtCompany.getText());
         s.setPhone(this.txtTel.getText());
-        if(this.btnAgre.getText().equals("Agregar")){
-            
+        if (this.btnAgre.getText().equals("Agregar")) {
+
             s.setIdShippers(Integer.parseInt(this.txtID.getText()));
             shipDAO.insertaShippers(s);
-        }else{
+        } else {
             s.setIdShippers(Integer.parseInt(this.txtID.getText()));
             shipDAO.actualiza(s);
         }
@@ -288,14 +297,14 @@ public class FrmShippers extends javax.swing.JInternalFrame {
     private void tblShipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblShipMouseClicked
         int idx;
         idx = this.tblShip.getSelectedRow();
-        
+
         this.txtID.setText(dtm.getValueAt(idx, 0).toString());
         this.txtCompany.setText(dtm.getValueAt(idx, 1).toString());
         this.txtTel.setText(dtm.getValueAt(idx, 2).toString());
         this.btnAgre.setText("Actualizar");
         this.btnSal.setText("Eliminar");
     }//GEN-LAST:event_tblShipMouseClicked
-    private void limpia(){
+    private void limpia() {
         int idShip = u.idNext("Shippers", "ShipperID");
         this.txtID.setText(String.valueOf(idShip));
         this.txtCompany.setText("");
@@ -307,7 +316,7 @@ public class FrmShippers extends javax.swing.JInternalFrame {
     /**
      * @param args the command line arguments
      */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgre;

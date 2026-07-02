@@ -4,42 +4,78 @@
  * and open the template in the editor.
  */
 package UI;
-import BEAN.Supplier; 
-import DAO.SupplierDAO; 
+
+import BEAN.Supplier;
+import DAO.SupplierDAO;
+import UTIL.LimiteCaracteres;
 import UTIL.Util;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+
 public class FrmSupplier extends javax.swing.JInternalFrame {
+
     DefaultTableModel dtm;
     SupplierDAO supDao;
     Util util;
+
     public FrmSupplier(int mdiW, int mdiH) {
         initComponents();
         int slx, sly, wd = mdiW, hd = mdiH;
-        slx = (mdiW/2) - (this.getWidth()/2);
-        sly = (mdiH/2) -(this.getHeight()/2);
+        slx = (mdiW / 2) - (this.getWidth() / 2);
+        sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
         this.jTabbedPane1.setSelectedIndex(0);
-        
+
         dtm = (DefaultTableModel) this.tblSuppliers.getModel();
         supDao = new SupplierDAO();
         util = new Util();
-        
-        
+
         listar("");
         regularBotones(false);
+
+        ((AbstractDocument) txtCompanyName.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(40));
+
+        ((AbstractDocument) txtContactName.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(30));
+
+        ((AbstractDocument) txtContactTitle.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(30));
+
+        ((AbstractDocument) txtAddress.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(60));
+
+        ((AbstractDocument) txtCity.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtRegion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtPostalCode.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(10));
+
+        ((AbstractDocument) txtCountry.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtPhone.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
+
+        ((AbstractDocument) txtFax.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
     }
-    private void listar(String texto){
-        dtm.setRowCount(0); 
+
+    private void listar(String texto) {
+        dtm.setRowCount(0);
         try {
-            
-            Vector<Supplier> lista = supDao.listaSuppliers(texto); 
+
+            Vector<Supplier> lista = supDao.listaSuppliers(texto);
             for (Supplier s : lista) {
-                
+
                 Vector fila = new Vector();
-                fila.addElement(s.getSupplierID()); 
+                fila.addElement(s.getSupplierID());
                 fila.addElement(s.getCompanyName());
                 fila.addElement(s.getContactName());
                 fila.addElement(s.getContactTitle());
@@ -57,6 +93,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
             System.out.println("Error al listar: " + e.getMessage());
         }
     }
+
     private void limpiaFormulario() {
         this.txtSupplierID.setText("");
         this.txtCompanyName.setText("");
@@ -72,10 +109,11 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
         this.txtHomePage.setText("");
         this.txtSupplierID.setEditable(false);
         regularBotones(false);
-        
+
     }
+
     private void regularBotones(boolean tieneSeleccion) {
-    
+
         this.btnActualizar.setEnabled(tieneSeleccion);
         this.btnEliminar.setEnabled(tieneSeleccion);
         this.btnInsertar.setEnabled(!tieneSeleccion);
@@ -308,7 +346,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void scrSuppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scrSuppliersMouseClicked
-        
+
     }//GEN-LAST:event_scrSuppliersMouseClicked
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
@@ -316,7 +354,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe registrar obligatoriamente la Compañía y el Contacto");
         } else {
             Supplier sup = new Supplier();
-            
+
             sup.setCompanyName(this.txtCompanyName.getText().trim());
             sup.setContactName(this.txtContactName.getText().trim());
             sup.setContactTitle(this.txtContactTitle.getText().trim());
@@ -329,15 +367,13 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
             sup.setFax(this.txtFax.getText().trim());
             sup.setHomePage(this.txtHomePage.getText().trim());
 
-            
-            this.supDao.insertaSupplier(sup); 
-            
+            this.supDao.insertaSupplier(sup);
+
             JOptionPane.showMessageDialog(this, "Proveedor registrado satisfactoriamente");
-            
-            
+
             this.limpiaFormulario();
             this.listar("");
-            
+
         }
     }//GEN-LAST:event_btnInsertarActionPerformed
 
@@ -372,7 +408,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(this, "Proveedor actualizado satisfactoriamente");
         this.limpiaFormulario();
         this.listar("");
-        
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -385,13 +421,13 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
         int resp = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar este Proveedor?", "Alerta", JOptionPane.YES_NO_OPTION);
         if (resp == JOptionPane.YES_OPTION) {
             int id = Integer.parseInt(this.txtSupplierID.getText());
-            int validacion = this.supDao.eliminaSupplier(id); 
-            
+            int validacion = this.supDao.eliminaSupplier(id);
+
             if (validacion == 0) {
                 JOptionPane.showMessageDialog(this, "Proveedor eliminado satisfactoriamente.");
                 this.limpiaFormulario();
                 this.listar("");
-                
+
             } else if (validacion == 1) {
                 JOptionPane.showMessageDialog(this, "No se puede eliminar: Este proveedor tiene productos asociados en el inventario.", "Restricción de Integridad", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -402,7 +438,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         this.limpiaFormulario();
-        
+
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void tblSuppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSuppliersMouseClicked
@@ -410,21 +446,21 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
         if (fila >= 0) {
             this.txtSupplierID.setText(tblSuppliers.getValueAt(fila, 0).toString());
             this.txtCompanyName.setText(tblSuppliers.getValueAt(fila, 1).toString());
-            
+
             this.txtContactName.setText(tblSuppliers.getValueAt(fila, 2) != null ? tblSuppliers.getValueAt(fila, 2).toString() : "");
             this.txtContactTitle.setText(tblSuppliers.getValueAt(fila, 3) != null ? tblSuppliers.getValueAt(fila, 3).toString() : "");
             this.txtAddress.setText(tblSuppliers.getValueAt(fila, 4) != null ? tblSuppliers.getValueAt(fila, 4).toString() : "");
             this.txtCity.setText(tblSuppliers.getValueAt(fila, 5) != null ? tblSuppliers.getValueAt(fila, 5).toString() : "");
-            
+
             this.txtRegion.setText(tblSuppliers.getValueAt(fila, 6) != null ? tblSuppliers.getValueAt(fila, 6).toString() : "");
             this.txtPostalCode.setText(tblSuppliers.getValueAt(fila, 7) != null ? tblSuppliers.getValueAt(fila, 7).toString() : "");
             this.txtCountry.setText(tblSuppliers.getValueAt(fila, 8) != null ? tblSuppliers.getValueAt(fila, 8).toString() : "");
             this.txtPhone.setText(tblSuppliers.getValueAt(fila, 9) != null ? tblSuppliers.getValueAt(fila, 9).toString() : "");
             this.txtFax.setText(tblSuppliers.getValueAt(fila, 10) != null ? tblSuppliers.getValueAt(fila, 10).toString() : "");
             this.txtHomePage.setText(tblSuppliers.getValueAt(fila, 11) != null ? tblSuppliers.getValueAt(fila, 11).toString() : "");
-            
+
             this.txtSupplierID.setEditable(false);
-            
+
             regularBotones(true);
             jTabbedPane1.setSelectedIndex(0);
         }
@@ -433,7 +469,7 @@ public class FrmSupplier extends javax.swing.JInternalFrame {
     private void txtCountryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCountryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCountryActionPerformed
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

@@ -1,9 +1,11 @@
 package UI;
 
 import BEAN.*;
+import UTIL.LimiteCaracteres;
 import UTIL.dbBean;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.text.AbstractDocument;
 
 public class frmEmployee extends javax.swing.JInternalFrame {
 
@@ -36,6 +38,33 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         llenaComboJefes();
         llenaComboTitulos(); // <-- LLAMADA AL NUEVO MÉTODO
         llenaTblEmpleados("");
+
+        ((AbstractDocument) txtApellidos.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+
+        ((AbstractDocument) txtNombres.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(10));
+
+        ((AbstractDocument) txtDireccion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(60));
+
+        ((AbstractDocument) txtCiudad.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtRegion.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtCodigo.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(10));
+
+        ((AbstractDocument) txtPais.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtTelefono.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(24));
+
+        ((AbstractDocument) txtExtension.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(4));
 
         cmbTituloEmp.setEditable(true);
     }
@@ -540,11 +569,11 @@ public class frmEmployee extends javax.swing.JInternalFrame {
         if (!valida()) {
             return; // Si falta algo, detiene la grabación
         }
-        
+
         Employee emp = new Employee();
         emp.setLastName(this.txtApellidos.getText().trim());
         emp.setFirstName(this.txtNombres.getText().trim());
-        
+
         emp.setTitle(cmbTituloEmp.getEditor().getItem().toString());
 
         if (this.cmbCortesia.getSelectedItem() != null) {

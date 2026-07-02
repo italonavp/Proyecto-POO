@@ -34,15 +34,21 @@ public class FrmOrders extends javax.swing.JInternalFrame {
         dtmDetalles = (DefaultTableModel) this.tblOrderDetailss.getModel();
         dtmHistorial = (DefaultTableModel) this.tblOrderDetailss.getModel();
 
-        ((AbstractDocument) txtCustomerID.getDocument())
-                .setDocumentFilter(new LimiteCaracteres(5));
         ((AbstractDocument) txtShipAdress.getDocument())
                 .setDocumentFilter(new LimiteCaracteres(60));
+
+        ((AbstractDocument) txtShipCity.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
         ((AbstractDocument) txtShipRegion.getDocument())
-                .setDocumentFilter(new LimiteCaracteres(155));
+                .setDocumentFilter(new LimiteCaracteres(15));
+
+        ((AbstractDocument) txtShipAdress1.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(10));
+
         ((AbstractDocument) txtShipCountry.getDocument())
                 .setDocumentFilter(new LimiteCaracteres(15));
-        
+
         cmbEmployee.setSelectedItem(empleado);
         cmbEmployee.setEnabled(false);
     }

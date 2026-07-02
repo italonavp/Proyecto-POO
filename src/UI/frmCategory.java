@@ -1,11 +1,16 @@
 package UI;
+
+import UTIL.LimiteCaracteres;
+import javax.swing.text.AbstractDocument;
+
 public class frmCategory extends javax.swing.JInternalFrame {
+
     DAO.CategoryDAO catDao;
     javax.swing.table.DefaultTableModel dtm;
     int idCat = 0;
-    byte[] fotoBinaria = null; 
-    
-    java.util.Vector<BEAN.Category> listaCatGlobal; 
+    byte[] fotoBinaria = null;
+
+    java.util.Vector<BEAN.Category> listaCatGlobal;
 
     public frmCategory(int mdiW, int mdiH) { // Ajusta este nombre si tu clase se llama distinto
         initComponents();
@@ -15,16 +20,20 @@ public class frmCategory extends javax.swing.JInternalFrame {
         sly = (mdiH / 2) - (this.getHeight() / 2);
         this.setLocation(slx, sly);
         this.setResizable(false);
-        
+
         catDao = new DAO.CategoryDAO();
         dtm = (javax.swing.table.DefaultTableModel) this.tblCategorias.getModel();
-        
+
         // Protecciones de interfaz
-        this.txtCategoriaId.setEnabled(false); 
+        this.txtCategoriaId.setEnabled(false);
         this.btnEliminar.setEnabled(false); // Se enciende solo al elegir de la tabla
-        
+
+        ((AbstractDocument) txtNombre.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(15));
+
         llenaTblCategorias("");
     }
+
     private void llenaTblCategorias(String cad) {
         listaCatGlobal = catDao.listaCategories(cad); // Asegúrate de que el método en tu DAO se llame así
         dtm.setRowCount(0);
@@ -36,15 +45,16 @@ public class frmCategory extends javax.swing.JInternalFrame {
             dtm.addRow(vec);
         }
     }
+
     private boolean valida() {
         // Valida campos de texto
-        if (this.txtNombre.getText().trim().isEmpty() || 
-            this.txtDescripcion.getText().trim().isEmpty()) {
-            
+        if (this.txtNombre.getText().trim().isEmpty()
+                || this.txtDescripcion.getText().trim().isEmpty()) {
+
             javax.swing.JOptionPane.showMessageDialog(this, "Por favor, complete el Nombre y la Descripción de la categoría.");
             return false;
         }
-        
+
         // Valida Foto
         if (this.fotoBinaria == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Es obligatorio subir una imagen para la categoría.");
@@ -57,14 +67,17 @@ public class frmCategory extends javax.swing.JInternalFrame {
         this.txtCategoriaId.setText("");
         this.txtNombre.setText("");
         this.txtDescripcion.setText("");
-        
+
         this.fotoBinaria = null;
-        if (this.lblImagen != null) this.lblImagen.setIcon(null);
-        
+        if (this.lblImagen != null) {
+            this.lblImagen.setIcon(null);
+        }
+
         this.btnGrabar.setText("Grabar");
         this.btnEliminar.setEnabled(false);
         this.idCat = 0;
     }
+
     private void pintarImagenEnLabel(byte[] imgBytes) {
         if (imgBytes != null && imgBytes.length > 0) {
             try {
@@ -80,8 +93,8 @@ public class frmCategory extends javax.swing.JInternalFrame {
                     java.awt.Image imagenEscalada = imagenOriginal.getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), java.awt.Image.SCALE_SMOOTH);
                     lblImagen.setIcon(new javax.swing.ImageIcon(imagenEscalada));
                 }
-                lblImagen.repaint(); 
-                
+                lblImagen.repaint();
+
             } catch (Exception e) {
                 lblImagen.setIcon(null);
                 System.out.println("Error al renderizar foto: " + e.getMessage());
@@ -90,7 +103,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
             lblImagen.setIcon(null);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -271,24 +284,26 @@ public class frmCategory extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        if (!valida()) return; 
-        
+        if (!valida()) {
+            return;
+        }
+
         BEAN.Category cat = new BEAN.Category();
         cat.setCategoryName(this.txtNombre.getText().trim());
         cat.setDescription(this.txtDescripcion.getText().trim());
-        cat.setPicture(fotoBinaria); 
+        cat.setPicture(fotoBinaria);
 
         // Decisión de Inserción o Actualización
         if (this.btnGrabar.getText().equals("Grabar")) {
-            
+
             // Escudo Antiduplicados (Asumiendo que hiciste el método en tu DAO)
             if (catDao.existeCategory(cat.getCategoryName())) {
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Acción denegada: Ya existe una categoría con el nombre '" + cat.getCategoryName() + "'.", 
-                    "Registro Duplicado", javax.swing.JOptionPane.WARNING_MESSAGE);
-                return; 
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Acción denegada: Ya existe una categoría con el nombre '" + cat.getCategoryName() + "'.",
+                        "Registro Duplicado", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
             }
-            
+
             catDao.insertaCategory(cat);
             javax.swing.JOptionPane.showMessageDialog(this, "Categoría registrada con éxito.");
         } else {
@@ -296,29 +311,31 @@ public class frmCategory extends javax.swing.JInternalFrame {
             catDao.actualizaCategory(cat);
             javax.swing.JOptionPane.showMessageDialog(this, "Categoría actualizada con éxito.");
         }
-        
+
         limpia();
         llenaTblCategorias("");
     }//GEN-LAST:event_btnGrabarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(idCat == 0) return;
+        if (idCat == 0) {
+            return;
+        }
 
         int opcion = javax.swing.JOptionPane.showConfirmDialog(this, "¿Está seguro de eliminar esta categoría?", "Confirmar", javax.swing.JOptionPane.YES_NO_OPTION);
-        if(opcion == javax.swing.JOptionPane.YES_OPTION){
+        if (opcion == javax.swing.JOptionPane.YES_OPTION) {
             int resultado = catDao.eliminaCategory(idCat);
-            
-            switch(resultado) {
+
+            switch (resultado) {
                 case 0:
                     javax.swing.JOptionPane.showMessageDialog(this, "Categoría eliminada correctamente.");
                     limpia();
                     llenaTblCategorias("");
                     break;
-                case 1: 
-                    javax.swing.JOptionPane.showMessageDialog(this, "Acción denegada: La categoría tiene PRODUCTOS asociados."); 
+                case 1:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Acción denegada: La categoría tiene PRODUCTOS asociados.");
                     break;
-                case -1: 
-                    javax.swing.JOptionPane.showMessageDialog(this, "Error crítico de base de datos."); 
+                case -1:
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error crítico de base de datos.");
                     break;
             }
         }        // TODO add your handling code here:
@@ -327,7 +344,7 @@ public class frmCategory extends javax.swing.JInternalFrame {
     private void btnBuscarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarImagenActionPerformed
         javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         int seleccion = fileChooser.showOpenDialog(this);
-        
+
         if (seleccion == javax.swing.JFileChooser.APPROVE_OPTION) {
             java.io.File archivo = fileChooser.getSelectedFile();
             try {
@@ -337,10 +354,10 @@ public class frmCategory extends javax.swing.JInternalFrame {
                 for (int readNum; (readNum = fis.read(buf)) != -1;) {
                     bos.write(buf, 0, readNum);
                 }
-                
+
                 fotoBinaria = bos.toByteArray();
                 pintarImagenEnLabel(fotoBinaria);
-                
+
             } catch (Exception e) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Error al procesar la imagen.");
             }
@@ -353,10 +370,12 @@ public class frmCategory extends javax.swing.JInternalFrame {
 
     private void tblCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoriasMouseClicked
         int idx = this.tblCategorias.getSelectedRow();
-        if (idx == -1) return;
-        
+        if (idx == -1) {
+            return;
+        }
+
         BEAN.Category cat = listaCatGlobal.get(idx);
-        
+
         idCat = cat.getCategoryID();
         this.txtCategoriaId.setText(String.valueOf(idCat));
         this.txtNombre.setText(cat.getCategoryName());

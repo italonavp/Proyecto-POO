@@ -33,8 +33,9 @@ public class FrmProducts1 extends javax.swing.JInternalFrame {
         llenaProducts("");
         ((AbstractDocument) txtProductName.getDocument())
                 .setDocumentFilter(new LimiteCaracteres(40));
+
         ((AbstractDocument) txtQuantityPerUnit.getDocument())
-                .setDocumentFilter(new LimiteCaracteres(40));
+                .setDocumentFilter(new LimiteCaracteres(20));
     }
 
     public void llenaProducts(String cad) {

@@ -8,14 +8,14 @@ import java.util.Map;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.text.AbstractDocument;
 
 public class FrmUsers extends javax.swing.JInternalFrame {
-    
+
     UsersDAO userDao;
     DefaultTableModel dtm;
     int userId;
-    
+
     Vector<Employee> listaEmployee;
 
     public FrmUsers(int mdiW, int mdiH) {
@@ -43,9 +43,17 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                 llenaUsers(txtBuscar.getText());
             }
         });
+
+        ((AbstractDocument) txtUserIdentification.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+
+        ((AbstractDocument) txtPassword.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(20));
+
+        ((AbstractDocument) txtEmail.getDocument())
+                .setDocumentFilter(new LimiteCaracteres(50));
     }
 
-   
     public void llenaUsers(String cad) {
         Vector<Users> listUsers = userDao.listaUsers(cad);
         dtm.setRowCount(0);
@@ -66,7 +74,6 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         }
     }
 
-    
     public void cargaEmployee() {
         cmbEmployeeID.removeAllItems();
         dbBean con = new dbBean();
@@ -81,7 +88,10 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try { con.close(); } catch (Exception e) {}
+            try {
+                con.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -110,6 +120,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         cmbEmployeeID = new javax.swing.JComboBox();
         cmbStatus = new javax.swing.JComboBox<>();
         btnEliminar = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -172,6 +184,14 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel14.setText("Email");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -186,7 +206,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                     .addComponent(jLabel11)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(btnGrabar)))
+                        .addComponent(btnGrabar))
+                    .addComponent(jLabel14))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,7 +216,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                             .addComponent(txtUserID, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                             .addComponent(txtUserIdentification)
                             .addComponent(txtPassword)
-                            .addComponent(cmbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(cmbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEmail))
                         .addGap(115, 115, 115))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
@@ -227,12 +249,16 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel14)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEliminar)
                     .addComponent(btnLimpiar)
                     .addComponent(btnGrabar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Mantenimiento", jPanel2);
@@ -320,7 +346,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
 
         pack();
@@ -378,7 +404,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrabarActionPerformed
-        if(valida()){
+        if (valida()) {
             Users user = new Users();
             Util u = new Util();
 
@@ -388,8 +414,9 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             user.setUserIdentification(this.txtUserIdentification.getText());
             user.setPassword(this.txtPassword.getText());
             user.setStatus(this.cmbStatus.getSelectedItem().equals("Activo") ? 1 : 0);
-
-            if(this.btnGrabar.getText().equals("Grabar")){
+            user.setEmail(txtEmail.getText());
+            
+            if (this.btnGrabar.getText().equals("Grabar")) {
                 this.userId = u.idNext("Users", "UserId");
                 user.setUserID(userId);
                 this.userDao.insertaUser(user);
@@ -408,11 +435,14 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserIdentificationActionPerformed
 
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-    public void limpia(){
+    public void limpia() {
 
         this.txtUserID.setText("");
         this.txtUserIdentification.setText("");
@@ -424,39 +454,39 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         this.userId = 0;
     }
 
-
-    public boolean valida(){
+    public boolean valida() {
 
         String cad = "";
         boolean bl = false;
 
-        if(this.txtUserIdentification.getText().isEmpty()){
+        if (this.txtUserIdentification.getText().isEmpty()) {
             cad += "\n Ingrese el usuario";
         }
 
-        if(this.txtPassword.getText().isEmpty()){
+        if (this.txtPassword.getText().isEmpty()) {
             cad += "\n Ingrese la contraseña";
         }
 
-        if(this.cmbEmployeeID.getSelectedIndex() == -1){
+        if (this.cmbEmployeeID.getSelectedIndex() == -1) {
             cad += "\n Seleccione un empleado";
         }
 
-        if(this.cmbStatus.getSelectedIndex() == -1){
+        if (this.cmbStatus.getSelectedIndex() == -1) {
             cad += "\n Seleccione un estado";
         }
 
-        if(cad.isEmpty()){
+        if (cad.isEmpty()) {
             return true;
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, cad);
         }
 
         return bl;
-    
+
     }
+
     class ItemCombo {
+
         private int id;
         private String nombre;
 
@@ -465,9 +495,14 @@ public class FrmUsers extends javax.swing.JInternalFrame {
             this.nombre = nombre;
         }
 
-        public int getId() { return id; }
+        public int getId() {
+            return id;
+        }
+
         @Override
-        public String toString() { return nombre; }
+        public String toString() {
+            return nombre;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -481,6 +516,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
@@ -490,6 +526,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblUsers;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserID;
     private javax.swing.JTextField txtUserIdentification;
