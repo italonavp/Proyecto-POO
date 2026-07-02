@@ -70,6 +70,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
 
             String estadoTexto = (u.getStatus() == 1) ? "Activo" : "Inactivo";
             vec.addElement(estadoTexto);
+            vec.addElement(u.getEmail());   
             dtm.addRow(vec);
         }
     }
@@ -270,7 +271,7 @@ public class FrmUsers extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "UserId", "EmployeeId", "userIdentification", "password", "status"
+                "UserId", "EmployeeId", "userIdentification", "password", "status", "Email"
             }
         ));
         tblUsers.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -365,7 +366,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         this.txtPassword.setText(passDesencriptada != null ? passDesencriptada : passEncriptada);
 
         this.cmbStatus.setSelectedItem(dtm.getValueAt(idFil, 4).toString());
-
+        this.txtEmail.setText(dtm.getValueAt(idFil, 5).toString());
+        
         int idEmpBD = Integer.parseInt(dtm.getValueAt(idFil, 1).toString());
 
         for (int i = 0; i < cmbEmployeeID.getItemCount(); i++) {
@@ -379,6 +381,8 @@ public class FrmUsers extends javax.swing.JInternalFrame {
         this.btnEliminar.setEnabled(true);
         this.btnGrabar.setText("Actualizar");
         this.jTabbedPane1.setSelectedIndex(0);
+        
+        jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_tblUsersMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
