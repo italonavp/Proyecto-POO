@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version='1.0' encoding='UTF-8'?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bd1eaa80-0a99-4d9d-9049-7dd923b61ebd">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
 	<parameter name="paraRegID" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		<defaultValueExpression />
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT
+		SELECT
     T."TerritoryID" AS Territories_TerritoryID,
     T."TerritoryDescription" AS Territories_TerritoryDescription,
     R."RegionDescription" AS Region_Description
@@ -17,70 +17,95 @@ INNER JOIN
     "dbo"."Region" R
     ON T."RegionID" = R."RegionID"
 WHERE
-    T."RegionID" = 4;]]>
+    T."RegionID" = 4;
 	</queryString>
-	<field name="Territories_TerritoryID" class="java.lang.String"/>
-	<field name="Territories_TerritoryDescription" class="java.lang.String"/>
-	<field name="Region_Description" class="java.lang.String"/>
+	<field name="Territories_TerritoryID" class="java.lang.String" />
+	<field name="Territories_TerritoryDescription" class="java.lang.String" />
+	<field name="Region_Description" class="java.lang.String" />
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="125" y="19" width="345" height="30" uuid="17711aa9-9f15-49ac-a94c-2c3973ab036d"/>
-				<textElement>
-					<font size="18" isBold="true"/>
+				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="d1df9391-d5f5-47c4-b981-63c3608fdcc4" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" />
 				</textElement>
-				<text><![CDATA[Reporte de Territories según la Region]]></text>
+				<text>Reporte de Territories segÃºn la Region</text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="555" height="1" uuid="8a375fa2-2efa-4cec-83d1-d505975a9c10" />
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#003366" />
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</pageHeader>
 	<columnHeader>
 		<band height="27" splitType="Stretch">
 			<staticText>
-				<reportElement x="34" y="2" width="100" height="20" uuid="e356779e-441c-4d25-8318-e41d47dea7f2"/>
-				<text><![CDATA[ID]]></text>
+				<reportElement x="34" y="2" width="100" height="20" uuid="e356779e-441c-4d25-8318-e41d47dea7f2" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>ID</text>
 			</staticText>
 			<staticText>
-				<reportElement x="207" y="2" width="100" height="20" uuid="c6f050ca-00ec-412e-a47e-3b81431944f7"/>
-				<text><![CDATA[Territorio]]></text>
+				<reportElement x="207" y="2" width="100" height="20" uuid="c6f050ca-00ec-412e-a47e-3b81431944f7" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Territorio</text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="2" width="100" height="20" uuid="8a1042f7-86b9-42aa-872d-6affbbe23995"/>
-				<text><![CDATA[Region]]></text>
+				<reportElement x="390" y="2" width="100" height="20" uuid="8a1042f7-86b9-42aa-872d-6affbbe23995" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>Region</text>
 			</staticText>
 			<line>
-				<reportElement x="34" y="22" width="466" height="1" uuid="08875eec-b5d8-4e15-8d82-2cf3218da356"/>
+				<reportElement x="34" y="22" width="466" height="1" uuid="08875eec-b5d8-4e15-8d82-2cf3218da356" />
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="34" y="0" width="100" height="20" uuid="e91537cc-9b1c-4647-9f07-ec8e7de598ae"/>
-				<textFieldExpression><![CDATA[$F{Territories_TerritoryID}]]></textFieldExpression>
+				<reportElement x="34" y="0" width="100" height="20" uuid="e91537cc-9b1c-4647-9f07-ec8e7de598ae" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Territories_TerritoryID}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="207" y="0" width="100" height="20" uuid="eaad5d0b-183a-4c30-9769-de7bffdb5d1f"/>
-				<textFieldExpression><![CDATA[$F{Territories_TerritoryDescription}]]></textFieldExpression>
+				<reportElement x="207" y="0" width="100" height="20" uuid="eaad5d0b-183a-4c30-9769-de7bffdb5d1f" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Territories_TerritoryDescription}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="390" y="0" width="100" height="20" uuid="93cf235a-9a34-41b8-85a7-a9601df37006"/>
-				<textFieldExpression><![CDATA[$F{Territories_RegionID}]]></textFieldExpression>
+				<reportElement x="390" y="0" width="100" height="20" uuid="93cf235a-9a34-41b8-85a7-a9601df37006" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Region_Description}</textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch" />
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch" />
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch" />
 	</summary>
 </jasperReport>
+

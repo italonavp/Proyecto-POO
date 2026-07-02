@@ -1,5 +1,8 @@
 package UI;
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 
 public class frmRepCatParam extends javax.swing.JInternalFrame {
@@ -99,14 +102,14 @@ public class frmRepCatParam extends javax.swing.JInternalFrame {
                 }
             }
             // 3. Convertimos a InputStream
-            java.io.InputStream isImagen = null;
+            Image imagen = null;
             if (fotoLimpia != null && fotoLimpia.length > 0) {
-                isImagen = new java.io.ByteArrayInputStream(fotoLimpia);
+                imagen = ImageIO.read(new ByteArrayInputStream(fotoLimpia));
             }
             // 4. Llenamos los parámetros con HashMap (¡Como vimos en tu dbBean!)
             java.util.HashMap parametros = new java.util.HashMap();
             parametros.put("param_id_categoria", idBusqueda);
-            parametros.put("IMAGEN", isImagen);
+            parametros.put("IMAGEN", imagen);
             // 5. Lanzamos el reporte
             String tipoRep = "Category";
             String tipo = "Param";

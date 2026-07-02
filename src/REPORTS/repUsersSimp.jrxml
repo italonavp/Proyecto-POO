@@ -1,106 +1,142 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="416e92d1-fdb4-4b4f-a84b-fca0c6f9ab7e">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
 	<queryString language="SQL">
-		<![CDATA[SELECT
+		SELECT
      Users."UserId" AS Users_UserId,
      Users."EmployeeId" AS Users_EmployeeId,
      Users."userIdentification" AS Users_userIdentification,
      Users."password" AS Users_password,
      Users."status" AS Users_status
 FROM
-     "dbo"."Users" Users]]>
+     "dbo"."Users" Users
 	</queryString>
-	<field name="Users_UserId" class="java.lang.Integer"/>
-	<field name="Users_EmployeeId" class="java.lang.Integer"/>
-	<field name="Users_userIdentification" class="java.lang.String"/>
-	<field name="Users_password" class="java.lang.String"/>
-	<field name="Users_status" class="java.lang.Integer"/>
+	<field name="Users_UserId" class="java.lang.Integer" />
+	<field name="Users_EmployeeId" class="java.lang.Integer" />
+	<field name="Users_userIdentification" class="java.lang.String" />
+	<field name="Users_password" class="java.lang.String" />
+	<field name="Users_status" class="java.lang.Integer" />
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</background>
 	<title>
-		<band height="36" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="187" y="12" width="132" height="20" uuid="591136cc-3593-4008-b2e7-d9a321f6d361"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="15"/>
+				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="31e08da8-adda-4958-ad6c-41edf7030a37" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" />
 				</textElement>
-				<text><![CDATA[Reporte Users]]></text>
+				<text>Reporte Users</text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="555" height="1" uuid="fc0ebf8e-7c00-407d-86a6-cd48b962cb8e" />
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#003366" />
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="34" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="33" width="555" height="1" uuid="0e30d17c-ab87-4918-9b0e-b443854219c0"/>
+				<reportElement x="0" y="33" width="555" height="1" uuid="0e30d17c-ab87-4918-9b0e-b443854219c0" />
 			</line>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band height="33" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="67" height="20" uuid="cb511200-c59a-4aed-831a-d67b4f6cfcfb"/>
-				<text><![CDATA[UserId]]></text>
+				<reportElement x="0" y="0" width="67" height="20" uuid="cb511200-c59a-4aed-831a-d67b4f6cfcfb" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>UserId</text>
 			</staticText>
 			<staticText>
-				<reportElement x="77" y="0" width="74" height="20" uuid="f28f4e63-bbd9-4dd0-92e4-485da3de00c7"/>
-				<text><![CDATA[EmployeeId]]></text>
+				<reportElement x="77" y="0" width="74" height="20" uuid="f28f4e63-bbd9-4dd0-92e4-485da3de00c7" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>EmployeeId</text>
 			</staticText>
 			<staticText>
-				<reportElement x="163" y="0" width="118" height="20" uuid="453fbe67-6d85-417a-ad30-be8230d4e6a5"/>
-				<text><![CDATA[userIdentification]]></text>
+				<reportElement x="163" y="0" width="118" height="20" uuid="453fbe67-6d85-417a-ad30-be8230d4e6a5" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>userIdentification</text>
 			</staticText>
 			<staticText>
-				<reportElement x="281" y="0" width="100" height="20" uuid="7a3ac7c5-d862-41fe-86c5-24ef4ce4ce99"/>
-				<text><![CDATA[password]]></text>
+				<reportElement x="281" y="0" width="100" height="20" uuid="7a3ac7c5-d862-41fe-86c5-24ef4ce4ce99" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>password</text>
 			</staticText>
 			<staticText>
-				<reportElement x="401" y="0" width="100" height="20" uuid="791b02d0-fd38-4890-ad32-ea49bb2de229"/>
-				<text><![CDATA[status]]></text>
+				<reportElement x="401" y="0" width="100" height="20" uuid="791b02d0-fd38-4890-ad32-ea49bb2de229" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>status</text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="67" height="20" uuid="15c7173d-2cdf-46dc-953b-e09d5b19cc5a"/>
-				<textFieldExpression><![CDATA[$F{Users_UserId}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="67" height="20" uuid="15c7173d-2cdf-46dc-953b-e09d5b19cc5a" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Users_UserId}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="77" y="0" width="74" height="20" uuid="41572ac7-0624-4b63-b8e6-9458e1813ecf"/>
-				<textFieldExpression><![CDATA[$F{Users_EmployeeId}]]></textFieldExpression>
+				<reportElement x="77" y="0" width="74" height="20" uuid="41572ac7-0624-4b63-b8e6-9458e1813ecf" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Users_EmployeeId}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="163" y="0" width="118" height="20" uuid="330ad3e7-393e-4bfa-87d5-061a51a04ff8"/>
-				<textFieldExpression><![CDATA[$F{Users_userIdentification}]]></textFieldExpression>
+				<reportElement x="163" y="0" width="118" height="20" uuid="330ad3e7-393e-4bfa-87d5-061a51a04ff8" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Users_userIdentification}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="281" y="0" width="100" height="20" uuid="72aa3e54-1cbf-47f5-abe4-cb1cb0464fe5"/>
-				<textFieldExpression><![CDATA[$F{Users_password}]]></textFieldExpression>
+				<reportElement x="281" y="0" width="100" height="20" uuid="72aa3e54-1cbf-47f5-abe4-cb1cb0464fe5" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Users_password}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="401" y="2" width="100" height="20" uuid="248cc51d-71f8-4f01-b735-1dfbdad49d2f"/>
-				<textFieldExpression><![CDATA[$F{Users_status}]]></textFieldExpression>
+				<reportElement x="401" y="2" width="100" height="20" uuid="248cc51d-71f8-4f01-b735-1dfbdad49d2f" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Users_status}</textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="0" width="555" height="1" uuid="a59ced32-6905-471c-8f0a-d49573f68d3e"/>
+				<reportElement x="0" y="0" width="555" height="1" uuid="a59ced32-6905-471c-8f0a-d49573f68d3e" />
 			</line>
 			<line>
-				<reportElement x="0" y="1" width="555" height="1" uuid="741c5068-11a2-4dc3-9520-e104a1ed68c7"/>
+				<reportElement x="0" y="1" width="555" height="1" uuid="741c5068-11a2-4dc3-9520-e104a1ed68c7" />
 			</line>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch" />
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch" />
 	</summary>
 </jasperReport>

@@ -1,158 +1,114 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dc74d023-0d34-49b6-9653-75f174e2ca02">
-	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.0" />
+	<property name="ireport.x" value="0" />
+	<property name="ireport.y" value="0" />
 	<queryString language="SQL">
-		<![CDATA[SELECT
+		SELECT
      Shippers."ShipperID" AS Shippers_ShipperID,
      Shippers."CompanyName" AS Shippers_CompanyName,
      Shippers."Phone" AS Shippers_Phone
 FROM
-     "dbo"."Shippers" Shippers]]>
+     "dbo"."Shippers" Shippers
 	</queryString>
-	<field name="Shippers_ShipperID" class="java.lang.Integer"/>
-	<field name="Shippers_CompanyName" class="java.lang.String"/>
-	<field name="Shippers_Phone" class="java.lang.String"/>
+	<field name="Shippers_ShipperID" class="java.lang.Integer" />
+	<field name="Shippers_CompanyName" class="java.lang.String" />
+	<field name="Shippers_Phone" class="java.lang.String" />
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</background>
 	<title>
-    <band height="60">
-
-        <staticText>
-            <reportElement x="120" y="10" width="320" height="30"/>
-            <textElement textAlignment="Center">
-                <font size="20" isBold="true"/>
-            </textElement>
-            <text><![CDATA[REPORTE DE SHIPPERS]]></text>
-        </staticText>
-
-        <line>
-            <reportElement
-                x="0"
-                y="50"
-                width="555"
-                height="1"
-                forecolor="#0B3B75"/>
-        </line>
-
-    </band>
-</title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="d8226043-9edb-405a-8e1a-9c98e88bda1d" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" />
+				</textElement>
+				<text>REPORTE DE SHIPPERS</text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="555" height="1" uuid="10263262-f925-4fa2-8938-c8c7ea1dd965" />
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#003366" />
+				</graphicElement>
+			</line>
+		</band>
+	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</pageHeader>
 	<columnHeader>
-    <band height="30">
-
-        <rectangle>
-            <reportElement
-                x="0"
-                y="0"
-                width="555"
-                height="25"
-                mode="Opaque"
-                backcolor="#0B3B75"/>
-        </rectangle>
-
-        <staticText>
-            <reportElement
-                x="20"
-                y="5"
-                width="60"
-                height="15"
-                forecolor="#FFFFFF"/>
-            <textElement>
-                <font isBold="true"/>
-            </textElement>
-            <text><![CDATA[ID]]></text>
-        </staticText>
-
-        <staticText>
-            <reportElement
-                x="120"
-                y="5"
-                width="220"
-                height="15"
-                forecolor="#FFFFFF"/>
-            <textElement>
-                <font isBold="true"/>
-            </textElement>
-            <text><![CDATA[COMPAÑÍA]]></text>
-        </staticText>
-
-        <staticText>
-            <reportElement
-                x="380"
-                y="5"
-                width="140"
-                height="15"
-                forecolor="#FFFFFF"/>
-            <textElement>
-                <font isBold="true"/>
-            </textElement>
-            <text><![CDATA[TELÉFONO]]></text>
-        </staticText>
-
-    </band>
-</columnHeader>
+		<band height="30">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="25" mode="Opaque" backcolor="#0B3B75" />
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="5" width="60" height="15" forecolor="#FFFFFF" mode="Opaque" backcolor="#003366" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>ID</text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="5" width="220" height="15" forecolor="#FFFFFF" mode="Opaque" backcolor="#003366" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>COMPAÑÍA</text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="5" width="140" height="15" forecolor="#FFFFFF" mode="Opaque" backcolor="#003366" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
+				</textElement>
+				<text>TELÉFONO</text>
+			</staticText>
+		</band>
+	</columnHeader>
 	<detail>
-    <band height="25">
-
-        <textField>
-            <reportElement x="20" y="3" width="60" height="18"/>
-            <textFieldExpression><![CDATA[$F{Shippers_ShipperID}]]></textFieldExpression>
-        </textField>
-
-        <textField>
-            <reportElement x="120" y="3" width="220" height="18"/>
-            <textFieldExpression><![CDATA[$F{Shippers_CompanyName}]]></textFieldExpression>
-        </textField>
-
-        <textField>
-            <reportElement x="380" y="3" width="140" height="18"/>
-            <textFieldExpression><![CDATA[$F{Shippers_Phone}]]></textFieldExpression>
-        </textField>
-
-        <line>
-            <reportElement
-                x="0"
-                y="24"
-                width="555"
-                height="1"
-                forecolor="#D9D9D9"/>
-        </line>
-
-    </band>
-</detail>
+		<band height="25">
+			<textField>
+				<reportElement x="20" y="3" width="60" height="18" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Shippers_ShipperID}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="3" width="220" height="18" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Shippers_CompanyName}</textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="3" width="140" height="18" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Shippers_Phone}</textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="24" width="555" height="1" forecolor="#D9D9D9" />
+			</line>
+		</band>
+	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch" />
 	</columnFooter>
 	<pageFooter>
-    <band height="25">
-
-        <line>
-            <reportElement
-                x="0"
-                y="0"
-                width="555"
-                height="1"
-                forecolor="#0B3B75"/>
-        </line>
-
-        <textField>
-            <reportElement
-                x="450"
-                y="5"
-                width="80"
-                height="15"/>
-            <textElement textAlignment="Right"/>
-            <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
-        </textField>
-
-    </band>
-</pageFooter>
+		<band height="25">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" forecolor="#0B3B75" />
+			</line>
+			<textField>
+				<reportElement x="450" y="5" width="80" height="15" />
+				<textElement textAlignment="Right" />
+				<textFieldExpression>"Página " + $V{PAGE_NUMBER}</textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch" />
 	</summary>
 </jasperReport>

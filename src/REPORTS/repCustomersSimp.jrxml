@@ -1,52 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="695" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="66ae103f-5847-4f68-88f7-7b28e3de984e">
-	<property name="ireport.zoom" value="1.6105100000000048"/>
-	<property name="ireport.x" value="174"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.6105100000000048" />
+	<property name="ireport.x" value="120" />
+	<property name="ireport.y" value="0" />
 	<style name="table">
 		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
+			<pen lineWidth="1.0" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table 1">
 		<box>
-			<pen lineWidth="1.0" lineColor="#000000"/>
+			<pen lineWidth="1.0" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
 	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="0.5" lineColor="#000000" />
 		</box>
 	</style>
-	<subDataset name="Table Dataset 1" uuid="f8aee85b-9e22-4282-a23e-605a26dd79bb"/>
+	<subDataset name="Table Dataset 1" uuid="f8aee85b-9e22-4282-a23e-605a26dd79bb" />
 	<subDataset name="New Dataset 1" uuid="01ec0693-c62b-4b97-bc32-b63e905c7818">
 		<queryString language="SQL">
-			<![CDATA[SELECT
+			SELECT
      CustomerCustomerDemo."CustomerID" AS CustomerCustomerDemo_CustomerID,
      CustomerCustomerDemo."CustomerTypeID" AS CustomerCustomerDemo_CustomerTypeID,
      Categories."CategoryID" AS Categories_CategoryID,
@@ -153,104 +153,104 @@ FROM
      INNER JOIN "dbo"."EmployeeTerritories" EmployeeTerritories ON Employees."EmployeeID" = EmployeeTerritories."EmployeeID"
      INNER JOIN "dbo"."Users" Users ON Employees."EmployeeID" = Users."EmployeeId"
      INNER JOIN "dbo"."Territories" Territories ON EmployeeTerritories."TerritoryID" = Territories."TerritoryID"
-     INNER JOIN "dbo"."Region" Region ON Territories."RegionID" = Region."RegionID"]]>
+     INNER JOIN "dbo"."Region" Region ON Territories."RegionID" = Region."RegionID"
 		</queryString>
-		<field name="CustomerCustomerDemo_CustomerID" class="java.lang.String"/>
-		<field name="CustomerCustomerDemo_CustomerTypeID" class="java.lang.String"/>
-		<field name="Categories_CategoryID" class="java.lang.Integer"/>
-		<field name="Categories_CategoryName" class="java.lang.String"/>
-		<field name="Categories_Description" class="java.lang.String"/>
-		<field name="Categories_Picture" class="java.lang.Object"/>
-		<field name="CustomerDemographics_CustomerTypeID" class="java.lang.String"/>
-		<field name="CustomerDemographics_CustomerDesc" class="java.lang.String"/>
-		<field name="Customers_CustomerID" class="java.lang.String"/>
-		<field name="Customers_CompanyName" class="java.lang.String"/>
-		<field name="Customers_ContactName" class="java.lang.String"/>
-		<field name="Customers_ContactTitle" class="java.lang.String"/>
-		<field name="Customers_Address" class="java.lang.String"/>
-		<field name="Customers_City" class="java.lang.String"/>
-		<field name="Customers_Region" class="java.lang.String"/>
-		<field name="Customers_PostalCode" class="java.lang.String"/>
-		<field name="Customers_Country" class="java.lang.String"/>
-		<field name="Customers_Phone" class="java.lang.String"/>
-		<field name="Customers_Fax" class="java.lang.String"/>
-		<field name="Employees_EmployeeID" class="java.lang.Integer"/>
-		<field name="Employees_LastName" class="java.lang.String"/>
-		<field name="Employees_FirstName" class="java.lang.String"/>
-		<field name="Employees_Title" class="java.lang.String"/>
-		<field name="Employees_TitleOfCourtesy" class="java.lang.String"/>
-		<field name="Employees_BirthDate" class="java.sql.Timestamp"/>
-		<field name="Employees_HireDate" class="java.sql.Timestamp"/>
-		<field name="Employees_Address" class="java.lang.String"/>
-		<field name="Employees_City" class="java.lang.String"/>
-		<field name="Employees_Region" class="java.lang.String"/>
-		<field name="Employees_PostalCode" class="java.lang.String"/>
-		<field name="Employees_Country" class="java.lang.String"/>
-		<field name="Employees_HomePhone" class="java.lang.String"/>
-		<field name="Employees_Extension" class="java.lang.String"/>
-		<field name="Employees_Photo" class="java.lang.Object"/>
-		<field name="Employees_Notes" class="java.lang.String"/>
-		<field name="Employees_ReportsTo" class="java.lang.Integer"/>
-		<field name="Employees_PhotoPath" class="java.lang.String"/>
-		<field name="EmployeeTerritories_EmployeeID" class="java.lang.Integer"/>
-		<field name="EmployeeTerritories_TerritoryID" class="java.lang.String"/>
-		<field name="Order_Details_OrderID" class="java.lang.Integer"/>
-		<field name="Order_Details_ProductID" class="java.lang.Integer"/>
-		<field name="Order_Details_UnitPrice" class="java.math.BigDecimal"/>
-		<field name="Order_Details_Quantity" class="java.lang.Short"/>
-		<field name="Order_Details_Discount" class="java.lang.Float"/>
-		<field name="Orders_OrderID" class="java.lang.Integer"/>
-		<field name="Orders_CustomerID" class="java.lang.String"/>
-		<field name="Orders_EmployeeID" class="java.lang.Integer"/>
-		<field name="Orders_OrderDate" class="java.sql.Timestamp"/>
-		<field name="Orders_RequiredDate" class="java.sql.Timestamp"/>
-		<field name="Orders_ShippedDate" class="java.sql.Timestamp"/>
-		<field name="Orders_ShipVia" class="java.lang.Integer"/>
-		<field name="Orders_Freight" class="java.math.BigDecimal"/>
-		<field name="Orders_ShipName" class="java.lang.String"/>
-		<field name="Orders_ShipAddress" class="java.lang.String"/>
-		<field name="Orders_ShipCity" class="java.lang.String"/>
-		<field name="Orders_ShipRegion" class="java.lang.String"/>
-		<field name="Orders_ShipPostalCode" class="java.lang.String"/>
-		<field name="Orders_ShipCountry" class="java.lang.String"/>
-		<field name="Products_ProductID" class="java.lang.Integer"/>
-		<field name="Products_ProductName" class="java.lang.String"/>
-		<field name="Products_SupplierID" class="java.lang.Integer"/>
-		<field name="Products_CategoryID" class="java.lang.Integer"/>
-		<field name="Products_QuantityPerUnit" class="java.lang.String"/>
-		<field name="Products_UnitPrice" class="java.math.BigDecimal"/>
-		<field name="Products_UnitsInStock" class="java.lang.Short"/>
-		<field name="Products_UnitsOnOrder" class="java.lang.Short"/>
-		<field name="Products_ReorderLevel" class="java.lang.Short"/>
-		<field name="Products_Discontinued" class="java.lang.Boolean"/>
-		<field name="Region_RegionID" class="java.lang.Integer"/>
-		<field name="Region_RegionDescription" class="java.lang.String"/>
-		<field name="Shippers_ShipperID" class="java.lang.Integer"/>
-		<field name="Shippers_CompanyName" class="java.lang.String"/>
-		<field name="Shippers_Phone" class="java.lang.String"/>
-		<field name="Suppliers_SupplierID" class="java.lang.Integer"/>
-		<field name="Suppliers_CompanyName" class="java.lang.String"/>
-		<field name="Suppliers_ContactName" class="java.lang.String"/>
-		<field name="Suppliers_ContactTitle" class="java.lang.String"/>
-		<field name="Suppliers_Address" class="java.lang.String"/>
-		<field name="Suppliers_City" class="java.lang.String"/>
-		<field name="Suppliers_Region" class="java.lang.String"/>
-		<field name="Suppliers_PostalCode" class="java.lang.String"/>
-		<field name="Suppliers_Country" class="java.lang.String"/>
-		<field name="Suppliers_Phone" class="java.lang.String"/>
-		<field name="Suppliers_Fax" class="java.lang.String"/>
-		<field name="Suppliers_HomePage" class="java.lang.String"/>
-		<field name="Territories_TerritoryID" class="java.lang.String"/>
-		<field name="Territories_TerritoryDescription" class="java.lang.String"/>
-		<field name="Territories_RegionID" class="java.lang.Integer"/>
-		<field name="Users_UserId" class="java.lang.Integer"/>
-		<field name="Users_EmployeeId" class="java.lang.Integer"/>
-		<field name="Users_userIdentification" class="java.lang.String"/>
-		<field name="Users_password" class="java.lang.String"/>
-		<field name="Users_status" class="java.lang.Integer"/>
+		<field name="CustomerCustomerDemo_CustomerID" class="java.lang.String" />
+		<field name="CustomerCustomerDemo_CustomerTypeID" class="java.lang.String" />
+		<field name="Categories_CategoryID" class="java.lang.Integer" />
+		<field name="Categories_CategoryName" class="java.lang.String" />
+		<field name="Categories_Description" class="java.lang.String" />
+		<field name="Categories_Picture" class="java.lang.Object" />
+		<field name="CustomerDemographics_CustomerTypeID" class="java.lang.String" />
+		<field name="CustomerDemographics_CustomerDesc" class="java.lang.String" />
+		<field name="Customers_CustomerID" class="java.lang.String" />
+		<field name="Customers_CompanyName" class="java.lang.String" />
+		<field name="Customers_ContactName" class="java.lang.String" />
+		<field name="Customers_ContactTitle" class="java.lang.String" />
+		<field name="Customers_Address" class="java.lang.String" />
+		<field name="Customers_City" class="java.lang.String" />
+		<field name="Customers_Region" class="java.lang.String" />
+		<field name="Customers_PostalCode" class="java.lang.String" />
+		<field name="Customers_Country" class="java.lang.String" />
+		<field name="Customers_Phone" class="java.lang.String" />
+		<field name="Customers_Fax" class="java.lang.String" />
+		<field name="Employees_EmployeeID" class="java.lang.Integer" />
+		<field name="Employees_LastName" class="java.lang.String" />
+		<field name="Employees_FirstName" class="java.lang.String" />
+		<field name="Employees_Title" class="java.lang.String" />
+		<field name="Employees_TitleOfCourtesy" class="java.lang.String" />
+		<field name="Employees_BirthDate" class="java.sql.Timestamp" />
+		<field name="Employees_HireDate" class="java.sql.Timestamp" />
+		<field name="Employees_Address" class="java.lang.String" />
+		<field name="Employees_City" class="java.lang.String" />
+		<field name="Employees_Region" class="java.lang.String" />
+		<field name="Employees_PostalCode" class="java.lang.String" />
+		<field name="Employees_Country" class="java.lang.String" />
+		<field name="Employees_HomePhone" class="java.lang.String" />
+		<field name="Employees_Extension" class="java.lang.String" />
+		<field name="Employees_Photo" class="java.lang.Object" />
+		<field name="Employees_Notes" class="java.lang.String" />
+		<field name="Employees_ReportsTo" class="java.lang.Integer" />
+		<field name="Employees_PhotoPath" class="java.lang.String" />
+		<field name="EmployeeTerritories_EmployeeID" class="java.lang.Integer" />
+		<field name="EmployeeTerritories_TerritoryID" class="java.lang.String" />
+		<field name="Order_Details_OrderID" class="java.lang.Integer" />
+		<field name="Order_Details_ProductID" class="java.lang.Integer" />
+		<field name="Order_Details_UnitPrice" class="java.math.BigDecimal" />
+		<field name="Order_Details_Quantity" class="java.lang.Short" />
+		<field name="Order_Details_Discount" class="java.lang.Float" />
+		<field name="Orders_OrderID" class="java.lang.Integer" />
+		<field name="Orders_CustomerID" class="java.lang.String" />
+		<field name="Orders_EmployeeID" class="java.lang.Integer" />
+		<field name="Orders_OrderDate" class="java.sql.Timestamp" />
+		<field name="Orders_RequiredDate" class="java.sql.Timestamp" />
+		<field name="Orders_ShippedDate" class="java.sql.Timestamp" />
+		<field name="Orders_ShipVia" class="java.lang.Integer" />
+		<field name="Orders_Freight" class="java.math.BigDecimal" />
+		<field name="Orders_ShipName" class="java.lang.String" />
+		<field name="Orders_ShipAddress" class="java.lang.String" />
+		<field name="Orders_ShipCity" class="java.lang.String" />
+		<field name="Orders_ShipRegion" class="java.lang.String" />
+		<field name="Orders_ShipPostalCode" class="java.lang.String" />
+		<field name="Orders_ShipCountry" class="java.lang.String" />
+		<field name="Products_ProductID" class="java.lang.Integer" />
+		<field name="Products_ProductName" class="java.lang.String" />
+		<field name="Products_SupplierID" class="java.lang.Integer" />
+		<field name="Products_CategoryID" class="java.lang.Integer" />
+		<field name="Products_QuantityPerUnit" class="java.lang.String" />
+		<field name="Products_UnitPrice" class="java.math.BigDecimal" />
+		<field name="Products_UnitsInStock" class="java.lang.Short" />
+		<field name="Products_UnitsOnOrder" class="java.lang.Short" />
+		<field name="Products_ReorderLevel" class="java.lang.Short" />
+		<field name="Products_Discontinued" class="java.lang.Boolean" />
+		<field name="Region_RegionID" class="java.lang.Integer" />
+		<field name="Region_RegionDescription" class="java.lang.String" />
+		<field name="Shippers_ShipperID" class="java.lang.Integer" />
+		<field name="Shippers_CompanyName" class="java.lang.String" />
+		<field name="Shippers_Phone" class="java.lang.String" />
+		<field name="Suppliers_SupplierID" class="java.lang.Integer" />
+		<field name="Suppliers_CompanyName" class="java.lang.String" />
+		<field name="Suppliers_ContactName" class="java.lang.String" />
+		<field name="Suppliers_ContactTitle" class="java.lang.String" />
+		<field name="Suppliers_Address" class="java.lang.String" />
+		<field name="Suppliers_City" class="java.lang.String" />
+		<field name="Suppliers_Region" class="java.lang.String" />
+		<field name="Suppliers_PostalCode" class="java.lang.String" />
+		<field name="Suppliers_Country" class="java.lang.String" />
+		<field name="Suppliers_Phone" class="java.lang.String" />
+		<field name="Suppliers_Fax" class="java.lang.String" />
+		<field name="Suppliers_HomePage" class="java.lang.String" />
+		<field name="Territories_TerritoryID" class="java.lang.String" />
+		<field name="Territories_TerritoryDescription" class="java.lang.String" />
+		<field name="Territories_RegionID" class="java.lang.Integer" />
+		<field name="Users_UserId" class="java.lang.Integer" />
+		<field name="Users_EmployeeId" class="java.lang.Integer" />
+		<field name="Users_userIdentification" class="java.lang.String" />
+		<field name="Users_password" class="java.lang.String" />
+		<field name="Users_status" class="java.lang.Integer" />
 	</subDataset>
 	<queryString language="SQL">
-		<![CDATA[SELECT
+		SELECT
      Customers."CustomerID" AS Customers_CustomerID,
      Customers."CompanyName" AS Customers_CompanyName,
      Customers."ContactName" AS Customers_ContactName,
@@ -263,192 +263,228 @@ FROM
      Customers."Phone" AS Customers_Phone,
      Customers."Fax" AS Customers_Fax
 FROM
-     "dbo"."Customers" Customers]]>
+     "dbo"."Customers" Customers
 	</queryString>
-	<field name="Customers_CustomerID" class="java.lang.String"/>
-	<field name="Customers_CompanyName" class="java.lang.String"/>
-	<field name="Customers_ContactName" class="java.lang.String"/>
-	<field name="Customers_ContactTitle" class="java.lang.String"/>
-	<field name="Customers_Address" class="java.lang.String"/>
-	<field name="Customers_City" class="java.lang.String"/>
-	<field name="Customers_Region" class="java.lang.String"/>
-	<field name="Customers_PostalCode" class="java.lang.String"/>
-	<field name="Customers_Country" class="java.lang.String"/>
-	<field name="Customers_Phone" class="java.lang.String"/>
-	<field name="Customers_Fax" class="java.lang.String"/>
+	<field name="Customers_CustomerID" class="java.lang.String" />
+	<field name="Customers_CompanyName" class="java.lang.String" />
+	<field name="Customers_ContactName" class="java.lang.String" />
+	<field name="Customers_ContactTitle" class="java.lang.String" />
+	<field name="Customers_Address" class="java.lang.String" />
+	<field name="Customers_City" class="java.lang.String" />
+	<field name="Customers_Region" class="java.lang.String" />
+	<field name="Customers_PostalCode" class="java.lang.String" />
+	<field name="Customers_Country" class="java.lang.String" />
+	<field name="Customers_Phone" class="java.lang.String" />
+	<field name="Customers_Fax" class="java.lang.String" />
 	<background>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</background>
 	<title>
-		<band height="42" splitType="Stretch">
+		<band height="60" splitType="Stretch">
 			<staticText>
-				<reportElement x="255" y="0" width="132" height="20" uuid="eb92edd5-e457-4b02-8856-07ec8914825d"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font size="15"/>
+				<reportElement x="0" y="10" width="555" height="30" forecolor="#003366" uuid="8a259702-4554-4d3b-963e-8fa47c6d540f" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" />
 				</textElement>
-				<text><![CDATA[Reporte Customers]]></text>
+				<text>REPORTE DE CLIENTES</text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="36" width="655" height="1" uuid="cc1588ef-f2ac-4552-a2ce-b9c82347e052"/>
+				<reportElement x="0" y="45" width="555" height="1" uuid="e122a663-5be8-454e-bd1e-4178f0fe0fdd" />
+				<graphicElement>
+					<pen lineWidth="2.0" lineColor="#003366" />
+				</graphicElement>
 			</line>
 		</band>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band splitType="Stretch" />
 	</pageHeader>
 	<columnHeader>
 		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="47" y="0" width="67" height="20" uuid="860e1652-5a11-4f4f-b120-9fe2fd9b2566"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="47" y="0" width="67" height="20" uuid="860e1652-5a11-4f4f-b120-9fe2fd9b2566" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Company name]]></text>
+				<text>Company name</text>
 			</staticText>
 			<staticText>
-				<reportElement x="115" y="0" width="50" height="20" uuid="4ca87d70-e0c1-4799-888f-823eb59dc0ff"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="115" y="0" width="50" height="20" uuid="4ca87d70-e0c1-4799-888f-823eb59dc0ff" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Cntc Name]]></text>
+				<text>Cntc Name</text>
 			</staticText>
 			<staticText>
-				<reportElement x="165" y="0" width="62" height="20" uuid="ef1118af-564f-423b-8aa2-04c511b89bb1"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="165" y="0" width="62" height="20" uuid="ef1118af-564f-423b-8aa2-04c511b89bb1" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Cntc Title]]></text>
+				<text>Cntc Title</text>
 			</staticText>
 			<staticText>
-				<reportElement x="227" y="0" width="61" height="20" uuid="eaf66e2c-80de-4df5-8b37-d669d0ba7f67"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="227" y="0" width="61" height="20" uuid="eaf66e2c-80de-4df5-8b37-d669d0ba7f67" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Address]]></text>
+				<text>Address</text>
 			</staticText>
 			<staticText>
-				<reportElement x="288" y="0" width="42" height="20" uuid="b741ea95-3942-45df-a4cd-9a687f518625"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="288" y="0" width="42" height="20" uuid="b741ea95-3942-45df-a4cd-9a687f518625" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[City]]></text>
+				<text>City</text>
 			</staticText>
 			<staticText>
-				<reportElement x="330" y="0" width="47" height="20" uuid="d5e55fc8-ca98-43bc-b6f6-bee397330f5d"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="330" y="0" width="47" height="20" uuid="d5e55fc8-ca98-43bc-b6f6-bee397330f5d" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Region]]></text>
+				<text>Region</text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="0" width="69" height="20" uuid="d60700a7-5db2-41a7-837d-ae032cb1572e"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="377" y="0" width="69" height="20" uuid="d60700a7-5db2-41a7-837d-ae032cb1572e" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Postal Code]]></text>
+				<text>Postal Code</text>
 			</staticText>
 			<staticText>
-				<reportElement x="446" y="0" width="60" height="20" uuid="f177d232-9792-4704-8034-51833cf6522e"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="446" y="0" width="60" height="20" uuid="f177d232-9792-4704-8034-51833cf6522e" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Country]]></text>
+				<text>Country</text>
 			</staticText>
 			<staticText>
-				<reportElement x="506" y="0" width="74" height="20" uuid="657f7fb5-7994-4a7b-bb00-3c3bff1807e2"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="506" y="0" width="74" height="20" uuid="657f7fb5-7994-4a7b-bb00-3c3bff1807e2" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Phone]]></text>
+				<text>Phone</text>
 			</staticText>
 			<staticText>
-				<reportElement x="580" y="0" width="75" height="20" uuid="76316017-ecad-4af3-ba34-0cb79ad5c8a3"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="580" y="0" width="75" height="20" uuid="76316017-ecad-4af3-ba34-0cb79ad5c8a3" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Fax]]></text>
+				<text>Fax</text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="0" width="47" height="20" uuid="72e3fa58-82ba-48cc-91b8-e083c58053ab"/>
-				<textElement>
-					<font isBold="true"/>
+				<reportElement x="0" y="0" width="47" height="20" uuid="72e3fa58-82ba-48cc-91b8-e083c58053ab" mode="Opaque" backcolor="#003366" forecolor="#FFFFFF" />
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" size="9" />
 				</textElement>
-				<text><![CDATA[Id]]></text>
+				<text>Id</text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="47" height="20" uuid="1a1d0733-ccd8-49b4-8afe-48402f52e70e"/>
-				<textFieldExpression><![CDATA[$F{Customers_CustomerID}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="47" height="20" uuid="1a1d0733-ccd8-49b4-8afe-48402f52e70e" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_CustomerID}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="47" y="0" width="67" height="20" uuid="ffb0fe29-1c0c-4573-a5d7-f05126cdf633"/>
-				<textFieldExpression><![CDATA[$F{Customers_CompanyName}]]></textFieldExpression>
+				<reportElement x="47" y="0" width="67" height="20" uuid="ffb0fe29-1c0c-4573-a5d7-f05126cdf633" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_CompanyName}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="116" y="0" width="50" height="20" uuid="7fa259c3-1a84-479c-afe3-8b332b3de047"/>
-				<textFieldExpression><![CDATA[$F{Customers_ContactName}]]></textFieldExpression>
+				<reportElement x="116" y="0" width="50" height="20" uuid="7fa259c3-1a84-479c-afe3-8b332b3de047" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_ContactName}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="166" y="0" width="61" height="20" uuid="0ea37685-0f69-4891-af03-1c4b6d82c6d7"/>
-				<textFieldExpression><![CDATA[$F{Customers_ContactTitle}]]></textFieldExpression>
+				<reportElement x="166" y="0" width="61" height="20" uuid="0ea37685-0f69-4891-af03-1c4b6d82c6d7" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_ContactTitle}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="227" y="0" width="61" height="20" uuid="194aa793-7333-47a3-bcdc-a4d23fd56753"/>
-				<textFieldExpression><![CDATA[$F{Customers_Address}]]></textFieldExpression>
+				<reportElement x="227" y="0" width="61" height="20" uuid="194aa793-7333-47a3-bcdc-a4d23fd56753" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_Address}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="288" y="0" width="42" height="20" uuid="722f42b2-ff79-4d96-be18-5864fd117ede"/>
-				<textFieldExpression><![CDATA[$F{Customers_City}]]></textFieldExpression>
+				<reportElement x="288" y="0" width="42" height="20" uuid="722f42b2-ff79-4d96-be18-5864fd117ede" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_City}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="0" width="69" height="20" uuid="732d5976-5103-46a1-8d04-5cec8862fe94"/>
-				<textFieldExpression><![CDATA[$F{Customers_PostalCode}]]></textFieldExpression>
+				<reportElement x="377" y="0" width="69" height="20" uuid="732d5976-5103-46a1-8d04-5cec8862fe94" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_PostalCode}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="446" y="0" width="60" height="20" uuid="a2d615a9-75ac-48c0-9ea7-a119d8f4caff"/>
-				<textFieldExpression><![CDATA[$F{Customers_Country}]]></textFieldExpression>
+				<reportElement x="446" y="0" width="60" height="20" uuid="a2d615a9-75ac-48c0-9ea7-a119d8f4caff" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_Country}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="506" y="0" width="74" height="20" uuid="35384075-2704-4ce8-b77e-9488c475a615"/>
-				<textFieldExpression><![CDATA[$F{Customers_Phone}]]></textFieldExpression>
+				<reportElement x="506" y="0" width="74" height="20" uuid="35384075-2704-4ce8-b77e-9488c475a615" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>$F{Customers_Phone}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="580" y="0" width="75" height="20" uuid="fb577905-1c54-4972-9167-6ff89aa21ba0"/>
-				<textFieldExpression><![CDATA[($F{Customers_Fax} == null || $F{Customers_Fax}.trim().isEmpty()) ? "S/D" : $F{Customers_Fax}]]></textFieldExpression>
+				<reportElement x="580" y="0" width="75" height="20" uuid="fb577905-1c54-4972-9167-6ff89aa21ba0" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>($F{Customers_Fax} == null || $F{Customers_Fax}.trim().isEmpty()) ? "S/D" : $F{Customers_Fax}</textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="0" width="46" height="20" uuid="9446a384-427f-4f98-9f09-eefecf5b6513"/>
-				<textFieldExpression><![CDATA[($F{Customers_Region} == null || $F{Customers_Region}.trim().isEmpty()) ? "S/D": $F{Customers_Region}]]></textFieldExpression>
+				<reportElement x="330" y="0" width="46" height="20" uuid="9446a384-427f-4f98-9f09-eefecf5b6513" forecolor="#333333" />
+				<textElement verticalAlignment="Middle">
+					<font size="9" />
+				</textElement>
+				<textFieldExpression>($F{Customers_Region} == null || $F{Customers_Region}.trim().isEmpty()) ? "S/D": $F{Customers_Region}</textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
 		<band height="14" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="13" width="655" height="1" uuid="150f5641-b04c-4476-8de7-5a3888d04f2b"/>
+				<reportElement x="0" y="13" width="655" height="1" uuid="150f5641-b04c-4476-8de7-5a3888d04f2b" />
 			</line>
 		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="42" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy h.mm a">
-				<reportElement x="0" y="22" width="100" height="20" uuid="6ae2a713-1f05-4f37-b934-d133f2ea5d82"/>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<reportElement x="0" y="22" width="100" height="20" uuid="6ae2a713-1f05-4f37-b934-d133f2ea5d82" />
+				<textFieldExpression>new java.util.Date()</textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="416" y="22" width="129" height="20" uuid="d34515de-cd57-4729-a2a5-5a25566010af"/>
-				<text><![CDATA[* S/R: Sin región registrada]]></text>
+				<reportElement x="416" y="22" width="129" height="20" uuid="d34515de-cd57-4729-a2a5-5a25566010af" />
+				<text>* S/R: Sin región registrada</text>
 			</staticText>
 			<staticText>
-				<reportElement x="545" y="22" width="110" height="20" uuid="eee96ea2-4ae0-4a28-b76a-94f43f6c1cc9"/>
-				<text><![CDATA[* S/F: Sin fax registrado]]></text>
+				<reportElement x="545" y="22" width="110" height="20" uuid="eee96ea2-4ae0-4a28-b76a-94f43f6c1cc9" />
+				<text>* S/F: Sin fax registrado</text>
 			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch" />
 	</summary>
 </jasperReport>
